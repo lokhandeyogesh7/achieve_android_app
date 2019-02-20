@@ -1,0 +1,118 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bgGrey">
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rlFirstReview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/_15sdp"
+        android:background="@color/bgGrey"
+        android:padding="@dimen/_10sdp"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:cardElevation="@dimen/_4sdp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/lblAvg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:fontFamily="@font/myfont"
+                android:gravity="center"
+                android:text="Average Rating"
+                android:textSize="@dimen/_16sdp" />
+
+            <RatingBar
+                android:id="@+id/rbEmployer"
+                style="@style/MyRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lblAvg"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:isIndicator="true"
+                android:max="5"
+                android:numStars="5"
+                android:rating="4"
+                android:stepSize="1.0" />
+
+
+            <TextView
+                android:id="@+id/lblAvgReview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rbEmployer"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:fontFamily="@font/myfont"
+                android:gravity="center"
+                android:text="Average Review"
+                android:textSize="@dimen/_16sdp" />
+
+            <TextView
+                android:id="@+id/tvAvgRating"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lblAvgReview"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:fontFamily="@font/myfont"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:text="Excellent"
+                android:textSize="@dimen/_15sdp" />
+
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvAvgRating"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:fontFamily="@font/myfont"
+                android:gravity="center"
+                android:text="From date: 01/01/2019  To date: 15/01/2019"
+                android:textSize="@dimen/_14sdp" />
+
+            <TextView
+                android:id="@+id/seperator3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_below="@+id/tvDate"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:background="@color/bgGrey" />
+
+            <TextView
+                android:id="@+id/lblRevFeedback"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/seperator3"
+                android:fontFamily="@font/myfont"
+                android:gravity="center"
+                android:text="Review Feedback"
+                android:textSize="@dimen/_16sdp" />
+
+            <TextView
+                android:id="@+id/tvReviewFeedback"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lblRevFeedback"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:fontFamily="@font/myfont"
+                android:gravity="center"
+                android:text="Good in communication"
+                android:textSize="@dimen/_14sdp" />
+
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+</RelativeLayout>

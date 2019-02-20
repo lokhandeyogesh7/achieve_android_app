@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".activity.ProfileActivity">
+
+        <ImageView
+            android:id="@+id/ivProfile"
+            android:layout_width="@dimen/_125sdp"
+            android:layout_height="@dimen/_125sdp"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/ic_launcher_background"
+            android:src="@drawable/spash_screen" />
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ivProfile"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:paddingBottom="@dimen/_5sdp"
+            android:text="Sanjay Gadakh"
+            android:textSize="@dimen/_16sdp" />
+
+
+        <TextView
+            android:id="@+id/tvHeadline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvName"
+            android:layout_margin="@dimen/_5sdp"
+            android:background="@android:drawable/editbox_background_normal"
+            android:drawableEnd="@android:drawable/ic_media_next"
+            android:drawableRight="@android:drawable/ic_media_next"
+            android:gravity="center_vertical"
+            android:padding="@dimen/_9sdp"
+            android:text="Resume Headline" />
+
+        <TextView
+            android:id="@+id/tvSkills"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvHeadline"
+            android:layout_margin="@dimen/_5sdp"
+            android:background="@android:drawable/editbox_background_normal"
+            android:drawableEnd="@android:drawable/ic_media_next"
+            android:drawableRight="@android:drawable/ic_media_next"
+            android:gravity="center_vertical"
+            android:padding="@dimen/_9sdp"
+            android:text="Add/Edit Skills" />
+
+        <TextView
+            android:id="@+id/tvEmployment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvSkills"
+            android:layout_margin="@dimen/_5sdp"
+            android:background="@android:drawable/editbox_background_normal"
+            android:drawableEnd="@android:drawable/ic_media_next"
+            android:drawableRight="@android:drawable/ic_media_next"
+            android:gravity="center_vertical"
+            android:padding="@dimen/_9sdp"
+            android:text="Add/Edit Employment" />
+
+        <TextView
+            android:id="@+id/tvEducation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvEmployment"
+            android:layout_margin="@dimen/_5sdp"
+            android:background="@android:drawable/editbox_background_normal"
+            android:drawableEnd="@android:drawable/ic_media_next"
+            android:drawableRight="@android:drawable/ic_media_next"
+            android:gravity="center_vertical"
+            android:padding="@dimen/_9sdp"
+            android:text="Add/Edit Educational Details" />
+
+        <TextView
+            android:id="@+id/tvCareer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvEducation"
+            android:layout_margin="@dimen/_5sdp"
+            android:background="@android:drawable/editbox_background_normal"
+            android:drawableEnd="@android:drawable/ic_media_next"
+            android:drawableRight="@android:drawable/ic_media_next"
+            android:gravity="center_vertical"
+            android:padding="@dimen/_9sdp"
+            android:text="Add/Edit Career path" />
+
+        <TextView
+            android:id="@+id/tvPersonalDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvCareer"
+            android:layout_margin="@dimen/_5sdp"
+            android:background="@android:drawable/editbox_background_normal"
+            android:drawableEnd="@android:drawable/ic_media_next"
+            android:drawableRight="@android:drawable/ic_media_next"
+            android:gravity="center_vertical"
+            android:padding="@dimen/_9sdp"
+            android:text="Add/Edit Personal Details" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvPersonalDetails"
+            android:layout_margin="@dimen/_5sdp"
+            android:background="@android:drawable/editbox_background_normal"
+            android:drawableEnd="@android:drawable/ic_media_next"
+            android:drawableRight="@android:drawable/ic_media_next"
+            android:gravity="center_vertical"
+            android:padding="@dimen/_9sdp"
+            android:text="Upload new resume\n sanjay_gadakh.pdf" />
+
+
+    </RelativeLayout>
+</ScrollView>

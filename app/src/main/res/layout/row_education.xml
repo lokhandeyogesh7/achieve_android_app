@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tvCourseName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:text="My project 1"
+            android:fontFamily="@font/myfont"
+            android:textSize="@dimen/_14sdp"
+             />
+
+        <TextView
+            android:id="@+id/tvPercentage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:paddingEnd="10dp"
+            android:fontFamily="@font/myfont"
+            android:textSize="@dimen/_14sdp"
+            android:paddingRight="10dp" />
+
+        <TextView
+            android:id="@+id/seperator1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/tvPercentage"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/labelInstitute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/seperator1"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:text="Institute:"
+            android:fontFamily="@font/myfont"
+            android:textSize="@dimen/_14sdp"
+             />
+
+        <TextView
+            android:id="@+id/tvInstitute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/labelInstitute"
+            android:text="Institute:"
+            android:fontFamily="@font/myfont"
+            android:textSize="@dimen/_12sdp"
+             />
+
+        <TextView
+            android:id="@+id/lblYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/seperator1"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="Passing Year:"
+            android:fontFamily="@font/myfont"
+            android:textSize="@dimen/_14sdp"
+             />
+
+        <TextView
+            android:id="@+id/tvYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lblYear"
+            android:layout_alignStart="@+id/lblYear"
+            android:layout_alignLeft="@+id/lblYear"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="2011"
+            android:fontFamily="@font/myfont"
+            android:textSize="@dimen/_12sdp"
+             />
+
+
+        <TextView
+            android:id="@+id/lblCourse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvInstitute"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="10dp"
+            android:text="Course:"
+            android:fontFamily="@font/myfont"
+            android:textSize="@dimen/_14sdp"
+             />
+
+        <TextView
+            android:id="@+id/tvCourse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lblCourse"
+            android:text="2011"
+            android:fontFamily="@font/myfont"
+            android:textSize="@dimen/_12sdp"
+             />
+
+        <TextView
+            android:id="@+id/lblSpecialization"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvYear"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:text="Specialization:"
+            android:fontFamily="@font/myfont"
+            android:textSize="@dimen/_14sdp"
+             />
+
+        <TextView
+            android:id="@+id/tvSpecialization"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lblSpecialization"
+            android:layout_alignStart="@+id/lblSpecialization"
+            android:layout_alignLeft="@+id/lblSpecialization"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="2011"
+            android:fontFamily="@font/myfont"
+            android:textSize="@dimen/_12sdp"/>
+
+
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>

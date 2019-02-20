@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bgGrey"
+    tools:context=".activity.MainActivity">
+
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rlFirstReview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/tvPerformanceStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:gravity="center"
+                android:fontFamily="@font/myfont"
+                android:textSize="@dimen/_16sdp"
+                android:padding="@dimen/_5sdp"
+                android:text="Kiran Shetti" />
+
+            <TextView
+                android:id="@+id/seperator1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_below="@+id/tvPerformanceStatus"
+                android:background="@color/bgGrey" />
+
+            <!--  <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/seperator1"
+                  android:orientation="horizontal"
+                  android:padding="@dimen/_15sdp"
+                  android:weightSum="10">-->
+
+
+            <TextView
+                android:id="@+id/lblAvg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/seperator1"
+                android:gravity="center"
+                android:fontFamily="@font/myfont"
+                android:textSize="@dimen/_12sdp"
+                android:text="Average Rating" />
+
+            <RatingBar
+                android:id="@+id/rbEmployer"
+                style="@style/MyRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lblAvg"
+                android:layout_centerInParent="true"
+                android:isIndicator="true"
+                android:max="5"
+                android:numStars="5"
+                android:rating="4"
+                android:stepSize="1.0" />
+
+
+            <TextView
+                android:id="@+id/lblAvgReview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rbEmployer"
+                android:gravity="center"
+                android:fontFamily="@font/myfont"
+                android:textSize="@dimen/_12sdp"
+                android:text="Average Review" />
+
+            <TextView
+                android:id="@+id/tvAvgRating"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lblAvgReview"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:fontFamily="@font/myfont"
+                android:textSize="@dimen/_14sdp"
+                android:padding="@dimen/_5sdp"
+                android:text="Excellent" />
+
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/lbReviewList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rlFirstReview"
+        android:gravity="center"
+        android:padding="@dimen/_4sdp"
+        android:text="Review List"
+        android:textSize="@dimen/_14sdp"
+        android:fontFamily="@font/myfont"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvEmployerList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/lbReviewList"
+        android:layout_margin="5dp" />
+
+    <ProgressBar
+        android:id="@+id/pbFountainList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+</RelativeLayout>

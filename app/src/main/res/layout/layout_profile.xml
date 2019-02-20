@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/ivProfile"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/ic_launcher" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_toEndOf="@+id/ivProfile"
+        android:layout_marginStart="10dp"
+        android:id="@+id/tvTelephone"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="9561424969"
+        android:fontFamily="@font/myfont"
+        android:textSize="@dimen/_14sdp"
+        android:textColor="@android:color/white"
+        android:layout_toRightOf="@+id/ivProfile"
+        android:layout_marginLeft="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_toEndOf="@+id/ivProfile"
+        android:layout_marginStart="10dp"
+        android:id="@+id/tvEmail"
+        android:layout_below="@+id/tvTelephone"
+        android:layout_height="wrap_content"
+        android:text="dummy@email.com"
+        android:fontFamily="@font/myfont"
+        android:textSize="@dimen/_14sdp"
+        android:textColor="@android:color/white"
+        android:layout_toRightOf="@+id/ivProfile"
+        android:layout_marginLeft="10dp" />
+
+
+</RelativeLayout>
