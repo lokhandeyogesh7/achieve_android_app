@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.anshtest">
+    package="com.sanswai.achieve">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".global.AchieveApplication"
+        android:name="com.sanswai.achieve.global.AchieveApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -15,9 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".activity.MainActivity" />
+        <activity android:name="com.sanswai.achieve.activity.EmployerDashboardActivity"></activity>
+        <activity android:name="com.sanswai.achieve.activity.MainActivity" />
         <activity
-            android:name=".activity.SplashScreenActivity"
+            android:name="com.sanswai.achieve.activity.SplashScreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/FullscreenTheme">
             <intent-filter>
@@ -27,14 +28,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.LoginActivity"
+            android:name="com.sanswai.achieve.activity.LoginActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".activity.ProfileActivity" />
-        <activity android:name=".activity.DetailsActivity" />
-        <activity android:name=".activity.ReviewDetailsActivity"
-            android:theme="@style/NoActionBar"/>
-        <activity android:name=".activity.EmpProfileActivity"
-            android:theme="@style/NoActionBar"/>
+        <activity android:name="com.sanswai.achieve.activity.ProfileActivity" />
+        <activity android:name="com.sanswai.achieve.activity.DetailsActivity" />
+        <activity
+            android:name="com.sanswai.achieve.activity.ReviewDetailsActivity"
+            android:theme="@style/NoActionBar" />
+        <activity
+            android:name="com.sanswai.achieve.activity.EmpProfileActivity"
+            android:theme="@style/NoActionBar" />
     </application>
 
 </manifest>

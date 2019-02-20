@@ -53,4 +53,9 @@
         <item name="android:maxHeight">@dimen/_35sdp</item>
     </style>
 
+    <style name="MyRatingBarThin" parent="@android:style/Widget.DeviceDefault.RatingBar.Indicator">
+        <item name="android:minHeight">@dimen/_25sdp</item>
+        <item name="android:maxHeight">@dimen/_25sdp</item>
+    </style>
+
 </resources>

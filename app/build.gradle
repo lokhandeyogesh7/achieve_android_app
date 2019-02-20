@@ -6,7 +6,7 @@ apply plugin: 'kotlin-android'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.anshtest"
+        applicationId "com.sanswai.achieve"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
