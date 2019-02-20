@@ -41,6 +41,7 @@
                 android:id="@+id/toolbarMain"
                 android:layout_width="match_parent"
                 app:layout_collapseMode="pin"
+                style="@style/customfontstyle"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_scrollFlags="scroll|enterAlways">
 

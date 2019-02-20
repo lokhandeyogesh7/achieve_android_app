@@ -53,12 +53,6 @@ class ReviewDetailsActivity : AppCompatActivity() {
             tabLayout!!.getTabAt(0)!!.text = "Review Details"
             tabLayout!!.getTabAt(1)!!.text = "Review Questions"
         }
-
-
-
-
-
-
     }
 
 

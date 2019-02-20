@@ -1,12 +1,14 @@
 package com.sanswai.achieve.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.sanswai.achieve.R
+import com.sanswai.achieve.activity.ReviewDetailsActivity
 import com.sanswai.achieve.fragment.Education
 import com.sanswai.achieve.model.EmployeeRevList
 
@@ -31,6 +33,11 @@ class EmpReviewListAdapter (val mContext: Context, private val empReviewList: Ar
         holder.tvDateRevList.text = education.date
         holder.tvFeedbackEmployee.text = education.feedback
         holder.tvPerStatusEmployee.text = education.perStatus
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(mContext,ReviewDetailsActivity::class.java)
+            mContext.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {

@@ -4,14 +4,19 @@
     <style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="actionMenuTextAppearance">@font/myfont</item>
+        <item name="android:textAppearance">@font/myfont</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:editTextStyle">@style/App_EditTextStyle</item>
-        <item name="android:buttonStyle">@style/App_ButtonStyle</item>
+        <item name="android:buttonStygit status
+        le">@style/App_ButtonStyle</item>
     </style>
 
     <style name="NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="actionMenuTextAppearance">@font/myfont</item>
+        <item name="android:textAppearance">@font/myfont</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:editTextStyle">@style/App_EditTextStyle</item>
@@ -56,6 +61,10 @@
     <style name="MyRatingBarThin" parent="@android:style/Widget.DeviceDefault.RatingBar.Indicator">
         <item name="android:minHeight">@dimen/_25sdp</item>
         <item name="android:maxHeight">@dimen/_25sdp</item>
+    </style>
+
+    <style name="customfontstyle" parent="@android:style/TextAppearance.Small">
+        <item name="android:fontFamily">@font/myfont</item>
     </style>
 
 </resources>
