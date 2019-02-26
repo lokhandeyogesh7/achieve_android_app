@@ -29,7 +29,7 @@
         </activity>
         <activity
             android:name="com.sanswai.achieve.activity.LoginActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/NoActionBar" />
         <activity android:name="com.sanswai.achieve.activity.ProfileActivity" />
         <activity android:name="com.sanswai.achieve.activity.DetailsActivity" />
         <activity

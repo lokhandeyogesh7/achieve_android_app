@@ -31,7 +31,7 @@
                 android:textSize="@dimen/_16sdp" />
 
             <RatingBar
-                android:id="@+id/rbEmployer"
+                android:id="@+id/rbMainEmp"
                 style="@style/MyRatingBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -49,7 +49,7 @@
                 android:id="@+id/lblAvgReview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/rbEmployer"
+                android:layout_below="@+id/rbMainEmp"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:fontFamily="@font/myfont"
                 android:gravity="center"
@@ -57,7 +57,7 @@
                 android:textSize="@dimen/_16sdp" />
 
             <TextView
-                android:id="@+id/tvAvgRating"
+                android:id="@+id/tvMainAvgReview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/lblAvgReview"
@@ -74,7 +74,7 @@
                 android:id="@+id/tvDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvAvgRating"
+                android:layout_below="@+id/tvMainAvgReview"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:fontFamily="@font/myfont"
                 android:gravity="center"

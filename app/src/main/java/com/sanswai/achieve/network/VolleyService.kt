@@ -20,8 +20,8 @@ class VolleyService(val context: Context) {
     lateinit var mResponseInterface: SetResponse
 
     interface SetResponse {
-        fun onSuccess(response: Any)
-        fun onFailure(volleyError: VolleyError)
+        fun onSuccess(methodName:String,response: Any)
+        fun onFailure(methodName:String,volleyError: VolleyError)
     }
 
     @SuppressLint("InflateParams")
@@ -39,12 +39,12 @@ class VolleyService(val context: Context) {
                 Response.Listener<JSONObject> {
                     println("success $it")
                     dialog.dismiss()
-                    mResponseInterface.onSuccess(it)
+                    mResponseInterface.onSuccess(methodName,it)
                 },
                 Response.ErrorListener {
                     println("failed ${it.networkResponse}")
                     dialog.dismiss()
-                    mResponseInterface.onFailure(it)
+                    mResponseInterface.onFailure(methodName,it)
                 })
         AchieveApplication.instance?.addToRequestQueue(jsonObjReq, methodName)
     }

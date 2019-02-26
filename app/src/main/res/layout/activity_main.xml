@@ -20,7 +20,7 @@
 
 
             <TextView
-                android:id="@+id/tvPerformanceStatus"
+                android:id="@+id/tvMainEmpName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -35,7 +35,7 @@
                 android:id="@+id/seperator1"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_1sdp"
-                android:layout_below="@+id/tvPerformanceStatus"
+                android:layout_below="@+id/tvMainEmpName"
                 android:background="@color/bgGrey" />
 
             <!--  <LinearLayout
@@ -58,7 +58,7 @@
                 android:text="Average Rating" />
 
             <RatingBar
-                android:id="@+id/rbEmployer"
+                android:id="@+id/rbMainEmp"
                 style="@style/MyRatingBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -75,14 +75,14 @@
                 android:id="@+id/lblAvgReview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/rbEmployer"
+                android:layout_below="@+id/rbMainEmp"
                 android:gravity="center"
                 android:fontFamily="@font/myfont"
                 android:textSize="@dimen/_12sdp"
                 android:text="Average Review" />
 
             <TextView
-                android:id="@+id/tvAvgRating"
+                android:id="@+id/tvMainAvgReview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/lblAvgReview"

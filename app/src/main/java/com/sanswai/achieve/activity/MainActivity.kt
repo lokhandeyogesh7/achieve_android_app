@@ -11,14 +11,19 @@ import android.widget.Toast
 import com.sanswai.achieve.adapter.EmployerListAdapter
 import com.sanswai.achieve.global.BaseActivity
 import com.sanswai.achieve.model.Result
+import com.sanswai.achieve.response.employee_login.LoginResponse
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : BaseActivity() {
 
+    private var loginResponse: LoginResponse? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        loginResponse = intent.getSerializableExtra(getString(R.string.employee_data)) as LoginResponse?
 
         setUpActionBar()
     }
@@ -27,29 +32,19 @@ class MainActivity : BaseActivity() {
         //set title to activity
         supportActionBar!!.title = "Dashboard"
 
+        tvMainEmpName.text = loginResponse!!.data!!.name
+        rbMainEmp.rating = loginResponse!!.userData!!.averageRating!!.toFloat()
+        tvMainAvgReview.text = loginResponse!!.userData!!.performanceStatus
+
         rvEmployerList.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
 
-
         //set adapter for recycler view
-        rvEmployerList.adapter = EmployerListAdapter(getList()) { result ->
+        rvEmployerList.adapter = EmployerListAdapter(loginResponse!!.userData!!.data) { result ->
             //call new activity to show details and pass uid to particular activity
             val intent = Intent(this@MainActivity, ReviewDetailsActivity::class.java)
-            intent.putExtra(getString(R.string.uId), result.uid)
+            intent.putExtra(getString(R.string.employer_id), result.id)
             startActivity(intent)
         }
-    }
-
-    private fun getList(): List<Result> {
-        val arriList = ArrayList<Result>()
-        for (i in 0 until 15) {
-            val result = Result()
-            result.name = "Good In Communication"
-            result.operator = "12/02/2017"
-            result.uid = "12/12/2018"
-            result.degreeOfLatitude = ((i + 3) / 3).toString()
-            arriList.add(result)
-        }
-        return arriList
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

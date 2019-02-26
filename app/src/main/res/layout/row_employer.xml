@@ -11,7 +11,7 @@
         android:padding="@dimen/_5sdp">
 
         <TextView
-            android:id="@+id/tvPerformanceStatus"
+            android:id="@+id/tvMainEmpName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -27,7 +27,7 @@
             android:id="@+id/tvDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tvPerformanceStatus"
+            android:layout_below="@id/tvMainEmpName"
             android:fontFamily="@font/myfont"
             android:padding="@dimen/_2sdp"
             android:text="Start Date : 12/02/2018"
@@ -45,7 +45,7 @@
 
 
         <RatingBar
-            android:id="@+id/rbEmployer"
+            android:id="@+id/rbMainEmp"
             style="@style/MyRatingBarSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -9,14 +9,16 @@ import android.view.View
 import android.widget.RatingBar
 import com.sanswai.achieve.R
 import com.sanswai.achieve.model.Result
+import com.sanswai.achieve.response.employee_login.Datum
 
 
-class EmployerListAdapter(private val fountainList: List<Result>,private val listener: (Result) -> Unit) : RecyclerView.Adapter<EmployerListAdapter.MyViewHolder>() {
+class EmployerListAdapter(private val fountainList: List<Datum>?, private val listener: (Datum) -> Unit) : RecyclerView.Adapter<EmployerListAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val tvEmplName = view.findViewById<TextView>(R.id.tvPerformanceStatus)!!
+        val tvEmplName = view.findViewById<TextView>(R.id.tvMainEmpName)!!
         val tvDate = view.findViewById<TextView>(R.id.tvDate)!!
-        val rbRating = view.findViewById<RatingBar>(R.id.rbEmployer)!!
+        val rbRating = view.findViewById<RatingBar>(R.id.rbMainEmp)!!
+        val tvPerformance = view.findViewById<TextView>(R.id.tvPerformance)!!
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -28,17 +30,17 @@ class EmployerListAdapter(private val fountainList: List<Result>,private val lis
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val fountain = fountainList[position]
-        println("fountain item is ${fountain.name}")
-        holder.tvEmplName.text = "${fountain.name}"
-        holder.tvDate.text = "From Date: ${fountain.operator}  To Date: ${fountain.uid}"
-        holder.rbRating.rating = fountain.degreeOfLatitude?.toFloat()!!
+        val employer = fountainList!![position]
+        holder.tvEmplName.text = "${employer.feedbackDetails}"
+        holder.tvDate.text = "From Date: ${employer.startDate}  To Date: ${employer.endDate}"
+        holder.rbRating.rating = employer.avgRating?.toFloat()!!
+        holder.tvPerformance.text = employer.performanceStatus!!
 
         holder.itemView.setOnClickListener {
-            listener(fountain)
+            listener(employer)
         }
     }
     override fun getItemCount(): Int {
-        return fountainList.size
+        return fountainList!!.size
     }
 }

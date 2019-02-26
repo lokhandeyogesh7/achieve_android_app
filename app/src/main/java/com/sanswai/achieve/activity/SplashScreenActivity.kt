@@ -5,6 +5,7 @@ import android.os.Handler
 import com.sanswai.achieve.R
 import android.content.Intent
 import com.sanswai.achieve.global.BaseActivity
+import com.sanswai.achieve.global.Preferences
 
 
 class SplashScreenActivity : BaseActivity() {
@@ -14,13 +15,17 @@ class SplashScreenActivity : BaseActivity() {
         setContentView(R.layout.activity_splash_screen)
 
         Handler().postDelayed({
-            // This method will be executed once the timer is over
-            // Start your app main activity
-            val i = Intent(this@SplashScreenActivity, LoginActivity::class.java)
-            startActivity(i)
-
-            // close this activity
-            finish()
+            val preferences = Preferences.getInstance(this)
+            val isLogin = preferences.getPreferencesBoolean(getString(R.string.is_login),false)
+            if(isLogin){
+                val i = Intent(this@SplashScreenActivity, MainActivity::class.java)
+                startActivity(i)
+                finish()
+            }else {
+                val i = Intent(this@SplashScreenActivity, LoginActivity::class.java)
+                startActivity(i)
+                finish()
+            }
         }, SPLASH_TIME_OUT.toLong())
     }
 
