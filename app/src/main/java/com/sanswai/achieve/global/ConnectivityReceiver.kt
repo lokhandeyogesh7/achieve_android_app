@@ -13,7 +13,6 @@ class ConnectivityReceiver : BroadcastReceiver() {
 
     @SuppressLint("UnsafeProtectedBroadcastReceiver")
     override fun onReceive(context: Context, arg1: Intent) {
-
         if (connectivityReceiverListener != null) {
             try {
                 connectivityReceiverListener!!.onNetworkConnectionChanged(isConnectedOrConnecting(context))

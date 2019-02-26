@@ -4,16 +4,20 @@ import android.annotation.SuppressLint
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.sanswai.achieve.network.VolleyService
+import android.content.DialogInterface
+
+
 
 @SuppressLint("Registered")
 open class BaseActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityReceiverListener {
 
     private var mVolleyService: VolleyService? = null
     private val connectionBroadcast = ConnectivityReceiver()
-    private var isOnline: Boolean = false
+    var isOnline: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,5 +56,16 @@ open class BaseActivity : AppCompatActivity(), ConnectivityReceiver.Connectivity
      */
     fun showToast(message: String) {
         Toast.makeText(this@BaseActivity, message, Toast.LENGTH_SHORT).show()
+    }
+
+    fun showNoInternetDialog(){
+        AlertDialog.Builder(this)
+                .setTitle("No Internet")
+                .setMessage("You do not have internet connection, please connect to your internet.")
+                .setPositiveButton(android.R.string.ok) { dialog, which ->
+                    dialog.dismiss()
+                }
+                .setCancelable(false)
+                .show()
     }
 }

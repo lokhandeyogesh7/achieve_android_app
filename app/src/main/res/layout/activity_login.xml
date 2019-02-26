@@ -62,7 +62,7 @@
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_alignParentRight="true" />
 
-    <TextView
+   <!-- <TextView
         style="@style/App_ButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
@@ -71,6 +71,6 @@
         android:text="Login Employer"
         android:fontFamily="@font/myfont"
         android:id="@+id/btnLoginEmployer"
-        android:textSize="@dimen/_16sdp" />
+        android:textSize="@dimen/_16sdp" />-->
 
 </RelativeLayout>

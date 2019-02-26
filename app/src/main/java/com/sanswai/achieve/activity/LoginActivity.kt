@@ -21,7 +21,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener, VolleyService.SetRes
         services = VolleyService(this@LoginActivity)
 
         btnLogin.setOnClickListener(this)
-        btnLoginEmployer.setOnClickListener(this)
+        //btnLoginEmployer.setOnClickListener(this)
     }
 
     override fun onClick(p0: View?) {
@@ -29,16 +29,20 @@ class LoginActivity : BaseActivity(), View.OnClickListener, VolleyService.SetRes
             R.id.btnLogin -> {
                 //startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                 //finish()
-                val loginObject = JSONObject()
-                loginObject.put("email","kiran.shetti@testemail.com")
-                loginObject.put("password","kiran123")
-                services.callJsonObjectRequest(getString(R.string.api_login),loginObject)
-                services.mResponseInterface = this
+                if (isOnline) {
+                    val loginObject = JSONObject()
+                    loginObject.put("email", "kiran.shetti@testemail.com")
+                    loginObject.put("password", "kiran123")
+                    services.callJsonObjectRequest(getString(R.string.api_login), loginObject)
+                    services.mResponseInterface = this
+                }else{
+                    showNoInternetDialog()
+                }
             }
-            R.id.btnLoginEmployer -> {
+           /* R.id.btnLoginEmployer -> {
                 startActivity(Intent(this@LoginActivity, EmployerDashboardActivity::class.java))
                 finish()
-            }
+            }*/
         }
     }
 
