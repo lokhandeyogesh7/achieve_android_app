@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.Handler
 import com.sanswai.achieve.R
 import android.content.Intent
+import com.sanswai.achieve.global.BaseActivity
 
 
 class SplashScreenActivity : BaseActivity() {

@@ -14,15 +14,6 @@ import com.sanswai.achieve.adapter.ReviewQuestionAdapter
 import com.sanswai.achieve.model.ReviewQuestion
 import kotlinx.android.synthetic.main.fragment_review_question.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- *
- */
 class ReviewQuestionFragment : Fragment() {
 
     var revQuestionList: ArrayList<ReviewQuestion>? = null
@@ -38,7 +29,7 @@ class ReviewQuestionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         revQuestionList = ArrayList()
-        adapter = ReviewQuestionAdapter(activity!!, revQuestionList)
+        adapter = ReviewQuestionAdapter(revQuestionList)
 
         val mLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         rvRevQuestions.layoutManager = mLayoutManager
@@ -49,14 +40,10 @@ class ReviewQuestionFragment : Fragment() {
     }
 
     private fun prepareProjectList() {
-
         for (i in 0 until 3) {
-            var projects= ReviewQuestion("Who Are you ${i+1}","Performance Status : Good")
+            val projects= ReviewQuestion("Who Are you ${i+1}","Performance Status : Good")
             revQuestionList!!.add(projects)
         }
-
         adapter!!.notifyDataSetChanged()
-
     }
-
 }

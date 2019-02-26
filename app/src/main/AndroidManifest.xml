@@ -38,6 +38,15 @@
         <activity
             android:name="com.sanswai.achieve.activity.EmpProfileActivity"
             android:theme="@style/NoActionBar" />
+        <receiver
+            android:name=".global.ConnectivityReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action
+                    android:name="android.net.conn.CONNECTIVITY_CHANGE"
+                    tools:ignore="BatteryLife" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

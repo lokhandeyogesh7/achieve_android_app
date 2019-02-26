@@ -13,7 +13,7 @@ open class AchieveApplication : Application() {
         instance = this
     }
 
-    val requestQueue: RequestQueue? = null
+    private val requestQueue: RequestQueue? = null
         get() {
             if (field == null) {
                 return Volley.newRequestQueue(applicationContext)

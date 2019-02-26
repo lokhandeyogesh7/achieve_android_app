@@ -9,8 +9,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:editTextStyle">@style/App_EditTextStyle</item>
-        <item name="android:buttonStygit status
-        le">@style/App_ButtonStyle</item>
+        <item name="android:buttonStyle">@style/App_ButtonStyle</item>
     </style>
 
     <style name="NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">

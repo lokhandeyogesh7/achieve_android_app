@@ -9,16 +9,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.sanswai.achieve.R
 import com.sanswai.achieve.activity.ReviewDetailsActivity
-import com.sanswai.achieve.fragment.Education
 import com.sanswai.achieve.model.EmployeeRevList
 
-class EmpReviewListAdapter (val mContext: Context, private val empReviewList: ArrayList<EmployeeRevList>?) : RecyclerView.Adapter<EmpReviewListAdapter.MyViewHolder>() {
+class EmpReviewListAdapter (private val mContext: Context, private val empReviewList: ArrayList<EmployeeRevList>?) : RecyclerView.Adapter<EmpReviewListAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var tvDateRevList: TextView = view.findViewById(R.id.tvDateRevList)
-        var tvFeedbackEmployee: TextView = view.findViewById(R.id.tvFeedbackEmployee)
-        var tvPerStatusEmployee: TextView = view.findViewById(R.id.tvPerStatusEmployee)
-
+        var tvDateRevList: TextView = view.findViewById(R.id.tvDateRevList)!!
+        var tvFeedbackEmployee: TextView = view.findViewById(R.id.tvFeedbackEmployee)!!
+        var tvPerStatusEmployee: TextView = view.findViewById(R.id.tvPerStatusEmployee)!!
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

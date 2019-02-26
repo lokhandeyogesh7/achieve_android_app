@@ -10,10 +10,11 @@ import android.view.MenuItem
 import android.widget.Toast
 import com.sanswai.achieve.R
 import com.sanswai.achieve.adapter.EmployeeDashboardAdapter
+import com.sanswai.achieve.global.BaseActivity
 import com.sanswai.achieve.model.Employee
 import kotlinx.android.synthetic.main.activity_employer_dashbaord.*
 
-class EmployerDashboardActivity : AppCompatActivity() {
+class EmployerDashboardActivity : BaseActivity() {
 
     var employeeList: ArrayList<Employee>? = null
     var adapter: EmployeeDashboardAdapter? = null

@@ -26,7 +26,6 @@
         android:background="@color/bgGrey"
         android:layout_below="@+id/btnAddReview"
         android:layout_margin="@dimen/_5sdp"
-        android:id="@+id/rvEmployerRevList"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/rvEmployerRevList"/>
 
 </RelativeLayout>

@@ -9,21 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.sanswai.achieve.R
+import com.sanswai.achieve.adapter.ProjectsAdapter
 import kotlinx.android.synthetic.main.fragment_employment.*
 
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- *
- */
 class EmploymentFragment : Fragment() {
 
-    var projectsList: ArrayList<Projects>? = null
+    private var projectsList: ArrayList<Projects>? = null
     var adapter: ProjectsAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +26,7 @@ class EmploymentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         projectsList = ArrayList()
-        adapter = ProjectsAdapter(activity!!, projectsList!!)
+        adapter = ProjectsAdapter(projectsList!!)
 
         val mLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         rvEmployments.layoutManager = mLayoutManager
@@ -46,14 +37,10 @@ class EmploymentFragment : Fragment() {
     }
 
     private fun prepareProjectList() {
-
         for (i in 0 until 5) {
-            var projects= Projects("Company name ${i + 1}","Company Description ${i + 1} lasdkl;askdl;askd;laskd;laskd;laskkkkkkkkkkkkkvhhhhhhhhhhhhhhkb jskgdfyuukgiuy ckagdbcy efgkuya gwevdcvswjeyvgfjcwsva cfd",i.toString())
+            val projects= Projects("Company name ${i + 1}","Company Description ${i + 1} lasdkl;askdl;askd;laskd;laskd;laskkkkkkkkkkkkkvhhhhhhhhhhhhhhkb jskgdfyuukgiuy ckagdbcy efgkuya gwevdcvswjeyvgfjcwsva cfd",i.toString())
             projectsList!!.add(projects)
         }
-
         adapter!!.notifyDataSetChanged()
-
     }
-
 }

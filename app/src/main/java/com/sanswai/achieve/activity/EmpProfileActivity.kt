@@ -13,10 +13,11 @@ import android.view.MenuItem
 import android.view.View
 import com.sanswai.achieve.R
 import com.sanswai.achieve.fragment.*
+import com.sanswai.achieve.global.BaseActivity
 import kotlinx.android.synthetic.main.activity_emp_profile.*
 import java.util.*
 
-class EmpProfileActivity : AppCompatActivity() {
+class EmpProfileActivity : BaseActivity() {
 
     var tabLayout: TabLayout? = null
 

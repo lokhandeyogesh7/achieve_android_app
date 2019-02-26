@@ -9,6 +9,7 @@ import android.widget.LinearLayout
 import com.sanswai.achieve.R
 import android.widget.Toast
 import com.sanswai.achieve.adapter.EmployerListAdapter
+import com.sanswai.achieve.global.BaseActivity
 import com.sanswai.achieve.model.Result
 import kotlinx.android.synthetic.main.activity_main.*
 

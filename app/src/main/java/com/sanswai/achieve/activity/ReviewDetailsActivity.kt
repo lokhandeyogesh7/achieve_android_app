@@ -10,11 +10,12 @@ import android.view.MenuItem
 import android.view.View
 import com.sanswai.achieve.R
 import com.sanswai.achieve.fragment.*
+import com.sanswai.achieve.global.BaseActivity
 import kotlinx.android.synthetic.main.activity_review_details.*
 import kotlinx.android.synthetic.main.fragment_employer_review_list.*
 import java.util.ArrayList
 
-class ReviewDetailsActivity : AppCompatActivity() {
+class ReviewDetailsActivity : BaseActivity() {
 
     var tabLayout: TabLayout? = null
     var isEmployer: Boolean = false

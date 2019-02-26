@@ -18,7 +18,6 @@ class EducationAdapter(val mContext: Context, private val educationList: ArrayLi
         var tvYear: TextView = view.findViewById(R.id.tvYear)
         var tvCourse: TextView = view.findViewById(R.id.tvCourse)
         var tvSpecialization: TextView = view.findViewById(R.id.tvSpecialization)
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

@@ -24,6 +24,8 @@
     <string name="review_details">Review Details</string>
     <string name="review_questions">Review Questions</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="base_url">https://sanswaitechnologies.com/achieve/api/userapp/</string>
+    <string name="api_login">login</string>
+    <string name="loading_please_wait">Loading Please Wait…</string>
+
 </resources>
