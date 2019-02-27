@@ -6,19 +6,21 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RatingBar
 import android.widget.TextView
 import com.sanswai.achieve.R
 import com.sanswai.achieve.activity.EmpProfileActivity
 import com.sanswai.achieve.activity.ReviewDetailsActivity
-import com.sanswai.achieve.response.employerlogin.UserDatum
+import com.sanswai.achieve.response.employerdashboard.Datum
 
-class EmployeeDashboardAdapter(private val mContext: Context, private val employeeList: ArrayList<UserDatum>?) : RecyclerView.Adapter<EmployeeDashboardAdapter.MyViewHolder>(){
+class EmployeeDashboardAdapter(private val mContext: Context, private val employeeList: ArrayList<Datum>?) : RecyclerView.Adapter<EmployeeDashboardAdapter.MyViewHolder>(){
 
 
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var tvEmployeeName: TextView = view.findViewById(R.id.tvEmployeeName)
         var tvEmail: TextView = view.findViewById(R.id.tvEmail)
         var tvPhone: TextView = view.findViewById(R.id.tvPhone)
+        var rbEmployee: RatingBar = view.findViewById(R.id.rbEmployee)
         var tvPerStatusEmployee: TextView = view.findViewById(R.id.tvPerStatusEmployee)
         var tvRecordDetails: TextView = view.findViewById(R.id.tvRecordDetails)
         var tvEmployeeProfile: TextView = view.findViewById(R.id.tvEmployeeProfile)
@@ -36,6 +38,7 @@ class EmployeeDashboardAdapter(private val mContext: Context, private val employ
         holder.tvEmployeeName.text = education.name
         holder.tvEmail.text = education.email
         holder.tvPhone.text = education.mobileNumber
+        holder.rbEmployee.rating = education.userRating!!
         holder.tvPerStatusEmployee.text = education.performanceStatus
 
         holder.tvRecordDetails.setOnClickListener{
