@@ -1,4 +1,4 @@
-package com.sanswai.achieve.response.employee_login
+package com.sanswai.achieve.response.employeelogin
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

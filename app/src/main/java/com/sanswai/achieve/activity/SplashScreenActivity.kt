@@ -16,12 +16,17 @@ class SplashScreenActivity : BaseActivity() {
 
         Handler().postDelayed({
             val preferences = Preferences.getInstance(this)
-            val isLogin = preferences.getPreferencesBoolean(getString(R.string.is_login),false)
-            if(isLogin){
+            val isLogin = preferences.getPreferencesBoolean(getString(R.string.is_login), false)
+            val userType = preferences.getPreferencesString(getString(R.string.user_type))
+            if (isLogin && userType == "employee") {
                 val i = Intent(this@SplashScreenActivity, MainActivity::class.java)
                 startActivity(i)
                 finish()
-            }else {
+            } else if (isLogin && userType == "employer") {
+                val i = Intent(this@SplashScreenActivity, EmployerDashboardActivity::class.java)
+                startActivity(i)
+                finish()
+            } else {
                 val i = Intent(this@SplashScreenActivity, LoginActivity::class.java)
                 startActivity(i)
                 finish()

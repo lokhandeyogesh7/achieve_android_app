@@ -8,8 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.RatingBar
 import com.sanswai.achieve.R
-import com.sanswai.achieve.model.Result
-import com.sanswai.achieve.response.employee_login.Datum
+import com.sanswai.achieve.response.employeelogin.Datum
 
 
 class EmployerListAdapter(private val fountainList: List<Datum>?, private val listener: (Datum) -> Unit) : RecyclerView.Adapter<EmployerListAdapter.MyViewHolder>() {

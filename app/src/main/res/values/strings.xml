@@ -31,5 +31,8 @@
     <string name="employee_data">employee_data</string>
     <string name="user_type">user_type</string>
     <string name="is_login">is_login</string>
+    <string name="user_id">user_id</string>
+    <string name="employee_dashboard">employee-performance/</string>
+    <string name="username">username</string>
 
 </resources>

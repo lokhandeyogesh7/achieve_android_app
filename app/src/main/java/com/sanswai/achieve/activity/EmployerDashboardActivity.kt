@@ -1,7 +1,6 @@
 package com.sanswai.achieve.activity
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
@@ -12,20 +11,26 @@ import com.sanswai.achieve.R
 import com.sanswai.achieve.adapter.EmployeeDashboardAdapter
 import com.sanswai.achieve.global.BaseActivity
 import com.sanswai.achieve.model.Employee
+import com.sanswai.achieve.response.employerlogin.EmployerLoginResponse
+import com.sanswai.achieve.response.employerlogin.UserDatum
 import kotlinx.android.synthetic.main.activity_employer_dashbaord.*
 
 class EmployerDashboardActivity : BaseActivity() {
 
-    var employeeList: ArrayList<Employee>? = null
+    var employeeList: ArrayList<UserDatum>? = null
     var adapter: EmployeeDashboardAdapter? = null
+    var loginResponse :EmployerLoginResponse?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_employer_dashbaord)
 
+        loginResponse = intent.getSerializableExtra(getString(R.string.employee_data)) as EmployerLoginResponse
+
         setupActionBar()
 
         employeeList = ArrayList()
+        employeeList = loginResponse!!.userData as ArrayList<UserDatum>?
         adapter = EmployeeDashboardAdapter(this@EmployerDashboardActivity, employeeList)
 
         val mLayoutManager = LinearLayoutManager(this@EmployerDashboardActivity, LinearLayoutManager.VERTICAL, false)
@@ -33,19 +38,9 @@ class EmployerDashboardActivity : BaseActivity() {
         rvEmployeeList.itemAnimator = DefaultItemAnimator()
         rvEmployeeList.adapter = adapter
 
-        prepareEmployeeList()
+        //prepareEmployeeList()
     }
 
-    private fun prepareEmployeeList() {
-
-        for (i in 0 until 5) {
-            var projects= Employee("Kiran Shetti","${i}@mymail.com","9876543210","Excellent")
-            employeeList!!.add(projects)
-        }
-
-        adapter!!.notifyDataSetChanged()
-
-    }
 
     private fun setupActionBar() {
         //set title to the activity

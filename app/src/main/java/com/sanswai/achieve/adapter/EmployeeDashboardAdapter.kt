@@ -10,9 +10,9 @@ import android.widget.TextView
 import com.sanswai.achieve.R
 import com.sanswai.achieve.activity.EmpProfileActivity
 import com.sanswai.achieve.activity.ReviewDetailsActivity
-import com.sanswai.achieve.model.Employee
+import com.sanswai.achieve.response.employerlogin.UserDatum
 
-class EmployeeDashboardAdapter(private val mContext: Context, private val employeeList: ArrayList<Employee>?) : RecyclerView.Adapter<EmployeeDashboardAdapter.MyViewHolder>(){
+class EmployeeDashboardAdapter(private val mContext: Context, private val employeeList: ArrayList<UserDatum>?) : RecyclerView.Adapter<EmployeeDashboardAdapter.MyViewHolder>(){
 
 
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -35,8 +35,8 @@ class EmployeeDashboardAdapter(private val mContext: Context, private val employ
         val education = employeeList!![position]
         holder.tvEmployeeName.text = education.name
         holder.tvEmail.text = education.email
-        holder.tvPhone.text = education.phone
-        holder.tvPerStatusEmployee.text = education.perStatus
+        holder.tvPhone.text = education.mobileNumber
+        holder.tvPerStatusEmployee.text = education.performanceStatus
 
         holder.tvRecordDetails.setOnClickListener{
             val intent = Intent(mContext,ReviewDetailsActivity::class.java)

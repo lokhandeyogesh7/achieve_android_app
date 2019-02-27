@@ -1,10 +1,10 @@
-package com.sanswai.achieve.response.employee_login
+package com.sanswai.achieve.response.employerlogin
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-class Data:Serializable {
+class Data : Serializable{
 
     @SerializedName("id")
     @Expose
