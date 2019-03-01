@@ -35,32 +35,36 @@ class LoginActivity : BaseActivity(), View.OnClickListener, VolleyService.SetRes
             com.sanswai.achieve.R.id.btnLogin -> {
                 //startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                 //finish()
-                val username = etUsername.text.toString()
-                val password = etPassword.text.toString()
+                val username = etUsername.text.toString().trim()
+                val password = etPassword.text.toString().trim()
                 if (isOnline) {
                     val loginObject = JSONObject()
-                    loginObject.put("email", "kiran.shetti@testemail.com")
-                    loginObject.put("password", "kiran123")
-                    /*loginObject.put("email", username)
-                    loginObject.put("password", password)*/
-                    services.callJsonObjectRequest(getString(com.sanswai.achieve.R.string.api_login), loginObject)
-                    services.mResponseInterface = this
+                    /*loginObject.put("email", "kiran.shetti@testemail.com")
+                    loginObject.put("password", "kiran123")*/
+                    if (!username.isNullOrEmpty() && !password.isNullOrEmpty()) {
+                        loginObject.put("email", username)
+                        loginObject.put("password", password)
+                        services.callJsonObjectRequest(getString(com.sanswai.achieve.R.string.api_login), loginObject)
+                        services.mResponseInterface = this
+                    }else{
+                        showToast("Please enter username and password.")
+                    }
                 } else {
                     showNoInternetDialog()
                 }
             }
              R.id.tvForgotpass -> {
-                 if (isOnline) {
+                /* if (isOnline) {
                      val loginObject = JSONObject()
-                    /* loginObject.put("email", "kiran.shetti@testemail.com")
-                     loginObject.put("password", "kiran123")*/
+                    *//* loginObject.put("email", "kiran.shetti@testemail.com")
+                     loginObject.put("password", "kiran123")*//*
                      loginObject.put("email", "employer2@employer.com")
                      loginObject.put("password", "employer123")
                      services.callJsonObjectRequest(getString(com.sanswai.achieve.R.string.api_login), loginObject)
                      services.mResponseInterface = this
                  } else {
                      showNoInternetDialog()
-                 }
+                 }*/
              }
         }
     }
@@ -100,5 +104,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener, VolleyService.SetRes
 
     override fun onFailure(methodName: String, volleyError: VolleyError) {
         println("login error ${volleyError.networkResponse}")
+        showToast("Please check your username/password")
     }
 }

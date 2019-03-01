@@ -1,5 +1,6 @@
 package com.sanswai.achieve.adapter
 
+import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -7,9 +8,10 @@ import android.view.ViewGroup
 import android.widget.RatingBar
 import android.widget.TextView
 import com.sanswai.achieve.R
-import com.sanswai.achieve.response.reviewdetails.UserDatum
+import com.sanswai.achieve.response.performancequestions.QuestionsDatum
+import com.sanswai.achieve.response.performancequestions.RatingsDatum
 
-class ReviewQuestionAdapter(private val revQuestionList: ArrayList<UserDatum>?) : RecyclerView.Adapter<ReviewQuestionAdapter.MyViewHolder>() {
+class ReviewQuestionEmpAdapter(private val mContext: Context, private val revQuestionList: List<QuestionsDatum>?, ratingsData: List<RatingsDatum>?) : RecyclerView.Adapter<ReviewQuestionEmpAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var tvQuestion: TextView = view.findViewById(R.id.tvQuestion)!!
@@ -26,10 +28,17 @@ class ReviewQuestionAdapter(private val revQuestionList: ArrayList<UserDatum>?) 
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val education = revQuestionList!![position]
-        holder.rbQuestion.setIsIndicator(true)
         holder.tvQuestion.text = education.question
-        holder.tvPerStatus.text = education.ratingReview
-        holder.rbQuestion.rating = education.ratingPoint!!.toFloat()
+        holder.tvPerStatus.visibility = View.GONE
+        holder.rbQuestion.rating = education.rating
+
+        holder.rbQuestion.onRatingBarChangeListener = RatingBar.OnRatingBarChangeListener { ratingBar, rating, fromUser ->
+            println("rating is $rating")
+            if (fromUser) {
+                education.rating = rating
+            }
+        }
+
     }
 
     override fun getItemCount(): Int {

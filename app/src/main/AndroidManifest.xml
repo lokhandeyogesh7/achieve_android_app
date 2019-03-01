@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="com.sanswai.achieve.global.AchieveApplication"
+        android:name=".global.AchieveApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -15,10 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name="com.sanswai.achieve.activity.EmployerDashboardActivity"></activity>
-        <activity android:name="com.sanswai.achieve.activity.MainActivity" />
+        <activity android:name=".activity.AddReviewActivity"></activity>
+        <activity android:name=".activity.EmployerDashboardActivity" />
+        <activity android:name=".activity.MainActivity" />
         <activity
-            android:name="com.sanswai.achieve.activity.SplashScreenActivity"
+            android:name=".activity.SplashScreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/FullscreenTheme">
             <intent-filter>
@@ -28,16 +29,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.sanswai.achieve.activity.LoginActivity"
+            android:name=".activity.LoginActivity"
             android:theme="@style/NoActionBar" />
-        <activity android:name="com.sanswai.achieve.activity.ProfileActivity" />
-        <activity android:name="com.sanswai.achieve.activity.DetailsActivity" />
+        <activity android:name=".activity.ProfileActivity" />
+        <activity android:name=".activity.DetailsActivity" />
         <activity
-            android:name="com.sanswai.achieve.activity.ReviewDetailsActivity"
+            android:name=".activity.ReviewDetailsActivity"
             android:theme="@style/NoActionBar" />
         <activity
-            android:name="com.sanswai.achieve.activity.EmpProfileActivity"
+            android:name=".activity.EmpProfileActivity"
             android:theme="@style/NoActionBar" />
+
         <receiver
             android:name=".global.ConnectivityReceiver"
             android:enabled="true">

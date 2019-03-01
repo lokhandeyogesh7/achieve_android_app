@@ -11,12 +11,17 @@ import android.view.ViewGroup
 
 import com.sanswai.achieve.R
 import com.sanswai.achieve.adapter.ReviewQuestionAdapter
+import com.sanswai.achieve.global.BaseActivity
 import com.sanswai.achieve.model.ReviewQuestion
+import com.sanswai.achieve.response.reviewdetails.ReviewDetails
+import com.sanswai.achieve.response.reviewdetails.UserDatum
 import kotlinx.android.synthetic.main.fragment_review_question.*
 
 class ReviewQuestionFragment : Fragment() {
 
-    var revQuestionList: ArrayList<ReviewQuestion>? = null
+    lateinit var reviewDetails: ReviewDetails
+
+    var revQuestionList: ArrayList<UserDatum>? = null
     var adapter: ReviewQuestionAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -25,25 +30,22 @@ class ReviewQuestionFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_review_question, container, false)
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        revQuestionList = ArrayList()
-        adapter = ReviewQuestionAdapter(revQuestionList)
+        val bundle = arguments
+        if (null != bundle) {
+            reviewDetails = bundle.getSerializable("review_data") as ReviewDetails
+            revQuestionList = ArrayList()
+            revQuestionList = (reviewDetails.userData as ArrayList<UserDatum>?)!!
+            adapter = ReviewQuestionAdapter(revQuestionList)
 
-        val mLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-        rvRevQuestions.layoutManager = mLayoutManager
-        rvRevQuestions.itemAnimator = DefaultItemAnimator()
-        rvRevQuestions.adapter = adapter
+            val mLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+            rvRevQuestions.layoutManager = mLayoutManager
+            rvRevQuestions.itemAnimator = DefaultItemAnimator()
+            rvRevQuestions.adapter = adapter
 
-        prepareProjectList()
-    }
-
-    private fun prepareProjectList() {
-        for (i in 0 until 3) {
-            val projects= ReviewQuestion("Who Are you ${i+1}","Performance Status : Good")
-            revQuestionList!!.add(projects)
+        } else {
+            (activity as BaseActivity).showToast("Unable to get data")
         }
-        adapter!!.notifyDataSetChanged()
     }
 }

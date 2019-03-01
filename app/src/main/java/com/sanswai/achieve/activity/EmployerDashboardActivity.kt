@@ -76,6 +76,7 @@ class EmployerDashboardActivity : BaseActivity(), VolleyService.SetResponse {
         //action to only action menu button
         when (item!!.itemId) {
             R.id.logout -> {
+                preferences!!.clearPreferences()
                 Toast.makeText(this, "You are successfully logged out", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this@EmployerDashboardActivity, LoginActivity::class.java))
                 finish()

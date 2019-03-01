@@ -35,5 +35,11 @@
     <string name="employee_dashboard">employee-performance/</string>
     <string name="username">username</string>
     <string name="api_employer_dashboard">employee-list/</string>
+    <string name="api_performance_fetails">performance-detail/</string>
+    <string name="api_employee_performance">employee-performance/</string>
+    <string name="is_employer">isEmployer</string>
+    <string name="employee_name">employeeNmae</string>
+    <string name="api_performance_questions">performance-questions</string>
+    <string name="api_add_review">add-ratings</string>
 
 </resources>

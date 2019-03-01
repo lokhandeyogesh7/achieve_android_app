@@ -42,8 +42,11 @@ class EmployeeDashboardAdapter(private val mContext: Context, private val employ
         holder.tvPerStatusEmployee.text = education.performanceStatus
 
         holder.tvRecordDetails.setOnClickListener{
+            println("name is "+education.name)
             val intent = Intent(mContext,ReviewDetailsActivity::class.java)
             intent.putExtra("isEmployer",true)
+            intent.putExtra(mContext.getString(R.string.employer_id),education.id)
+            intent.putExtra(mContext.getString(R.string.employee_name),education.name)
             mContext.startActivity(intent)
         }
 

@@ -89,6 +89,7 @@ class MainActivity : BaseActivity(), VolleyService.SetResponse {
 
             R.id.logout -> {
                 Toast.makeText(this, "You are successfully logged out", Toast.LENGTH_SHORT).show()
+                preferences!!.clearPreferences()
                 startActivity(Intent(this@MainActivity, LoginActivity::class.java))
                 finish()
                 return true
