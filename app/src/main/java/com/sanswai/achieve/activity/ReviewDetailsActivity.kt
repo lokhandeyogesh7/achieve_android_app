@@ -39,7 +39,7 @@ class ReviewDetailsActivity : BaseActivity(), VolleyService.SetResponse {
         supportActionBar!!.setDisplayShowHomeEnabled(true)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-        supportActionBar!!.title = "Review Details"
+        supportActionBar!!.title = "Average Review"
         userId = intent.getIntExtra(getString(R.string.employer_id), 0).toString()
         username = intent.getStringExtra(getString(R.string.employee_name))
         services = VolleyService(this)

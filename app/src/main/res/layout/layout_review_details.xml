@@ -108,7 +108,8 @@
                 android:layout_below="@+id/lblRevFeedback"
                 android:layout_marginBottom="@dimen/_15sdp"
                 android:fontFamily="@font/myfont"
-                android:gravity="center"
+                android:gravity="center_vertical"
+                android:scrollbars="vertical"
                 android:text="Good in communication"
                 android:textSize="@dimen/_14sdp" />
 
@@ -169,16 +170,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/lblAvgReviewRating"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="22dp"
                 android:isIndicator="true"
                 android:max="5"
+                android:layout_centerHorizontal="true"
                 android:numStars="5"
-                android:rating="4"
-                android:stepSize="1.0" />
-
-
-
+                android:stepSize="0.1" />
 
             <TextView
                 android:id="@+id/lblPerformanceReviewEmp"
@@ -197,7 +195,8 @@
                 android:layout_below="@+id/lblPerformanceReviewEmp"
                 android:layout_marginBottom="@dimen/_15sdp"
                 android:fontFamily="@font/myfont"
-                android:gravity="center"
+                android:gravity="center_vertical"
+                android:scrollbars="vertical"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:text="Good in communication"
                 android:textSize="@dimen/_14sdp" />

@@ -38,7 +38,7 @@ class EmploymentFragment : Fragment() {
 
     private fun prepareProjectList() {
         for (i in 0 until 5) {
-            val projects= Projects("Company name ${i + 1}","Company Description ${i + 1} lasdkl;askdl;askd;laskd;laskd;laskkkkkkkkkkkkkvhhhhhhhhhhhhhhkb jskgdfyuukgiuy ckagdbcy efgkuya gwevdcvswjeyvgfjcwsva cfd",i.toString())
+            val projects= Projects("Company name ${i + 1}","Some deadlines were unreasonable and upper management would not realize how much how pressure they were applying on some teams",i.toString())
             projectsList!!.add(projects)
         }
         adapter!!.notifyDataSetChanged()

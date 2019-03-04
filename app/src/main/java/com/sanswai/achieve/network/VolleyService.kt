@@ -34,6 +34,8 @@ class VolleyService(val context: Context) {
 
         val requestUrl = context.getString(R.string.base_url)+methodName
 
+        println("requested url is $requestUrl jsonobject is $jsonObject")
+
         val jsonObjReq = JsonObjectRequest(Request.Method.POST,
                 requestUrl, jsonObject,
                 Response.Listener<JSONObject> {

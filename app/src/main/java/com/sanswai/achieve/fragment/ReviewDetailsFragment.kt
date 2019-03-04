@@ -8,11 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-import com.sanswai.achieve.R
 import com.sanswai.achieve.global.BaseActivity
 import com.sanswai.achieve.response.employeeperformance.EmployeePerformace
 import com.sanswai.achieve.response.reviewdetails.ReviewDetails
 import kotlinx.android.synthetic.main.layout_review_details.*
+import android.text.method.ScrollingMovementMethod
+
+
 
 class ReviewDetailsFragment : Fragment() {
 
@@ -22,7 +24,7 @@ class ReviewDetailsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.layout_review_details, container, false)
+        return inflater.inflate(com.sanswai.achieve.R.layout.layout_review_details, container, false)
     }
 
     @SuppressLint("SetTextI18n")
@@ -30,14 +32,15 @@ class ReviewDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val bundle = arguments
         if (null != bundle) {
-            if (bundle.getBoolean(getString(R.string.is_employer))) {
+            if (bundle.getBoolean(getString(com.sanswai.achieve.R.string.is_employer))) {
                 cardEmployee.visibility = View.GONE
                 cardEmployer.visibility = View.VISIBLE
                 employeePerformance = EmployeePerformace()
                 employeePerformance = bundle.getSerializable("review_data") as EmployeePerformace
-                lblEmployeename.text = bundle.getString(getString(R.string.employee_name))
+                lblEmployeename.text = bundle.getString(getString(com.sanswai.achieve.R.string.employee_name))
                 rbEmployeeReviewEmp.rating = employeePerformance.averageRating!!.toFloat()
                 tvPerReviewEmp.text = employeePerformance.performanceStatus
+                tvPerReviewEmp.setMovementMethod(ScrollingMovementMethod())
 
             } else {
                 cardEmployee.visibility = View.VISIBLE
@@ -47,6 +50,7 @@ class ReviewDetailsFragment : Fragment() {
                 rbMainReview.rating = reviewDetails.avgRatings!!
                 tvMainAvgReview.text = reviewDetails.avgReview!!
                 tvReviewFeedback.text = reviewDetails.reviewFeedback!!
+                tvReviewFeedback.setMovementMethod(ScrollingMovementMethod())
                 tvDate.text = "From date : ${reviewDetails.startDate!!}  To date : ${reviewDetails.endDate}"
             }
         } else {

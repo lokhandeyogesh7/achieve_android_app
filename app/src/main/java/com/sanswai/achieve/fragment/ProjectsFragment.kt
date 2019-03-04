@@ -36,7 +36,9 @@ class ProjectsFragment : Fragment() {
 
     private fun prepareProjectList() {
         for (i in 0 until 5) {
-            val projects= Projects("Project Title ${i + 1}","Project Description ${i + 1} lasdkl;askdl;askd;laskd;laskd;laskkkkkkkkkkkkkvhhhhhhhhhhhhhhkb jskgdfyuukgiuy ckagdbcy efgkuya gwevdcvswjeyvgfjcwsva cfd",i.toString())
+            val projects= Projects("Project Title ${i + 1}","Oranger is solution to get clean and fresh laundry, we are the helping hand in laundry for housewifes,students,bachelors,working people,businessman,senior citizen and every single person who needs a clean and stainless laundry. We promise you to provide hassle free service.\n" +
+                    "\n" +
+                    "We are currently into three locations of Pune that includes Old Sangvi, New Sangvi and Pimple Gurav and looking forward to provide service throughout pune.",i.toString())
             projectsList!!.add(projects)
         }
         adapter!!.notifyDataSetChanged()

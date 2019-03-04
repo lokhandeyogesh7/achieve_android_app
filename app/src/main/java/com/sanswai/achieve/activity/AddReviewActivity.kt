@@ -1,32 +1,26 @@
 package com.sanswai.achieve.activity
 
 import android.annotation.SuppressLint
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
 import com.android.volley.VolleyError
 import com.google.gson.Gson
+import com.sanswai.achieve.R
 import com.sanswai.achieve.adapter.ReviewQuestionEmpAdapter
 import com.sanswai.achieve.global.BaseActivity
+import com.sanswai.achieve.global.Preferences
 import com.sanswai.achieve.network.VolleyService
 import com.sanswai.achieve.response.performancequestions.PerformanceQuestions
-import kotlinx.android.synthetic.main.activity_add_review.*
-import org.json.JSONObject
-import android.app.DatePickerDialog
-import android.content.Intent
-import android.text.TextUtils
-import android.view.Menu
-import android.view.MenuItem
-import android.widget.Toast
-import com.google.gson.JsonArray
-import com.sanswai.achieve.R
-import com.sanswai.achieve.global.Preferences
 import com.sanswai.achieve.response.performancequestions.QuestionsDatum
-import kotlinx.android.synthetic.main.row_employer_review_list.*
+import kotlinx.android.synthetic.main.activity_add_review.*
 import org.json.JSONArray
+import org.json.JSONObject
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class AddReviewActivity : BaseActivity(), VolleyService.SetResponse, View.OnClickListener {
@@ -101,7 +95,6 @@ class AddReviewActivity : BaseActivity(), VolleyService.SetResponse, View.OnClic
                     services!!.callJsonObjectRequest(getString(R.string.api_add_review), jsonObject)
                     services!!.mResponseInterface = this
                 }
-
 
                 return true
             }
