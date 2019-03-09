@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Achieve</string>
-    <string name="employer_id">employer_id</string>
+    <string name="employee_id">employee_id</string>
     <string name="something_went_wrong">Something went wrong</string>
     <string name="unable_to_fetch_data">Unable to fetch data from server</string>
     <string name="unable_to_load_images">Unable to load image</string>
@@ -41,5 +41,6 @@
     <string name="employee_name">employeeNmae</string>
     <string name="api_performance_questions">performance-questions</string>
     <string name="api_add_review">add-ratings</string>
+    <string name="api_validate_date">validate-date/</string>
 
 </resources>

@@ -41,7 +41,7 @@ class EmployerReviewListFragment : Fragment(), View.OnClickListener {
         val bundle = arguments
         if (null != bundle) {
             employeePerformance = bundle.getSerializable("review_data") as EmployeePerformace
-            userID = bundle.getString(getString(R.string.employer_id))
+            userID = bundle.getString(getString(R.string.employee_id))
 
             if (employeePerformance.add_record!!) {
                 btnAddReview.visibility = View.VISIBLE
@@ -68,7 +68,7 @@ class EmployerReviewListFragment : Fragment(), View.OnClickListener {
         when (v.id) {
             R.id.btnAddReview -> {
                 val intent = Intent(activity, AddReviewActivity::class.java)
-                intent.putExtra(getString(R.string.employer_id),userID)
+                intent.putExtra(getString(R.string.employee_id),userID)
                 startActivity(intent)
             }
         }

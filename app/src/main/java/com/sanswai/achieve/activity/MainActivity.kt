@@ -65,7 +65,7 @@ class MainActivity : BaseActivity(), VolleyService.SetResponse {
             //call new activity to show details and pass uid to particular activity
             println("id id "+result.id)
             val intent = Intent(this@MainActivity, ReviewDetailsActivity::class.java)
-            intent.putExtra(getString(R.string.employer_id), result.id)
+            intent.putExtra(getString(R.string.employee_id), result.id)
             startActivity(intent)
         }
     }

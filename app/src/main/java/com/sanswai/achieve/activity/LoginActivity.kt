@@ -103,7 +103,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener, VolleyService.SetRes
     }
 
     override fun onFailure(methodName: String, volleyError: VolleyError) {
-        println("login error ${volleyError.networkResponse}")
+        println("login error ${volleyError.message}")
         showToast("Please check your username/password")
     }
 }

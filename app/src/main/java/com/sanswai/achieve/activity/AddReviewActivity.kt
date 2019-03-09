@@ -31,7 +31,8 @@ class AddReviewActivity : BaseActivity(), VolleyService.SetResponse, View.OnClic
     private var mYear: Int = 0
     var mMonth: Int = 0
     var mDay: Int = 0
-    var userId: String? = null
+    var employee_id: String? = null
+    var employer_id: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +47,8 @@ class AddReviewActivity : BaseActivity(), VolleyService.SetResponse, View.OnClic
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
 
-        userId = intent.getStringExtra(getString(R.string.employer_id))
+        employee_id = intent.getStringExtra(getString(R.string.employee_id))
+        employer_id = preferences!!.getPreferencesString(getString(R.string.user_id))
 
         getQuestionList()
     }
@@ -68,6 +70,45 @@ class AddReviewActivity : BaseActivity(), VolleyService.SetResponse, View.OnClic
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
             R.id.action_save -> {
+
+                var strStartDate = tvStartDate.text.toString()
+                var strEndDate = tvEndDate.text.toString()
+
+                checkForDate(strStartDate, strEndDate)
+                return true
+            }
+
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+        }
+        return true
+    }
+
+    private fun checkForDate(strStartDate: String, strEndDate: String) {
+        val jsonObject = JSONObject()
+        jsonObject.put("employer_id", employer_id)
+        jsonObject.put("start_date", strStartDate)
+        jsonObject.put("end_date", strEndDate)
+
+        services!!.callJsonObjectRequest(getString(R.string.api_validate_date) + employee_id, jsonObject)
+        services!!.mResponseInterface = this
+    }
+
+    override fun onSuccess(methodName: String, response: Any) {
+        if (methodName == getString(R.string.api_add_review)) {
+            println("response after add is ${response}")
+            if ((response as JSONObject).getString("response") == "true") {
+                showToast("Review Submitted Successfully.")
+                onBackPressed()
+            } else {
+                showToast("Error In Processing Your Request.")
+            }
+        } else if (methodName == getString(R.string.api_validate_date)) {
+            if (true) {
+
+            } else {
                 var strStartDate = tvStartDate.text.toString()
                 var strEndDate = tvEndDate.text.toString()
                 var strfeedbackDetails = etFeedbackDetails.text.toString()
@@ -77,8 +118,8 @@ class AddReviewActivity : BaseActivity(), VolleyService.SetResponse, View.OnClic
                     showToast("Please Enter Feedback Details")
                 } else {
                     var jsonObject = JSONObject()
-                    jsonObject.put("user_id", userId)
-                    jsonObject.put("employer_id", preferences!!.getPreferencesInt(getString(R.string.user_id), 0))
+                    jsonObject.put("user_id", employee_id)
+                    jsonObject.put("employer_id", employer_id)
                     jsonObject.put("start_date", strStartDate)
                     jsonObject.put("end_date", strEndDate)
                     jsonObject.put("feedback_details", strfeedbackDetails)
@@ -95,29 +136,7 @@ class AddReviewActivity : BaseActivity(), VolleyService.SetResponse, View.OnClic
                     services!!.callJsonObjectRequest(getString(R.string.api_add_review), jsonObject)
                     services!!.mResponseInterface = this
                 }
-
-                return true
             }
-
-            android.R.id.home -> {
-                onBackPressed()
-                return true
-            }
-        }
-        return true
-    }
-
-    override fun onSuccess(methodName: String, response: Any) {
-        if (methodName == getString(R.string.api_add_review)) {
-
-            println("response after add is ${response}")
-            if ((response as JSONObject).getString("response") == "true") {
-                showToast("Review Submitted Successfully.")
-                onBackPressed()
-            } else {
-                showToast("Error In Processing Your Request.")
-            }
-
         } else {
             val revQuestionsResponse = Gson().fromJson(response.toString(), PerformanceQuestions::class.java)
             arrRevQuestions = revQuestionsResponse.questionsData as ArrayList<QuestionsDatum>

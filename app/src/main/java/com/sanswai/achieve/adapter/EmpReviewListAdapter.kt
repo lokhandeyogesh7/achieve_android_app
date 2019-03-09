@@ -37,7 +37,7 @@ class EmpReviewListAdapter (private val mContext: Context, private val empReview
 
         holder.itemView.setOnClickListener {
             val intent = Intent(mContext,ReviewDetailsActivity::class.java)
-            intent.putExtra(mContext.getString(R.string.employer_id),education.id)
+            intent.putExtra(mContext.getString(R.string.employee_id),education.id)
             mContext.startActivity(intent)
         }
     }

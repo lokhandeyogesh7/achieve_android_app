@@ -40,7 +40,7 @@ class ReviewDetailsActivity : BaseActivity(), VolleyService.SetResponse {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         supportActionBar!!.title = "Average Review"
-        userId = intent.getIntExtra(getString(R.string.employer_id), 0).toString()
+        userId = intent.getIntExtra(getString(R.string.employee_id), 0).toString()
         username = intent.getStringExtra(getString(R.string.employee_name))
         services = VolleyService(this)
 
@@ -99,7 +99,7 @@ class ReviewDetailsActivity : BaseActivity(), VolleyService.SetResponse {
                 bundle.putSerializable("review_data", employeePerformance as Serializable)
                 bundle.putSerializable(getString(R.string.is_employer), true)
                 bundle.putSerializable(getString(R.string.employee_name), username)
-                bundle.putSerializable(getString(R.string.employer_id), userId)
+                bundle.putSerializable(getString(R.string.employee_id), userId)
                 weatherFragment.arguments = bundle
                 return mFragmentList[position]
             } else {
@@ -107,7 +107,7 @@ class ReviewDetailsActivity : BaseActivity(), VolleyService.SetResponse {
                 val weatherFragment = mFragmentList[position]
                 bundle.putSerializable("review_data", reviewDetails as Serializable)
                 bundle.putSerializable(getString(R.string.is_employer), false)
-                bundle.putSerializable(getString(R.string.employer_id), userId)
+                bundle.putSerializable(getString(R.string.employee_id), userId)
                 weatherFragment.arguments = bundle
                 return mFragmentList[position]
             }
