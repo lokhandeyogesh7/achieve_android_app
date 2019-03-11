@@ -48,7 +48,7 @@ class AddReviewActivity : BaseActivity(), VolleyService.SetResponse, View.OnClic
         supportActionBar!!.setDisplayShowHomeEnabled(true)
 
         employee_id = intent.getStringExtra(getString(R.string.employee_id))
-        employer_id = preferences!!.getPreferencesString(getString(R.string.user_id))
+        employer_id = preferences!!.getPreferencesInt(getString(R.string.user_id),0).toString()
 
         getQuestionList()
     }
@@ -59,6 +59,7 @@ class AddReviewActivity : BaseActivity(), VolleyService.SetResponse, View.OnClic
     }
 
     override fun onFailure(methodName: String, volleyError: VolleyError) {
+        println("request failed $methodName and rerror is ${volleyError.message}")
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -97,7 +98,8 @@ class AddReviewActivity : BaseActivity(), VolleyService.SetResponse, View.OnClic
     }
 
     override fun onSuccess(methodName: String, response: Any) {
-        if (methodName == getString(R.string.api_add_review)) {
+        println("method name is $methodName")
+        if (methodName.contains(getString(R.string.api_add_review))) {
             println("response after add is ${response}")
             if ((response as JSONObject).getString("response") == "true") {
                 showToast("Review Submitted Successfully.")
@@ -105,9 +107,9 @@ class AddReviewActivity : BaseActivity(), VolleyService.SetResponse, View.OnClic
             } else {
                 showToast("Error In Processing Your Request.")
             }
-        } else if (methodName == getString(R.string.api_validate_date)) {
-            if (true) {
-
+        } else if (methodName.contains(getString(R.string.api_validate_date))) {
+            if ((response as JSONObject).getString("response") == "false") {
+                showToast("Record exist for the entered date, please check date.")
             } else {
                 var strStartDate = tvStartDate.text.toString()
                 var strEndDate = tvEndDate.text.toString()

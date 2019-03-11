@@ -99,11 +99,13 @@ class LoginActivity : BaseActivity(), View.OnClickListener, VolleyService.SetRes
                 startActivity(intent)
                 finish()
             }
+        }else{
+            showToast("Email or password you entered is incorrect.")
         }
     }
 
     override fun onFailure(methodName: String, volleyError: VolleyError) {
         println("login error ${volleyError.message}")
-        showToast("Please check your username/password")
+        showToast("Error ${volleyError.message}")
     }
 }
