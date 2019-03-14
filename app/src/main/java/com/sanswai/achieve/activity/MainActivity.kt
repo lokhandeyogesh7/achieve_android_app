@@ -1,5 +1,6 @@
 package com.sanswai.achieve.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -50,12 +51,13 @@ class MainActivity : BaseActivity(), VolleyService.SetResponse {
         supportActionBar!!.title = "Dashboard"
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onSuccess(methodName: String, response: Any) {
 
         val userData = Gson().fromJson(response.toString(), UserData::class.java)
 
         tvMainEmpName.text = preferences!!.getPreferencesString(getString(R.string.username))
-        rbMainEmp.rating = userData.averageRating!!.toFloat()
+        rbMainEmp.text = "Rating: "+Math.ceil(userData.averageRating!!.toDouble())
         tvMainAvgReview.text = userData.performanceStatus
 
         rvEmployerList.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)

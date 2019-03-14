@@ -64,6 +64,7 @@ class EmployerDashboardActivity : BaseActivity(), VolleyService.SetResponse {
     }
 
     override fun onFailure(methodName: String, volleyError: VolleyError) {
+        println("error is $methodName error is $volleyError")
     }
 
 

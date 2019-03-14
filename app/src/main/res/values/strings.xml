@@ -25,7 +25,7 @@
     <string name="review_details">Review Details</string>
     <string name="review_questions">Review Questions</string>
 
-    <string name="base_url">https://sanswaitechnologies.com/achieve/api/userapp/</string>
+    <string name="base_url">https://achieveinstech.in/api/userapp/</string>
     <string name="api_login">login</string>
     <string name="loading_please_wait">Loading Please Wait…</string>
     <string name="employee_data">employee_data</string>

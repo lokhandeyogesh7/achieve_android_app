@@ -5,20 +5,20 @@
     android:layout_height="match_parent"
     tools:context="com.sanswai.achieve.fragment.EmployerReviewListFragment">
 
-    <TextView
+    <Button
         android:id="@+id/btnAddReview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_margin="@dimen/_5sdp"
-        android:background="@drawable/round_button"
         android:padding="@dimen/_5sdp"
+        android:background="@android:color/white"
         android:fontFamily="@font/myfont"
         android:visibility="gone"
         android:textSize="@dimen/_14sdp"
         android:text="Add Review"
-        android:textColor="@color/colorAccent" />
+        android:textColor="@color/colorPrimaryDark" />
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"

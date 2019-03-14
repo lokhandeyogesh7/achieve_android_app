@@ -16,7 +16,7 @@ class EmployerListAdapter(private val fountainList: List<Datum>?, private val li
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvEmplName = view.findViewById<TextView>(R.id.tvMainEmpName)!!
         val tvDate = view.findViewById<TextView>(R.id.tvDate)!!
-        val rbRating = view.findViewById<RatingBar>(R.id.rbMainEmp)!!
+        val rbRating = view.findViewById<TextView>(R.id.rbMainEmp)!!
         val tvPerformance = view.findViewById<TextView>(R.id.tvPerformance)!!
     }
 
@@ -31,8 +31,8 @@ class EmployerListAdapter(private val fountainList: List<Datum>?, private val li
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val employer = fountainList!![position]
         holder.tvEmplName.text = "${employer.feedbackDetails}"
-        holder.tvDate.text = "From Date: ${employer.startDate}  To Date: ${employer.endDate}"
-        holder.rbRating.rating = employer.avgRating?.toFloat()!!
+        holder.tvDate.text = "From Date: ${employer.startDate}  \nTo Date: ${employer.endDate}"
+        holder.rbRating.text = "Rating: "+Math.ceil(employer.avgRating!!.toDouble())
         holder.tvPerformance.text = employer.performanceStatus!!
 
         holder.itemView.setOnClickListener {

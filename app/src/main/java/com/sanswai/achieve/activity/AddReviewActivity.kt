@@ -59,7 +59,7 @@ class AddReviewActivity : BaseActivity(), VolleyService.SetResponse, View.OnClic
     }
 
     override fun onFailure(methodName: String, volleyError: VolleyError) {
-        println("request failed $methodName and rerror is ${volleyError.message}")
+        println("request failed $methodName and rerror is ${volleyError.localizedMessage}")
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -159,7 +159,6 @@ class AddReviewActivity : BaseActivity(), VolleyService.SetResponse, View.OnClic
                 mYear = c.get(Calendar.YEAR)
                 mMonth = c.get(Calendar.MONTH)
                 mDay = c.get(Calendar.DAY_OF_MONTH)
-
 
                 val datePickerDialog = DatePickerDialog(this,
                         DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth -> tvStartDate.text = year.toString() + "-" + (monthOfYear + 1) + "-" + dayOfMonth.toString() }, mYear, mMonth, mDay)

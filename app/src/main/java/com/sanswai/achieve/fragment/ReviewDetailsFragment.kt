@@ -38,7 +38,7 @@ class ReviewDetailsFragment : Fragment() {
                 employeePerformance = EmployeePerformace()
                 employeePerformance = bundle.getSerializable("review_data") as EmployeePerformace
                 lblEmployeename.text = bundle.getString(getString(com.sanswai.achieve.R.string.employee_name))
-                rbEmployeeReviewEmp.rating = employeePerformance.averageRating!!.toFloat()
+                rbEmployeeReviewEmp.text = "Rating: "+Math.ceil(employeePerformance.averageRating!!.toDouble())
                 tvPerReviewEmp.text = employeePerformance.performanceStatus
                 tvPerReviewEmp.setMovementMethod(ScrollingMovementMethod())
 
@@ -47,11 +47,11 @@ class ReviewDetailsFragment : Fragment() {
                 cardEmployer.visibility = View.GONE
                 reviewDetails = ReviewDetails()
                 reviewDetails = bundle.getSerializable("review_data") as ReviewDetails
-                rbMainReview.rating = reviewDetails.avgRatings!!
+                rbMainReview.text = "Rating: "+Math.ceil(reviewDetails.avgRatings!!.toDouble())
                 tvMainAvgReview.text = reviewDetails.avgReview!!
                 tvReviewFeedback.text = reviewDetails.reviewFeedback!!
                 tvReviewFeedback.setMovementMethod(ScrollingMovementMethod())
-                tvDate.text = "From date : ${reviewDetails.startDate!!}  To date : ${reviewDetails.endDate}"
+                tvDate.text = "From date : ${reviewDetails.startDate!!}  \nTo date : ${reviewDetails.endDate}"
             }
         } else {
             (activity as BaseActivity).showToast("Unable to get data")

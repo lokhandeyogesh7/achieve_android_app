@@ -31,19 +31,31 @@
                 android:text="Average Rating"
                 android:textSize="@dimen/_16sdp" />
 
-            <RatingBar
+            <TextView
                 android:id="@+id/rbMainReview"
-                style="@style/MyRatingBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/lblAvg"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="@dimen/_15sdp"
+                android:fontFamily="@font/myfont"
                 android:isIndicator="true"
-                android:max="5"
-                android:numStars="5"
-                android:rating="4"
-                android:stepSize="1.0" />
+                android:text="Rating: 6"
+                android:textSize="@dimen/_14sdp" />
+
+            <!--  <RatingBar
+                  android:id="@+id/rbMainReview"
+                  style="@style/MyRatingBar"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/lblAvg"
+                  android:layout_centerInParent="true"
+                  android:layout_marginTop="@dimen/_15sdp"
+                  android:isIndicator="true"
+                  android:max="5"
+                  android:numStars="5"
+                  android:rating="4"
+                  android:stepSize="1.0" />-->
 
 
             <TextView
@@ -68,7 +80,7 @@
                 android:gravity="center"
                 android:padding="@dimen/_5sdp"
                 android:text="Excellent"
-                android:textSize="@dimen/_15sdp" />
+                android:textSize="@dimen/_14sdp" />
 
 
             <TextView
@@ -108,7 +120,7 @@
                 android:layout_below="@+id/lblRevFeedback"
                 android:layout_marginBottom="@dimen/_15sdp"
                 android:fontFamily="@font/myfont"
-                android:gravity="center_vertical"
+                android:gravity="center"
                 android:scrollbars="vertical"
                 android:text="Good in communication"
                 android:textSize="@dimen/_14sdp" />
@@ -146,12 +158,12 @@
                 android:textSize="@dimen/_16sdp" />
 
             <TextView
+                android:id="@+id/seperator4"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_1sdp"
-                android:id="@+id/seperator4"
-                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_below="@id/lblEmployeename"
-                android:background="@color/bgGrey"/>
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/bgGrey" />
 
             <TextView
                 android:id="@+id/lblAvgReviewRating"
@@ -164,7 +176,20 @@
                 android:text="Average Review Rating"
                 android:textSize="@dimen/_16sdp" />
 
-            <RatingBar
+            <TextView
+                android:id="@+id/rbEmployeeReviewEmp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lblAvgReviewRating"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:fontFamily="@font/myfont"
+                android:text="Rating: 5"
+                android:textSize="@dimen/_14sdp" />
+
+            <!--<RatingBar
                 android:id="@+id/rbEmployeeReviewEmp"
                 style="@style/MyRatingBar"
                 android:layout_width="wrap_content"
@@ -176,7 +201,7 @@
                 android:max="5"
                 android:layout_centerHorizontal="true"
                 android:numStars="5"
-                android:stepSize="0.1" />
+                android:stepSize="0.1" />-->
 
             <TextView
                 android:id="@+id/lblPerformanceReviewEmp"
@@ -193,11 +218,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/lblPerformanceReviewEmp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginBottom="@dimen/_15sdp"
                 android:fontFamily="@font/myfont"
-                android:gravity="center_vertical"
+                android:gravity="center"
                 android:scrollbars="vertical"
-                android:layout_marginTop="@dimen/_10sdp"
                 android:text="Good in communication"
                 android:textSize="@dimen/_14sdp" />
 

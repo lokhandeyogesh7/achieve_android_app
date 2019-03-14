@@ -10,9 +10,9 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
-import com.sanswai.achieve.R
 import com.sanswai.achieve.global.AchieveApplication
 import org.json.JSONObject
+import com.android.volley.DefaultRetryPolicy
 
 
 class VolleyService(val context: Context) {
@@ -32,7 +32,7 @@ class VolleyService(val context: Context) {
         dialog.setContentView(com.sanswai.achieve.R.layout.layout_loading)
         dialog.show()
 
-        val requestUrl = context.getString(R.string.base_url)+methodName
+        val requestUrl = context.getString(com.sanswai.achieve.R.string.base_url)+methodName
 
         println("requested url is $requestUrl jsonobject is $jsonObject")
 
@@ -48,6 +48,10 @@ class VolleyService(val context: Context) {
                     dialog.dismiss()
                     mResponseInterface.onFailure(methodName,it)
                 })
+        jsonObjReq.retryPolicy = DefaultRetryPolicy(
+                30000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)
         AchieveApplication.instance?.addToRequestQueue(jsonObjReq, methodName)
     }
 }

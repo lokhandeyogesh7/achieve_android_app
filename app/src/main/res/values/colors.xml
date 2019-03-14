@@ -3,7 +3,8 @@
     <color name="colorPrimary">#5A3795</color>
     <color name="colorPrimaryDark">#2E1C4C</color>
     <color name="colorAccent">#F58220</color>
-    <color name="bgGrey">#EFEFF6</color>
+    <!--<color name="bgGrey">#EFEFF6</color>-->
+    <color name="bgGrey">#5A3795</color>
 
     <color name="black_overlay">#66000000</color>
 </resources>

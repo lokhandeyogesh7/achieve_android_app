@@ -20,7 +20,7 @@ class EmployeeDashboardAdapter(private val mContext: Context, private val employ
         var tvEmployeeName: TextView = view.findViewById(R.id.tvEmployeeName)
         var tvEmail: TextView = view.findViewById(R.id.tvEmail)
         var tvPhone: TextView = view.findViewById(R.id.tvPhone)
-        var rbEmployee: RatingBar = view.findViewById(R.id.rbEmployee)
+        var rbEmployee: TextView = view.findViewById(R.id.rbEmployee)
         var tvPerStatusEmployee: TextView = view.findViewById(R.id.tvPerStatusEmployee)
         var tvRecordDetails: TextView = view.findViewById(R.id.tvRecordDetails)
         var tvEmployeeProfile: TextView = view.findViewById(R.id.tvEmployeeProfile)
@@ -38,7 +38,7 @@ class EmployeeDashboardAdapter(private val mContext: Context, private val employ
         holder.tvEmployeeName.text = education.name
         holder.tvEmail.text = education.email
         holder.tvPhone.text = education.mobileNumber
-        holder.rbEmployee.rating = education.userRating!!
+        holder.rbEmployee.text = "Rating: "+Math.ceil(education.userRating!!.toDouble())
         holder.tvPerStatusEmployee.text = education.performanceStatus
 
         holder.tvRecordDetails.setOnClickListener{

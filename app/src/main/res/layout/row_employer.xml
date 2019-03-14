@@ -2,7 +2,9 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="@dimen/_10sdp"
+    app:cardCornerRadius="@dimen/_5sdp"
     android:elevation="@dimen/_5sdp">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -44,7 +46,17 @@
             android:textSize="@dimen/_12sdp" />
 
 
-        <RatingBar
+        <TextView
+            android:id="@+id/rbMainEmp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvPerformance"
+            android:fontFamily="@font/myfont"
+            android:isIndicator="true"
+            android:padding="@dimen/_2sdp"
+            android:text="Rating:5" />
+
+        <!--<RatingBar
             android:id="@+id/rbMainEmp"
             style="@style/MyRatingBarSmall"
             android:layout_width="wrap_content"
@@ -54,7 +66,7 @@
             android:isIndicator="true"
             android:max="5"
             android:numStars="5"
-            android:stepSize="0.1"/>
+            android:stepSize="0.1"/>-->
 
 
     </RelativeLayout>
