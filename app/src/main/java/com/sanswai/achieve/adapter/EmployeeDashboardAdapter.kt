@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import com.sanswai.achieve.R
@@ -22,8 +23,8 @@ class EmployeeDashboardAdapter(private val mContext: Context, private val employ
         var tvPhone: TextView = view.findViewById(R.id.tvPhone)
         var rbEmployee: TextView = view.findViewById(R.id.rbEmployee)
         var tvPerStatusEmployee: TextView = view.findViewById(R.id.tvPerStatusEmployee)
-        var tvRecordDetails: TextView = view.findViewById(R.id.tvRecordDetails)
-        var tvEmployeeProfile: TextView = view.findViewById(R.id.tvEmployeeProfile)
+        var tvRecordDetails: ImageView = view.findViewById(R.id.tvRecordDetails)
+        var tvEmployeeProfile: ImageView = view.findViewById(R.id.tvEmployeeProfile)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

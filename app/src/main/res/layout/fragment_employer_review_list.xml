@@ -7,18 +7,14 @@
 
     <Button
         android:id="@+id/btnAddReview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_45sdp"
+        android:layout_height="@dimen/_45sdp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_margin="@dimen/_5sdp"
-        android:padding="@dimen/_5sdp"
-        android:background="@android:color/white"
+        android:background="@drawable/ic_add_record"
         android:fontFamily="@font/myfont"
-        android:visibility="gone"
-        android:textSize="@dimen/_14sdp"
-        android:text="Add Review"
-        android:textColor="@color/colorPrimaryDark" />
+        android:visibility="visible"
+        android:layout_margin="@dimen/_5sdp" />
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"

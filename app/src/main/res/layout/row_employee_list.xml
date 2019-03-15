@@ -92,30 +92,26 @@
                 android:layout_below="@+id/tvPerStatusEmployee"
                 android:background="@color/bgGrey" />
 
-            <TextView
+            <ImageView
                 android:id="@+id/tvRecordDetails"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
                 android:layout_below="@+id/seperator3"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:background="@drawable/round_button"
-                android:fontFamily="@font/myfont"
-                android:padding="@dimen/_5sdp"
-                android:text="Record Details"
-                android:textColor="@android:color/white" />
+                android:gravity="center"
+                android:tint="@color/colorPrimaryDark"
+                android:src="@drawable/ic_view" />
 
-            <TextView
+            <ImageView
                 android:id="@+id/tvEmployeeProfile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:layout_below="@+id/seperator3"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:background="@drawable/round_button"
-                android:fontFamily="@font/myfont"
-                android:padding="@dimen/_5sdp"
-                android:text="Employee Profile"
+                android:layout_alignParentRight="true"
+                android:tint="@color/colorPrimaryDark"
+                android:src="@drawable/ic_profile_view"
                 android:textColor="@android:color/white" />
 
 
