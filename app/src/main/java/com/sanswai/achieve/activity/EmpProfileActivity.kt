@@ -11,15 +11,24 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.view.ViewCompat
 import android.view.MenuItem
 import android.view.View
+import com.android.volley.VolleyError
+import com.google.gson.Gson
 import com.sanswai.achieve.R
 import com.sanswai.achieve.fragment.*
 import com.sanswai.achieve.global.BaseActivity
+import com.sanswai.achieve.global.Preferences
+import com.sanswai.achieve.network.VolleyService
+import com.sanswai.achieve.response.employeedetails.EmployeeDetails
 import kotlinx.android.synthetic.main.activity_emp_profile.*
+import org.json.JSONObject
 import java.util.*
 
-class EmpProfileActivity : BaseActivity() {
+class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
 
     var tabLayout: TabLayout? = null
+    var employee_id: String? = null
+    var preferences: Preferences? = null
+    var services: VolleyService? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +54,30 @@ class EmpProfileActivity : BaseActivity() {
         tabLayout!!.getTabAt(2)!!.text = "Projects"
         tabLayout!!.getTabAt(3)!!.text = "Employment"
         tabLayout!!.getTabAt(4)!!.text = "Education"
+
+        services = VolleyService(this)
+        preferences = Preferences.getInstance(this)
+        employee_id = preferences!!.getPreferencesInt(getString(R.string.user_id),0).toString()
+
+        getEmployeeDetails()
+
+    }
+
+    private fun getEmployeeDetails(){
+        services?.callJsonGETRequest(getString(R.string.api_employee_details)+employee_id, JSONObject())
+        services?.mResponseInterface = this
+    }
+
+    override fun onSuccess(methodName: String, response: Any) {
+        println("response is "+response)
+       /* val jsonObject = response as JSONObject
+        val jsonResponse = Gson().toJson(jsonObject)
+        println("prefence is "+jsonResponse)*/
+        preferences?.setPreferencesBody(getString(R.string.pref_employee_details),response.toString())
+    }
+
+    override fun onFailure(methodName: String, volleyError: VolleyError) {
+        println("error  is "+volleyError.networkResponse)
     }
 
     internal inner class ViewPagerAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {

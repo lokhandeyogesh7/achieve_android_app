@@ -8,14 +8,21 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.gson.Gson
 import com.sanswai.achieve.R
 import com.sanswai.achieve.adapter.EducationAdapter
+import com.sanswai.achieve.global.Preferences
+import com.sanswai.achieve.network.VolleyService
+import com.sanswai.achieve.response.employeedetails.Datum
+import com.sanswai.achieve.response.employeedetails.EmployeeDetails
 import kotlinx.android.synthetic.main.fragment_education.*
 
 class EducationFragment : Fragment() {
 
-    private var educationList: ArrayList<Education>? = null
+    private var educationList: ArrayList<Datum>? = null
     var adapter: EducationAdapter? = null
+    var services: VolleyService? = null
+    var preferences: Preferences? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -26,21 +33,22 @@ class EducationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         educationList = ArrayList()
-        adapter = EducationAdapter(activity!!, educationList)
 
-        val mLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-        rvEducation.layoutManager = mLayoutManager
-        rvEducation.itemAnimator = DefaultItemAnimator()
-        rvEducation.adapter = adapter
+
+        services= VolleyService(activity!!)
+        preferences = Preferences.getInstance(activity!!)
 
         prepareProjectList()
     }
 
     private fun prepareProjectList() {
-        for (i in 0 until 1) {
-            val projects= Education("SSC","(57%)","SAB highschool","2014","SSC","-")
-            educationList!!.add(projects)
-        }
-        adapter!!.notifyDataSetChanged()
+        val jsonResponse = preferences?.getPreferencesString(getString(R.string.pref_employee_details))
+        val responseObject = Gson().fromJson(jsonResponse, EmployeeDetails::class.java)
+        educationList = responseObject?.education?.data as ArrayList<Datum>?
+        adapter = EducationAdapter(activity!!, educationList)
+        val mLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        rvEducation.layoutManager = mLayoutManager
+        rvEducation.itemAnimator = DefaultItemAnimator()
+        rvEducation.adapter = adapter
     }
 }

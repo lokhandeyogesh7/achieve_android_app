@@ -7,13 +7,21 @@ import android.support.v7.widget.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.gson.Gson
 import com.sanswai.achieve.R
 import com.sanswai.achieve.adapter.ProjectsAdapter
+import com.sanswai.achieve.global.Preferences
+import com.sanswai.achieve.network.VolleyService
+import com.sanswai.achieve.response.employeedetails.Datum_
+import com.sanswai.achieve.response.employeedetails.Datum__
+import com.sanswai.achieve.response.employeedetails.EmployeeDetails
 import kotlinx.android.synthetic.main.fragment_projects.*
 
 class ProjectsFragment : Fragment() {
-    var projectsList: ArrayList<Projects>? = null
+    var projectsList: ArrayList<Datum__>? = null
     var adapter: ProjectsAdapter? = null
+    var services: VolleyService? = null
+    var preferences: Preferences? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -24,6 +32,19 @@ class ProjectsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         projectsList = ArrayList()
+
+        services= VolleyService(activity!!)
+        preferences = Preferences.getInstance(activity!!)
+
+        prepareProjectList()
+    }
+
+    private fun prepareProjectList() {
+        val jsonResponse = preferences?.getPreferencesString(getString(R.string.pref_employee_details))
+        println("project $jsonResponse")
+        val responseObject = Gson().fromJson(jsonResponse, EmployeeDetails::class.java)
+        println("project "+ responseObject!!.project?.data!![0].projectName)
+        projectsList = responseObject?.project?.data as ArrayList<Datum__>?
         adapter = ProjectsAdapter(projectsList!!)
 
         val mLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
@@ -31,16 +52,5 @@ class ProjectsFragment : Fragment() {
         rvProjects.itemAnimator = DefaultItemAnimator()
         rvProjects.adapter = adapter
 
-        prepareProjectList()
-    }
-
-    private fun prepareProjectList() {
-        for (i in 0 until 5) {
-            val projects= Projects("Project Title ${i + 1}","Oranger is solution to get clean and fresh laundry, we are the helping hand in laundry for housewifes,students,bachelors,working people,businessman,senior citizen and every single person who needs a clean and stainless laundry. We promise you to provide hassle free service.\n" +
-                    "\n" +
-                    "We are currently into three locations of Pune that includes Old Sangvi, New Sangvi and Pimple Gurav and looking forward to provide service throughout pune.",i.toString())
-            projectsList!!.add(projects)
-        }
-        adapter!!.notifyDataSetChanged()
     }
 }

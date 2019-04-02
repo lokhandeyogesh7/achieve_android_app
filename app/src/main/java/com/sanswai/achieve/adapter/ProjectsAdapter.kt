@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.sanswai.achieve.R
-import com.sanswai.achieve.fragment.Projects
+import com.sanswai.achieve.response.employeedetails.Datum__
 
 
-class ProjectsAdapter(private val projectsList: List<Projects>) : RecyclerView.Adapter<ProjectsAdapter.MyViewHolder>() {
+class ProjectsAdapter(private val projectsList: List<Datum__>) : RecyclerView.Adapter<ProjectsAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var title: TextView = view.findViewById(R.id.tvProjectTitle)
@@ -26,11 +26,12 @@ class ProjectsAdapter(private val projectsList: List<Projects>) : RecyclerView.A
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val projects = projectsList[position]
-        holder.title.text = projects.prjTitle
-        holder.description.text = projects.prjDescription
+        holder.title.text = projects.projectName
+        holder.description.text = projects.projectDescription
     }
 
     override fun getItemCount(): Int {
+        println("getItemCount "+projectsList.size)
         return projectsList.size
     }
 }

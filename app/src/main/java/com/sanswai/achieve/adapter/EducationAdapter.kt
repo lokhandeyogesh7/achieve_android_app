@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.sanswai.achieve.R
-import com.sanswai.achieve.fragment.Education
+import com.sanswai.achieve.response.employeedetails.Datum
 
-class EducationAdapter(val mContext: Context, private val educationList: ArrayList<Education>?) : RecyclerView.Adapter<EducationAdapter.MyViewHolder>() {
+class EducationAdapter(val mContext: Context, private val educationList: ArrayList<Datum>?) : RecyclerView.Adapter<EducationAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var tvCourseName: TextView = view.findViewById(R.id.tvCourseName)
@@ -29,12 +29,12 @@ class EducationAdapter(val mContext: Context, private val educationList: ArrayLi
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val education = educationList!![position]
-        holder.tvCourseName.text = education.course
-        holder.tvPercentage.text = education.percentage
-        holder.tvInstitute.text = education.institute
+        holder.tvCourseName.text = education.courseName
+        holder.tvPercentage.text = education.gradeSystem
+        holder.tvInstitute.text = education.instituteName
         holder.tvYear.text = education.passingYear
-        holder.tvCourse.text = education.course
-        holder.tvSpecialization.text = education.specialization
+        holder.tvCourse.text = education.educationName
+        holder.tvSpecialization.text = education.specName
     }
 
     override fun getItemCount(): Int {
