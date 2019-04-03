@@ -45,10 +45,12 @@ class EducationFragment : Fragment() {
         val jsonResponse = preferences?.getPreferencesString(getString(R.string.pref_employee_details))
         val responseObject = Gson().fromJson(jsonResponse, EmployeeDetails::class.java)
         educationList = responseObject?.education?.data as ArrayList<Datum>?
-        adapter = EducationAdapter(activity!!, educationList)
-        val mLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-        rvEducation.layoutManager = mLayoutManager
-        rvEducation.itemAnimator = DefaultItemAnimator()
-        rvEducation.adapter = adapter
+        if (educationList != null) {
+            adapter = EducationAdapter(activity!!, educationList)
+            val mLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+            rvEducation.layoutManager = mLayoutManager
+            rvEducation.itemAnimator = DefaultItemAnimator()
+            rvEducation.adapter = adapter
+        }
     }
 }

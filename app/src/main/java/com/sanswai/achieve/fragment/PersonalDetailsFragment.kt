@@ -12,7 +12,6 @@ import com.sanswai.achieve.global.Preferences
 import com.sanswai.achieve.network.VolleyService
 import com.sanswai.achieve.response.employeedetails.EmployeeDetails
 import kotlinx.android.synthetic.main.fragment_personal_details.*
-import java.lang.Exception
 
 class PersonalDetailsFragment : Fragment() {
 
@@ -29,19 +28,21 @@ class PersonalDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val htmlString = "Male \n single \n Nashik"
         tvPersonalInfo.text = Html.fromHtml(htmlString)
-        services= VolleyService(activity!!)
+        services = VolleyService(activity!!)
         preferences = Preferences.getInstance(activity!!)
 
         val jsonResponse = preferences?.getPreferencesString(getString(R.string.pref_employee_details))
-        val responseObject = Gson().fromJson(jsonResponse,EmployeeDetails::class.java)
+        val responseObject = Gson().fromJson(jsonResponse, EmployeeDetails::class.java)
 
-        try {
-            tvPersonalInfo.text = responseObject.personalDetails?.response
-            tvCurrentAddress.text = responseObject.personalDetails?.response
-            tvPerAddress.text = responseObject.personalDetails?.response
-        }catch (e:Exception){
-            e.printStackTrace()
-        }
+        println("response object is "+jsonResponse)
+
+        tvPersonalInfo.text = responseObject.personalDetails?.data?.gender+"\n"+responseObject.personalDetails?.data?.marriatalStatus+"\n"+responseObject.personalDetails?.data?.hometown+"\n"+responseObject.personalDetails?.data?.dateOfBirth
+        tvCurrentAddress.text = responseObject.personalDetails?.data?.residentialAddressOne+"\n"+
+                responseObject.personalDetails?.data?.residentialAddressTwo+"\n"+
+                responseObject.personalDetails?.data?.residentialPinCode
+        tvPerAddress.text = responseObject.personalDetails?.data?.permanentAddressOne+"\n"+
+                responseObject.personalDetails?.data?.permanentAddressTwo+"\n"+
+                responseObject.personalDetails?.data?.pinCode
 
     }
 }

@@ -11,10 +11,8 @@ import android.view.ViewGroup
 import com.google.gson.Gson
 import com.sanswai.achieve.R
 import com.sanswai.achieve.adapter.EmploymentAdapter
-import com.sanswai.achieve.adapter.ProjectsAdapter
 import com.sanswai.achieve.global.Preferences
 import com.sanswai.achieve.network.VolleyService
-import com.sanswai.achieve.response.employeedetails.Datum
 import com.sanswai.achieve.response.employeedetails.Datum_
 import com.sanswai.achieve.response.employeedetails.EmployeeDetails
 import kotlinx.android.synthetic.main.fragment_employment.*
@@ -37,7 +35,7 @@ class EmploymentFragment : Fragment() {
         projectsList = ArrayList()
 
 
-        services= VolleyService(activity!!)
+        services = VolleyService(activity!!)
         preferences = Preferences.getInstance(activity!!)
 
         prepareProjectList()
@@ -47,11 +45,13 @@ class EmploymentFragment : Fragment() {
         val jsonResponse = preferences?.getPreferencesString(getString(R.string.pref_employee_details))
         val responseObject = Gson().fromJson(jsonResponse, EmployeeDetails::class.java)
         projectsList = responseObject?.employement?.data as ArrayList<Datum_>?
-        adapter = EmploymentAdapter(projectsList!!)
 
-        val mLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-        rvEmployments.layoutManager = mLayoutManager
-        rvEmployments.itemAnimator = DefaultItemAnimator()
-        rvEmployments.adapter = adapter
+        if (projectsList != null) {
+            adapter = EmploymentAdapter(projectsList!!)
+            val mLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+            rvEmployments.layoutManager = mLayoutManager
+            rvEmployments.itemAnimator = DefaultItemAnimator()
+            rvEmployments.adapter = adapter
+        }
     }
 }

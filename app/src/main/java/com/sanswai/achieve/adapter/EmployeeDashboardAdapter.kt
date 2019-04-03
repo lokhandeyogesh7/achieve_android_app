@@ -53,6 +53,7 @@ class EmployeeDashboardAdapter(private val mContext: Context, private val employ
 
         holder.tvEmployeeProfile.setOnClickListener{
             val intent = Intent(mContext,EmpProfileActivity::class.java)
+            intent.putExtra(mContext.getString(R.string.employee_id),education.id)
             mContext.startActivity(intent)
         }
     }

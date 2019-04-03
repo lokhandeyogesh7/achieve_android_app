@@ -21,7 +21,7 @@
         android:layout_centerVertical="true"
         android:text="9561424969"
         android:fontFamily="@font/myfont"
-        android:textSize="@dimen/_14sdp"
+        android:textSize="@dimen/_13sdp"
         android:textColor="@android:color/white"
         android:layout_toRightOf="@+id/ivProfile"
         android:layout_marginLeft="10dp" />
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:text="dummy@email.com"
         android:fontFamily="@font/myfont"
-        android:textSize="@dimen/_14sdp"
+        android:textSize="@dimen/_13sdp"
         android:textColor="@android:color/white"
         android:layout_toRightOf="@+id/ivProfile"
         android:layout_marginLeft="10dp" />

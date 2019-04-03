@@ -8,6 +8,9 @@ class EmployeeDetails {
     @SerializedName("response")
     @Expose
     var response: String? = null
+    @SerializedName("users")
+    @Expose
+    var users: Users? = null
     @SerializedName("education")
     @Expose
     var education: Education? = null

@@ -3,7 +3,8 @@ package com.sanswai.achieve.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.*
+import android.support.v7.widget.DefaultItemAnimator
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +13,6 @@ import com.sanswai.achieve.R
 import com.sanswai.achieve.adapter.ProjectsAdapter
 import com.sanswai.achieve.global.Preferences
 import com.sanswai.achieve.network.VolleyService
-import com.sanswai.achieve.response.employeedetails.Datum_
 import com.sanswai.achieve.response.employeedetails.Datum__
 import com.sanswai.achieve.response.employeedetails.EmployeeDetails
 import kotlinx.android.synthetic.main.fragment_projects.*
@@ -33,7 +33,7 @@ class ProjectsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         projectsList = ArrayList()
 
-        services= VolleyService(activity!!)
+        services = VolleyService(activity!!)
         preferences = Preferences.getInstance(activity!!)
 
         prepareProjectList()
@@ -43,14 +43,16 @@ class ProjectsFragment : Fragment() {
         val jsonResponse = preferences?.getPreferencesString(getString(R.string.pref_employee_details))
         println("project $jsonResponse")
         val responseObject = Gson().fromJson(jsonResponse, EmployeeDetails::class.java)
-        println("project "+ responseObject!!.project?.data!![0].projectName)
         projectsList = responseObject?.project?.data as ArrayList<Datum__>?
-        adapter = ProjectsAdapter(projectsList!!)
 
-        val mLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-        rvProjects.layoutManager = mLayoutManager
-        rvProjects.itemAnimator = DefaultItemAnimator()
-        rvProjects.adapter = adapter
+        if (projectsList != null) {
+            adapter = ProjectsAdapter(projectsList!!)
+
+            val mLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+            rvProjects.layoutManager = mLayoutManager
+            rvProjects.itemAnimator = DefaultItemAnimator()
+            rvProjects.adapter = adapter
+        }
 
     }
 }

@@ -10,6 +10,6 @@ class ResumeHeadline {
     var response: String? = null
     @SerializedName("data")
     @Expose
-    var data: Data? = null
+    var data: Data_? = null
 
 }

@@ -1,16 +1,18 @@
 package com.sanswai.achieve.fragment
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.gson.Gson
-import com.sanswai.achieve.R
 import com.sanswai.achieve.global.Preferences
 import com.sanswai.achieve.network.VolleyService
-import com.sanswai.achieve.response.employeedetails.*
+import com.sanswai.achieve.response.employeedetails.EmployeeDetails
 import kotlinx.android.synthetic.main.fragment_resume_headline.*
+
 
 class ResumeHeadlineFragment : Fragment() {
 
@@ -20,16 +22,23 @@ class ResumeHeadlineFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_resume_headline, container, false)
+        return inflater.inflate(com.sanswai.achieve.R.layout.fragment_resume_headline, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        services= VolleyService(activity!!)
+        services = VolleyService(activity!!)
         preferences = Preferences.getInstance(activity!!)
-        val jsonResponse = preferences?.getPreferencesString(getString(R.string.pref_employee_details))
+        val jsonResponse = preferences?.getPreferencesString(getString(com.sanswai.achieve.R.string.pref_employee_details))
         val responseObject = Gson().fromJson(jsonResponse, EmployeeDetails::class.java)
         lblResumeHeadline.text = responseObject?.resumeHeadline?.data?.tittle
         tvPersonalInfo.text = responseObject?.resumeHeadline?.data?.description
+
+        tvDownloadResume.setOnClickListener {
+            if (responseObject?.users?.data?.resumeFile != null) {
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(responseObject?.users?.data?.resumeFile))
+                startActivity(browserIntent)
+            }
+        }
     }
 }
