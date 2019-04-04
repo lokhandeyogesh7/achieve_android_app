@@ -11,6 +11,15 @@
         android:layout_height="wrap_content"
         android:padding="10dp">
 
+        <ImageView
+            android:id="@+id/ivEdit"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_pencil_edit_button" />
+
         <TextView
             android:id="@+id/tvCourseName"
             android:layout_width="wrap_content"

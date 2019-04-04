@@ -1,0 +1,316 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bgGrey">
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/cardEmployee"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:background="@color/bgGrey"
+        android:padding="@dimen/_15sdp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_margin="@dimen/_10sdp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/lblGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/myfont"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:text="Gender:"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_12sdp" />
+
+                <RadioGroup
+                    android:id="@+id/radioGrp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lblGender"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/_8sdp">
+
+                    <RadioButton
+                        android:id="@+id/radioM"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_weight="1"
+                        android:checked="true"
+
+                        android:textColor="@android:color/tab_indicator_text"
+                        android:drawableStart="@drawable/ic_masculine"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:fontFamily="@font/myfont"
+                        android:text="Male"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <RadioButton
+                        android:id="@+id/radioF"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_weight="1"
+                        android:checked="false"
+                        android:textColor="@android:color/tab_indicator_text"
+                        android:drawableStart="@drawable/ic_femenine"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:fontFamily="@font/myfont"
+                        android:text="Female"
+                        android:textSize="@dimen/_12sdp" />
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/lblMaritalStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/radioGrp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/myfont"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:textColor="@android:color/black"
+                    android:text="Marital Status:"
+                    android:textSize="@dimen/_12sdp" />
+
+                <RadioGroup
+                    android:id="@+id/radioGrpMarital"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lblMaritalStatus"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/_8sdp">
+
+                    <RadioButton
+                        android:id="@+id/radioSingle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_weight="0.33"
+                        android:checked="true"
+                        android:textColor="@android:color/tab_indicator_text"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:fontFamily="@font/myfont"
+                        android:text="Single"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <RadioButton
+                        android:id="@+id/radioMarried"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_weight="0.33"
+                        android:checked="false"
+                        android:textColor="@android:color/tab_indicator_text"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:fontFamily="@font/myfont"
+                        android:text="Married"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <RadioButton
+                        android:id="@+id/radioDivorcee"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_weight="0.33"
+                        android:checked="false"
+                        android:textColor="@android:color/tab_indicator_text"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:fontFamily="@font/myfont"
+                        android:text="Divorcee"
+                        android:textSize="@dimen/_12sdp" />
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/lblHomeTown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/radioGrpMarital"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/myfont"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/black"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:text="Hometown:"
+                    android:textSize="@dimen/_12sdp" />
+
+                <EditText
+                    android:id="@+id/etHometown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lblHomeTown"
+                    android:hint="Hometown"
+                    android:singleLine="true"
+                    android:textColor="@android:color/tab_indicator_text"
+                    android:textSize="@dimen/_12sdp"
+                    android:fontFamily="@font/myfont"
+                    android:paddingStart="@dimen/_10sdp" />
+
+                <TextView
+                    android:id="@+id/lblDOB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/etHometown"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/myfont"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:textColor="@android:color/black"
+                    android:text="Date of Birth:"
+                    android:textSize="@dimen/_12sdp" />
+
+                <EditText
+                    android:id="@+id/etDob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lblDOB"
+                    android:clickable="true"
+                    android:fontFamily="@font/myfont"
+                    android:textSize="@dimen/_12sdp"
+                    android:editable="false"
+                    android:singleLine="true"
+                    android:textColor="@android:color/tab_indicator_text"
+                    android:hint="Date of birth"
+                    android:paddingStart="@dimen/_10sdp" />
+
+                <TextView
+                    android:id="@+id/lblResAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/etDob"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/myfont"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:textColor="@android:color/black"
+                    android:text="Residential Address:"
+                    android:textSize="@dimen/_12sdp" />
+
+                <EditText
+                    android:id="@+id/etResAddOne"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/myfont"
+                    android:textSize="@dimen/_12sdp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/tab_indicator_text"
+                    android:layout_below="@+id/lblResAddress"
+                    android:hint="Residential address line one"
+                    android:paddingStart="@dimen/_10sdp" />
+
+                <EditText
+                    android:id="@+id/etResAddTwo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/myfont"
+                    android:layout_below="@+id/etResAddOne"
+                    android:textSize="@dimen/_12sdp"
+                    android:singleLine="true"
+                    android:hint="Residential address line two"
+                    android:textColor="@android:color/tab_indicator_text"
+                    android:paddingStart="@dimen/_10sdp" />
+
+                <EditText
+                    android:id="@+id/etResAddPin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/etResAddTwo"
+                    android:fontFamily="@font/myfont"
+                    android:hint="Pin"
+                    android:textSize="@dimen/_12sdp"
+                    android:inputType="number"
+                    android:textColor="@android:color/tab_indicator_text"
+                    android:singleLine="true"
+                    android:paddingStart="@dimen/_10sdp" />
+
+
+                <TextView
+                    android:id="@+id/lblPerAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/etResAddPin"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/myfont"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:text="Permanent Address:"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_12sdp" />
+
+                <EditText
+                    android:id="@+id/etPerAddOne"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lblPerAddress"
+                    android:fontFamily="@font/myfont"
+                    android:textSize="@dimen/_12sdp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/tab_indicator_text"
+                    android:hint="Permanent address line one"
+                    android:paddingStart="@dimen/_10sdp" />
+
+                <EditText
+                    android:id="@+id/etPerAddTwo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/myfont"
+                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@android:color/tab_indicator_text"
+                    android:layout_below="@+id/etPerAddOne"
+                    android:hint="Permanent address line two"
+                    android:singleLine="true"
+                    android:paddingStart="@dimen/_10sdp" />
+
+                <EditText
+                    android:id="@+id/etPerAddPin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/etPerAddTwo"
+                    android:hint="Pin"
+                    android:textSize="@dimen/_12sdp"
+                    android:fontFamily="@font/myfont"
+                    android:inputType="number"
+                    android:textColor="@android:color/tab_indicator_text"
+                    android:singleLine="true"
+                    android:paddingStart="@dimen/_10sdp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/etPerAddPin"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/tvSubmit"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:background="@drawable/round_button"
+                    android:fontFamily="@font/myfont"
+                    android:paddingStart="@dimen/_15sdp"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingEnd="@dimen/_15sdp"
+                    android:paddingBottom="@dimen/_5sdp"
+                    android:text="submit"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@android:color/white" />
+
+            </RelativeLayout>
+        </ScrollView>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>

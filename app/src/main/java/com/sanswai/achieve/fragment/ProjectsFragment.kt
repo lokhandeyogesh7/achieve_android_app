@@ -10,11 +10,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.gson.Gson
 import com.sanswai.achieve.R
+import com.sanswai.achieve.activity.EmpProfileActivity
 import com.sanswai.achieve.adapter.ProjectsAdapter
 import com.sanswai.achieve.global.Preferences
 import com.sanswai.achieve.network.VolleyService
 import com.sanswai.achieve.response.employeedetails.Datum__
 import com.sanswai.achieve.response.employeedetails.EmployeeDetails
+import kotlinx.android.synthetic.main.activity_emp_profile.*
 import kotlinx.android.synthetic.main.fragment_projects.*
 
 class ProjectsFragment : Fragment() {
@@ -52,6 +54,11 @@ class ProjectsFragment : Fragment() {
             rvProjects.layoutManager = mLayoutManager
             rvProjects.itemAnimator = DefaultItemAnimator()
             rvProjects.adapter = adapter
+        }
+        if (responseObject.project?.response == "false") {
+            (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_plus_black_symbol)
+        }else{
+            (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_pencil_edit_button)
         }
 
     }

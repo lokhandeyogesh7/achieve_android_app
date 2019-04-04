@@ -1,5 +1,6 @@
 package com.sanswai.achieve.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.text.Html
@@ -8,9 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.gson.Gson
 import com.sanswai.achieve.R
+import com.sanswai.achieve.activity.EditPersonalDetailsActivity
+import com.sanswai.achieve.activity.EmpProfileActivity
 import com.sanswai.achieve.global.Preferences
 import com.sanswai.achieve.network.VolleyService
 import com.sanswai.achieve.response.employeedetails.EmployeeDetails
+import kotlinx.android.synthetic.main.activity_emp_profile.*
 import kotlinx.android.synthetic.main.fragment_personal_details.*
 
 class PersonalDetailsFragment : Fragment() {
@@ -34,15 +38,24 @@ class PersonalDetailsFragment : Fragment() {
         val jsonResponse = preferences?.getPreferencesString(getString(R.string.pref_employee_details))
         val responseObject = Gson().fromJson(jsonResponse, EmployeeDetails::class.java)
 
-        println("response object is "+jsonResponse)
+        println("response object is " + jsonResponse)
 
-        tvPersonalInfo.text = responseObject.personalDetails?.data?.gender+"\n"+responseObject.personalDetails?.data?.marriatalStatus+"\n"+responseObject.personalDetails?.data?.hometown+"\n"+responseObject.personalDetails?.data?.dateOfBirth
-        tvCurrentAddress.text = responseObject.personalDetails?.data?.residentialAddressOne+"\n"+
-                responseObject.personalDetails?.data?.residentialAddressTwo+"\n"+
+        tvPersonalInfo.text = responseObject.personalDetails?.data?.gender + "\n" + responseObject.personalDetails?.data?.marriatalStatus + "\n" + responseObject.personalDetails?.data?.hometown + "\n" + responseObject.personalDetails?.data?.dateOfBirth
+        tvCurrentAddress.text = responseObject.personalDetails?.data?.residentialAddressOne + "\n" +
+                responseObject.personalDetails?.data?.residentialAddressTwo + "\n" +
                 responseObject.personalDetails?.data?.residentialPinCode
-        tvPerAddress.text = responseObject.personalDetails?.data?.permanentAddressOne+"\n"+
-                responseObject.personalDetails?.data?.permanentAddressTwo+"\n"+
+        tvPerAddress.text = responseObject.personalDetails?.data?.permanentAddressOne + "\n" +
+                responseObject.personalDetails?.data?.permanentAddressTwo + "\n" +
                 responseObject.personalDetails?.data?.pinCode
+
+        ((activity as EmpProfileActivity).fabPersonalDetails.setOnClickListener {
+            startActivity(Intent(activity, EditPersonalDetailsActivity::class.java))
+        })
+        if (responseObject.personalDetails?.response == "false") {
+            (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_plus_black_symbol)
+        }else{
+            (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_pencil_edit_button)
+        }
 
     }
 }

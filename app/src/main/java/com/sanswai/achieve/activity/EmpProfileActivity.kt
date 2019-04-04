@@ -30,6 +30,7 @@ class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
     var employee_id: String? = null
     var preferences: Preferences? = null
     var services: VolleyService? = null
+    lateinit var collapsingToolbarLayout :CollapsingToolbarLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,11 +53,12 @@ class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
 
     private fun setUpTabsView() {
         ViewCompat.setTransitionName(findViewById(R.id.app_bar_layout), "Extra Image")
-        val collapsingToolbarLayout = findViewById<CollapsingToolbarLayout>(R.id.collapsingToolBar_hotel_details)
+        collapsingToolbarLayout = findViewById<CollapsingToolbarLayout>(R.id.collapsingToolBar_hotel_details)
         collapsingToolbarLayout.setContentScrimColor(ContextCompat.getColor(applicationContext, R.color.colorPrimary))
-        collapsingToolbarLayout.title = "Kiran Shetti"
         val adapter = ViewPagerAdapter(supportFragmentManager)
         adapter.addFragment(PersonalDetailsFragment())
+        adapter.addFragment(KeySkillFragment())
+        adapter.addFragment(DesiredCareerProfileFrag())
         adapter.addFragment(ResumeHeadlineFragment())
         adapter.addFragment(ProjectsFragment())
         adapter.addFragment(EmploymentFragment())
@@ -65,10 +67,12 @@ class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
         tabLayout = findViewById<View>(R.id.tabs) as TabLayout
         tabLayout!!.setupWithViewPager(viewPager)
         tabLayout!!.getTabAt(0)!!.text = "Personal Details"
-        tabLayout!!.getTabAt(1)!!.text = "Resume Headline"
-        tabLayout!!.getTabAt(2)!!.text = "Projects"
-        tabLayout!!.getTabAt(3)!!.text = "Employment"
-        tabLayout!!.getTabAt(4)!!.text = "Education"
+        tabLayout!!.getTabAt(1)!!.text = "Key Skills"
+        tabLayout!!.getTabAt(2)!!.text = "Desired Career Profile"
+        tabLayout!!.getTabAt(3)!!.text = "Resume Headline"
+        tabLayout!!.getTabAt(4)!!.text = "Projects"
+        tabLayout!!.getTabAt(5)!!.text = "Employment"
+        tabLayout!!.getTabAt(6)!!.text = "Education"
     }
 
     private fun getEmployeeDetails() {
@@ -95,6 +99,7 @@ class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
             }
             tvTelephone.text = responseObject.users?.data?.mobileNumber
             tvEmail.text = responseObject.users?.data?.email
+            collapsingToolbarLayout.title = responseObject.users?.data?.name
         }
     }
 
