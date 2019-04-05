@@ -1,5 +1,6 @@
 package com.sanswai.achieve.fragment
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -28,6 +29,7 @@ class PersonalDetailsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_personal_details, container, false)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val htmlString = "Male \n single \n Nashik"
@@ -37,23 +39,24 @@ class PersonalDetailsFragment : Fragment() {
 
         val jsonResponse = preferences?.getPreferencesString(getString(R.string.pref_employee_details))
         val responseObject = Gson().fromJson(jsonResponse, EmployeeDetails::class.java)
-
         println("response object is " + jsonResponse)
 
-        tvPersonalInfo.text = responseObject.personalDetails?.data?.gender + "\n" + responseObject.personalDetails?.data?.marriatalStatus + "\n" + responseObject.personalDetails?.data?.hometown + "\n" + responseObject.personalDetails?.data?.dateOfBirth
-        tvCurrentAddress.text = responseObject.personalDetails?.data?.residentialAddressOne + "\n" +
-                responseObject.personalDetails?.data?.residentialAddressTwo + "\n" +
-                responseObject.personalDetails?.data?.residentialPinCode
-        tvPerAddress.text = responseObject.personalDetails?.data?.permanentAddressOne + "\n" +
-                responseObject.personalDetails?.data?.permanentAddressTwo + "\n" +
-                responseObject.personalDetails?.data?.pinCode
+        if (responseObject != null && responseObject.personalDetails?.response == "false") {
+            tvPersonalInfo.text = responseObject.personalDetails?.data?.gender + "\n" + responseObject.personalDetails?.data?.marriatalStatus + "\n" + responseObject.personalDetails?.data?.hometown + "\n" + responseObject.personalDetails?.data?.dateOfBirth
+            tvCurrentAddress.text = responseObject.personalDetails?.data?.residentialAddressOne + "\n" +
+                    responseObject.personalDetails?.data?.residentialAddressTwo + "\n" +
+                    responseObject.personalDetails?.data?.residentialPinCode
+            tvPerAddress.text = responseObject.personalDetails?.data?.permanentAddressOne + "\n" +
+                    responseObject.personalDetails?.data?.permanentAddressTwo + "\n" +
+                    responseObject.personalDetails?.data?.pinCode
 
+        }
         ((activity as EmpProfileActivity).fabPersonalDetails.setOnClickListener {
-            startActivity(Intent(activity, EditPersonalDetailsActivity::class.java))
+            startActivity(Intent(activity, EditPersonalDetailsActivity::class.java).putExtra(getString(R.string.employee_id),(activity as EmpProfileActivity).employee_id))
         })
         if (responseObject.personalDetails?.response == "false") {
             (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_plus_black_symbol)
-        }else{
+        } else {
             (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_pencil_edit_button)
         }
 

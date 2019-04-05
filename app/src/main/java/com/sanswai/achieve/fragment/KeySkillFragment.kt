@@ -45,27 +45,35 @@ class KeySkillFragment : Fragment() {
 
     private fun prepareProjectList() {
         val jsonResponse = preferences?.getPreferencesString(getString(R.string.pref_employee_details))
-        val responseObject = Gson().fromJson(jsonResponse, EmployeeDetails::class.java)
-        keySkills = responseObject?.mstSkill?.data as ArrayList<Datum____>?
-        userSkills = responseObject?.userSkill?.data as ArrayList<Datum_____>
-        if (keySkills != null) {
-            adapter = SkillsAdapter("key", keySkills, userSkills!!)
-            val mLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-            rvKeySkills.layoutManager = mLayoutManager
-            rvKeySkills.itemAnimator = DefaultItemAnimator()
-            rvKeySkills.adapter = adapter
-        }
-        if (userSkills != null) {
-            adapter = SkillsAdapter("user", keySkills, userSkills!!)
-            val mLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-            rvUSerSkills.layoutManager = mLayoutManager
-            rvUSerSkills.itemAnimator = DefaultItemAnimator()
-            rvUSerSkills.adapter = adapter
-        }
-        if (responseObject.mstSkill?.response == "false") {
-            (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_plus_black_symbol)
-        }else{
-            (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_pencil_edit_button)
+        if (jsonResponse != null) {
+            val responseObject = Gson().fromJson(jsonResponse, EmployeeDetails::class.java)
+            keySkills = responseObject?.mstSkill?.data as ArrayList<Datum____>?
+            userSkills = responseObject?.userSkill?.data as ArrayList<Datum_____>?
+            if (keySkills != null) {
+                if (userSkills==null){
+                    userSkills = ArrayList()
+                }
+                adapter = SkillsAdapter("key", keySkills, userSkills!!)
+                val mLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+                rvKeySkills.layoutManager = mLayoutManager
+                rvKeySkills.itemAnimator = DefaultItemAnimator()
+                rvKeySkills.adapter = adapter
+            }
+            if (userSkills != null) {
+                if (keySkills==null){
+                    keySkills = ArrayList()
+                }
+                adapter = SkillsAdapter("user", keySkills, userSkills!!)
+                val mLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+                rvUSerSkills.layoutManager = mLayoutManager
+                rvUSerSkills.itemAnimator = DefaultItemAnimator()
+                rvUSerSkills.adapter = adapter
+            }
+            if (responseObject.mstSkill?.response == "false") {
+                (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_plus_black_symbol)
+            } else {
+                (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_pencil_edit_button)
+            }
         }
     }
 }
