@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_25sdp">
+
+    <EditText
+        android:id="@+id/etSkillName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/myfont"
+        android:hint="skill"
+        android:paddingStart="@dimen/_10sdp"
+        android:textSize="@dimen/_14sdp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SUBMIT"
+        android:id="@+id/tvSubmitSkill"
+        android:layout_below="@+id/etSkillName"
+        android:layout_alignParentEnd="true"
+        android:padding="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textColor="@android:color/white"
+        android:background="@drawable/round_button"/>
+
+
+</RelativeLayout>

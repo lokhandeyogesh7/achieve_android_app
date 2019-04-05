@@ -1,5 +1,6 @@
 package com.sanswai.achieve.fragment
 
+import android.app.Dialog
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
@@ -17,6 +18,7 @@ import com.sanswai.achieve.response.employeedetails.Datum____
 import com.sanswai.achieve.response.employeedetails.Datum_____
 import com.sanswai.achieve.response.employeedetails.EmployeeDetails
 import kotlinx.android.synthetic.main.activity_emp_profile.*
+import kotlinx.android.synthetic.main.dialog_editbox.*
 import kotlinx.android.synthetic.main.fragment_key_kills.*
 
 class KeySkillFragment : Fragment() {
@@ -53,7 +55,7 @@ class KeySkillFragment : Fragment() {
                 if (userSkills==null){
                     userSkills = ArrayList()
                 }
-                adapter = SkillsAdapter("key", keySkills, userSkills!!)
+                adapter = SkillsAdapter(activity!!,"key", keySkills, userSkills!!)
                 val mLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
                 rvKeySkills.layoutManager = mLayoutManager
                 rvKeySkills.itemAnimator = DefaultItemAnimator()
@@ -63,7 +65,7 @@ class KeySkillFragment : Fragment() {
                 if (keySkills==null){
                     keySkills = ArrayList()
                 }
-                adapter = SkillsAdapter("user", keySkills, userSkills!!)
+                adapter = SkillsAdapter(activity!!,"user", keySkills, userSkills!!)
                 val mLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
                 rvUSerSkills.layoutManager = mLayoutManager
                 rvUSerSkills.itemAnimator = DefaultItemAnimator()
@@ -75,5 +77,15 @@ class KeySkillFragment : Fragment() {
                 (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_pencil_edit_button)
             }
         }
+    }
+
+    fun addorEditSkill(education: Datum_____) {
+        val dialog  = Dialog(activity!!)
+        dialog.setContentView(R.layout.dialog_editbox)
+        dialog.show()
+        dialog.tvSubmitSkill.setOnClickListener {
+            val strSkill = dialog.etSkillName.text.toString()
+        }
+
     }
 }

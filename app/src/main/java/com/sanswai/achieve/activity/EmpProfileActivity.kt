@@ -1,5 +1,6 @@
 package com.sanswai.achieve.activity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.design.widget.CollapsingToolbarLayout
 import android.support.design.widget.TabLayout
@@ -32,6 +33,7 @@ class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
     var services: VolleyService? = null
     lateinit var collapsingToolbarLayout :CollapsingToolbarLayout
 
+    @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_emp_profile)
@@ -43,8 +45,10 @@ class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
         preferences = Preferences.getInstance(this)
         if (preferences?.getPreferencesString(getString(R.string.user_type)) == "employee") {
             employee_id = preferences!!.getPreferencesInt(getString(R.string.user_id), 0).toString()
+            fabPersonalDetails.visibility = View.VISIBLE
         } else {
             employee_id = intent.getIntExtra(getString(R.string.employee_id), 0).toString()
+            fabPersonalDetails.visibility = View.GONE
         }
 
         getEmployeeDetails()
