@@ -9,7 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.gson.Gson
 import com.sanswai.achieve.R
+import com.sanswai.achieve.activity.EditResumeHeadlineActivity
 import com.sanswai.achieve.activity.EmpProfileActivity
+import com.sanswai.achieve.global.BaseActivity
 import com.sanswai.achieve.global.Preferences
 import com.sanswai.achieve.network.VolleyService
 import com.sanswai.achieve.response.employeedetails.EmployeeDetails
@@ -37,6 +39,12 @@ class ResumeHeadlineFragment : Fragment() {
         lblResumeHeadline.text = responseObject?.resumeHeadline?.data?.tittle
         tvPersonalInfo.text = responseObject?.resumeHeadline?.data?.description
 
+        if (responseObject.resumeHeadline!!.response == "false") {
+            rlResumeHeadline.visibility = View.GONE
+        }else{
+            rlResumeHeadline.visibility = View.VISIBLE
+        }
+
         tvDownloadResume.setOnClickListener {
             if (responseObject?.users?.data?.resumeFile != null) {
                 val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(responseObject?.users?.data?.resumeFile))
@@ -45,8 +53,15 @@ class ResumeHeadlineFragment : Fragment() {
         }
         if (responseObject.resumeHeadline?.response == "false") {
             (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_plus_black_symbol)
-        }else{
+        } else {
             (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_pencil_edit_button)
+        }
+
+        (activity as EmpProfileActivity).fabPersonalDetails.setOnClickListener {
+            (activity as BaseActivity).showToast("clicked toast 123")
+            if ((activity as EmpProfileActivity).viewPager.currentItem == 3) {
+                startActivity(Intent(activity,EditResumeHeadlineActivity::class.java))
+            }
         }
     }
 }

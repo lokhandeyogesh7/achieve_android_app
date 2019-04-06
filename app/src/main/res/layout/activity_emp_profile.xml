@@ -73,6 +73,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="@dimen/_15sdp"
+        android:clickable="true"
+        android:onClick="onFabCkick"
         android:src="@drawable/ic_pencil_edit_button"
-        android:tint="@color/colorPrimaryDark" />
+        android:tint="@color/colorPrimaryDark"
+        android:focusable="true" />
 </android.support.design.widget.CoordinatorLayout>

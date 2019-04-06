@@ -31,6 +31,7 @@ class VolleyService(val context: Context) {
         dialog.window.requestFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(com.sanswai.achieve.R.layout.layout_loading)
         dialog.show()
+        dialog.setCancelable(false)
 
         val requestUrl = context.getString(com.sanswai.achieve.R.string.base_url)+methodName
 

@@ -31,8 +31,10 @@ class SkillsAdapter(private val mContext: Context, private val skill: String, pr
         if (skill == "key") {
             val education = educationList!![position]
             holder.tvSkillName.text = education.skillName
+           // holder.ivEdit.visibility = View.GONE
+           // (mContext as KeySkillFragment).addorEditKeySkill(education)
         } else {
-            val education = userSkills!![position]
+            val education = userSkills[position]
             holder.tvSkillName.text = education.skillName
             (mContext as KeySkillFragment).addorEditSkill(education)
         }
@@ -42,7 +44,7 @@ class SkillsAdapter(private val mContext: Context, private val skill: String, pr
         if (skill == "key") {
             return educationList!!.size
         } else {
-            return userSkills!!.size
+            return userSkills.size
         }
     }
 }

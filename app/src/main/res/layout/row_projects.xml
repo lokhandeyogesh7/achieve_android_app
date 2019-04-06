@@ -10,8 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp">
+
         <ImageView
-            android:id="@+id/ivEdit"
+            android:id="@+id/ivEditProject"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:layout_alignParentEnd="true"
@@ -24,6 +25,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="My project 1"
+            android:layout_toStartOf="@+id/ivEditProject"
+            android:paddingEnd="@dimen/_10sdp"
             android:fontFamily="@font/myfont"
             android:textSize="@dimen/_12sdp" />
 
@@ -32,8 +35,8 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@id/tvProjectTitle"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
             android:background="@android:color/darker_gray" />
 
         <TextView

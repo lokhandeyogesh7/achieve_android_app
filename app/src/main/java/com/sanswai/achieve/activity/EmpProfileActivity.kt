@@ -24,6 +24,7 @@ import kotlinx.android.synthetic.main.activity_emp_profile.*
 import kotlinx.android.synthetic.main.layout_profile.*
 import org.json.JSONObject
 import java.util.*
+import kotlin.collections.ArrayList
 
 class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
 
@@ -31,6 +32,7 @@ class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
     var employee_id: String? = null
     var preferences: Preferences? = null
     var services: VolleyService? = null
+    var arrFragment = ArrayList<Fragment>()
     lateinit var collapsingToolbarLayout :CollapsingToolbarLayout
 
     @SuppressLint("RestrictedApi")
@@ -45,19 +47,16 @@ class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
         preferences = Preferences.getInstance(this)
         if (preferences?.getPreferencesString(getString(R.string.user_type)) == "employee") {
             employee_id = preferences!!.getPreferencesInt(getString(R.string.user_id), 0).toString()
-            fabPersonalDetails.visibility = View.VISIBLE
         } else {
             employee_id = intent.getIntExtra(getString(R.string.employee_id), 0).toString()
-            fabPersonalDetails.visibility = View.GONE
         }
-
         getEmployeeDetails()
 
     }
 
     private fun setUpTabsView() {
         ViewCompat.setTransitionName(findViewById(R.id.app_bar_layout), "Extra Image")
-        collapsingToolbarLayout = findViewById<CollapsingToolbarLayout>(R.id.collapsingToolBar_hotel_details)
+        collapsingToolbarLayout = findViewById(R.id.collapsingToolBar_hotel_details)
         collapsingToolbarLayout.setContentScrimColor(ContextCompat.getColor(applicationContext, R.color.colorPrimary))
         val adapter = ViewPagerAdapter(supportFragmentManager)
         adapter.addFragment(PersonalDetailsFragment())
@@ -67,6 +66,17 @@ class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
         adapter.addFragment(ProjectsFragment())
         adapter.addFragment(EmploymentFragment())
         adapter.addFragment(EducationFragment())
+
+        arrFragment.add(PersonalDetailsFragment())
+        arrFragment.add(KeySkillFragment())
+        arrFragment.add(DesiredCareerProfileFrag())
+        arrFragment.add(ResumeHeadlineFragment())
+        arrFragment.add(ProjectsFragment())
+        arrFragment.add(EmploymentFragment())
+        arrFragment.add(EducationFragment())
+
+
+
         viewPager!!.adapter = adapter
         tabLayout = findViewById<View>(R.id.tabs) as TabLayout
         tabLayout!!.setupWithViewPager(viewPager)
@@ -84,6 +94,7 @@ class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
         services?.mResponseInterface = this
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onSuccess(methodName: String, response: Any) {
         println("response is $response")
         preferences?.setPreferencesBody(getString(R.string.pref_employee_details), response.toString())
@@ -96,6 +107,11 @@ class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
             e.printStackTrace()
         }
         if (responseObject != null) {
+            if (preferences?.getPreferencesString(getString(R.string.user_type)) == "employee") {
+                fabPersonalDetails.visibility = View.VISIBLE
+            } else {
+                fabPersonalDetails.visibility = View.GONE
+            }
             setUpTabsView()
             if ((responseObject).users?.data?.profilePic != null) {
                 Picasso.get().load((responseObject).users?.data?.profilePic).centerInside().resize(200, 200)
@@ -109,6 +125,12 @@ class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
 
     override fun onFailure(methodName: String, volleyError: VolleyError) {
         println("error  is " + volleyError.networkResponse)
+    }
+
+    fun onFabCkick(){
+        if (arrFragment.get(viewPager.currentItem) is PersonalDetailsFragment) {
+            showToast("clciked personal fragmentsjkfdjkdfjkldfjfdskjadsfbkaldsbfkjasdfbadskfbdsjlf jasf jfbdfbadfh jadfbasdkfgl")
+        }
     }
 
     internal inner class ViewPagerAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {

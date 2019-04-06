@@ -39,13 +39,9 @@ class PersonalDetailsFragment : Fragment() {
 
         val jsonResponse = preferences?.getPreferencesString(getString(R.string.pref_employee_details))
         val responseObject = Gson().fromJson(jsonResponse, EmployeeDetails::class.java)
-        println("response object is " + jsonResponse)
-
-        if (responseObject.personalDetails?.response == "false") {
-            (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_plus_black_symbol)
-        } else {
-            (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_pencil_edit_button)
-        }
+        println("response object is Male \n" +
+                " single \n" +
+                " Nashik" + (responseObject.personalDetails?.response == "false"))
 
         if (responseObject != null && responseObject.personalDetails?.response == "true") {
             rlPerInfo.visibility = View.VISIBLE
@@ -57,11 +53,25 @@ class PersonalDetailsFragment : Fragment() {
                     responseObject.personalDetails?.data?.permanentAddressTwo + "\n" +
                     responseObject.personalDetails?.data?.pinCode
             println("inside if")
-        }else{
+        } else {
             println("inside else")
         }
+
+
+        (activity as EmpProfileActivity).fabPersonalDetails.bringToFront()
+
+        if (responseObject.personalDetails?.response != "false") {
+            (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_pencil_edit_button)
+        } else {
+            (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_plus_black_symbol)
+        }
+
+
         ((activity as EmpProfileActivity).fabPersonalDetails.setOnClickListener {
-            startActivity(Intent(activity, EditPersonalDetailsActivity::class.java).putExtra(getString(R.string.employee_id),(activity as EmpProfileActivity).employee_id))
+            println("on click reference is " + (activity as EmpProfileActivity).viewPager.currentItem)
+            if ((activity as EmpProfileActivity).viewPager.currentItem == 0) {
+                startActivity(Intent(activity, EditPersonalDetailsActivity::class.java).putExtra(getString(R.string.employee_id), (activity as EmpProfileActivity).employee_id))
+            }
         })
     }
 }

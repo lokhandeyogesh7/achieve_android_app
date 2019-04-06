@@ -1,6 +1,7 @@
 package com.sanswai.achieve.fragment
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
@@ -10,6 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.gson.Gson
 import com.sanswai.achieve.R
+import com.sanswai.achieve.activity.EditPersonalDetailsActivity
+import com.sanswai.achieve.activity.EditResumeHeadlineActivity
 import com.sanswai.achieve.activity.EmpProfileActivity
 import com.sanswai.achieve.adapter.ProjectsAdapter
 import com.sanswai.achieve.global.Preferences
@@ -48,7 +51,7 @@ class ProjectsFragment : Fragment() {
         projectsList = responseObject?.project?.data as ArrayList<Datum__>?
 
         if (projectsList != null) {
-            adapter = ProjectsAdapter(projectsList!!)
+            adapter = ProjectsAdapter(activity!!,projectsList!!)
 
             val mLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
             rvProjects.layoutManager = mLayoutManager
@@ -60,6 +63,13 @@ class ProjectsFragment : Fragment() {
         }else{
             (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_pencil_edit_button)
         }
+
+        ((activity as EmpProfileActivity).fabPersonalDetails.setOnClickListener {
+            println("on click reference is " + (activity as EmpProfileActivity).viewPager.currentItem)
+            if ((activity as EmpProfileActivity).viewPager.currentItem == 4) {
+                startActivity(Intent(activity, EditResumeHeadlineActivity::class.java).putExtra(getString(R.string.fromProjects), true).putExtra(getString(R.string.project_id),"new"))
+            }
+        })
 
     }
 }

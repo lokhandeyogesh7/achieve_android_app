@@ -15,6 +15,7 @@ import com.sanswai.achieve.global.BaseActivity
 import com.sanswai.achieve.global.Preferences
 import com.sanswai.achieve.network.VolleyService
 import com.sanswai.achieve.response.employeedetails.Datum___
+import com.sanswai.achieve.response.employeedetails.Datum_____
 import com.sanswai.achieve.response.employeedetails.EmployeeDetails
 import kotlinx.android.synthetic.main.activity_emp_profile.*
 import kotlinx.android.synthetic.main.fragment_desired_career_path.*
@@ -54,6 +55,8 @@ class DesiredCareerProfileFrag : Fragment() {
 
         ((activity as EmpProfileActivity).fabPersonalDetails.setOnClickListener {
             (activity as BaseActivity).showToast("clicked toast 123")
+            if ((activity as EmpProfileActivity).viewPager.currentItem == 2) {
+            }
         })
         if (responseObject.desiredProfile?.response == "false") {
             (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_plus_black_symbol)
