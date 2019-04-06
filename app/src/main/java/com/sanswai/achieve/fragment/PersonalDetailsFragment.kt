@@ -41,7 +41,14 @@ class PersonalDetailsFragment : Fragment() {
         val responseObject = Gson().fromJson(jsonResponse, EmployeeDetails::class.java)
         println("response object is " + jsonResponse)
 
-        if (responseObject != null && responseObject.personalDetails?.response == "false") {
+        if (responseObject.personalDetails?.response == "false") {
+            (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_plus_black_symbol)
+        } else {
+            (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_pencil_edit_button)
+        }
+
+        if (responseObject != null && responseObject.personalDetails?.response == "true") {
+            rlPerInfo.visibility = View.VISIBLE
             tvPersonalInfo.text = responseObject.personalDetails?.data?.gender + "\n" + responseObject.personalDetails?.data?.marriatalStatus + "\n" + responseObject.personalDetails?.data?.hometown + "\n" + responseObject.personalDetails?.data?.dateOfBirth
             tvCurrentAddress.text = responseObject.personalDetails?.data?.residentialAddressOne + "\n" +
                     responseObject.personalDetails?.data?.residentialAddressTwo + "\n" +
@@ -49,16 +56,12 @@ class PersonalDetailsFragment : Fragment() {
             tvPerAddress.text = responseObject.personalDetails?.data?.permanentAddressOne + "\n" +
                     responseObject.personalDetails?.data?.permanentAddressTwo + "\n" +
                     responseObject.personalDetails?.data?.pinCode
-
+            println("inside if")
+        }else{
+            println("inside else")
         }
         ((activity as EmpProfileActivity).fabPersonalDetails.setOnClickListener {
             startActivity(Intent(activity, EditPersonalDetailsActivity::class.java).putExtra(getString(R.string.employee_id),(activity as EmpProfileActivity).employee_id))
         })
-        if (responseObject.personalDetails?.response == "false") {
-            (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_plus_black_symbol)
-        } else {
-            (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_pencil_edit_button)
-        }
-
     }
 }
