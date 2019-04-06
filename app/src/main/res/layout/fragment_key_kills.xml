@@ -1,51 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="#c3c3c3c3"
-    android:nestedScrollingEnabled="false">
+    android:orientation="vertical">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvUSerSkills"
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp" />
 
-        <TextView
-            android:id="@+id/lblKeySkills"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/myfont"
-            android:gravity="center"
-            android:text="Key Skills"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/_16sdp"
-            android:textStyle="bold" />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabKeySkill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/_15sdp"
+        android:clickable="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/ic_pencil_edit_button"
+        android:tint="@color/colorPrimaryDark"
+        android:focusable="true" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rvKeySkills"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/lblKeySkills"
-            android:layout_margin="@dimen/_5sdp" />
-
-        <TextView
-            android:id="@+id/lblUserSkills"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/rvKeySkills"
-            android:fontFamily="@font/myfont"
-            android:gravity="center"
-            android:text="User Skills"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/_16sdp"
-            android:textStyle="bold" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rvUSerSkills"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/lblUserSkills"
-            android:layout_margin="@dimen/_5sdp" />
-
-    </LinearLayout>
-</ScrollView>
+</RelativeLayout>

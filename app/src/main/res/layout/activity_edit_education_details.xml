@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tvEducation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/myfont"
+            android:text="Education:"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_14sdp" />
+
+        <Spinner
+            android:id="@+id/spEducation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/myfont" />
+
+
+        <TextView
+            android:id="@+id/tvCourselbl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/myfont"
+            android:text="Course:"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_14sdp" />
+
+        <Spinner
+            android:id="@+id/spCourses"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/myfont" />
+
+        <TextView
+            android:id="@+id/tvSpecializationLbl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/myfont"
+            android:text="Specialization:"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_14sdp" />
+
+        <Spinner
+            android:id="@+id/spSpecialization"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/myfont" />
+
+        <TextView
+            android:id="@+id/tvCollege"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/myfont"
+            android:text="University/Institute:"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_14sdp" />
+
+        <EditText
+            android:id="@+id/etCollege"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_background"
+            android:fontFamily="@font/myfont"
+            android:padding="@dimen/_5sdp"
+            android:singleLine="true"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_14sdp" />
+        <TextView
+            android:id="@+id/tvCourseType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/myfont"
+            android:text="Course Type:"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_14sdp" />
+
+        <RadioGroup
+            android:id="@+id/radiocType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/_8sdp">
+
+            <RadioButton
+                android:id="@+id/radioDay"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:checked="true"
+                android:drawablePadding="@dimen/_10sdp"
+                android:fontFamily="@font/myfont"
+                android:text="Full Time"
+                android:textColor="@android:color/tab_indicator_text"
+                android:textSize="@dimen/_12sdp" />
+
+            <RadioButton
+                android:id="@+id/radioNight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_weight="1"
+                android:checked="false"
+                android:drawablePadding="@dimen/_10sdp"
+                android:fontFamily="@font/myfont"
+                android:text="Part Time"
+                android:textColor="@android:color/tab_indicator_text"
+                android:textSize="@dimen/_12sdp" />
+
+            <RadioButton
+                android:id="@+id/radioFlexi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_weight="1"
+                android:checked="false"
+                android:drawablePadding="@dimen/_10sdp"
+                android:fontFamily="@font/myfont"
+                android:text="Correspondence"
+                android:textColor="@android:color/tab_indicator_text"
+                android:textSize="@dimen/_12sdp" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/tvPassingYear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/myfont"
+            android:text="Passing Year:"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_14sdp" />
+
+        <Spinner
+            android:id="@+id/spPassingYear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/myfont" />
+
+
+        <TextView
+            android:id="@+id/tvGradeSystem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/myfont"
+            android:text="Grade System:"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_14sdp" />
+
+        <Spinner
+            android:id="@+id/spGradeSystem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/myfont" />
+
+        <TextView
+            android:id="@+id/tvMarks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/myfont"
+            android:text="University/Institute:"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_14sdp" />
+
+        <EditText
+            android:id="@+id/etMarks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_background"
+            android:fontFamily="@font/myfont"
+            android:padding="@dimen/_5sdp"
+            android:singleLine="true"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_14sdp" />
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>

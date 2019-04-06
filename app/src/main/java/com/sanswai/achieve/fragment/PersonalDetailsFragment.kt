@@ -15,8 +15,10 @@ import com.sanswai.achieve.activity.EmpProfileActivity
 import com.sanswai.achieve.global.Preferences
 import com.sanswai.achieve.network.VolleyService
 import com.sanswai.achieve.response.employeedetails.EmployeeDetails
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_emp_profile.*
 import kotlinx.android.synthetic.main.fragment_personal_details.*
+import kotlinx.android.synthetic.main.layout_profile.*
 
 class PersonalDetailsFragment : Fragment() {
 
@@ -29,13 +31,19 @@ class PersonalDetailsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_personal_details, container, false)
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "RestrictedApi")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val htmlString = "Male \n single \n Nashik"
         tvPersonalInfo.text = Html.fromHtml(htmlString)
         services = VolleyService(activity!!)
         preferences = Preferences.getInstance(activity!!)
+
+        if (preferences?.getPreferencesString(getString(R.string.user_type)) == "employee") {
+            fabPersonalDetai.visibility = View.VISIBLE
+        } else {
+            fabPersonalDetai.visibility = View.GONE
+        }
 
         val jsonResponse = preferences?.getPreferencesString(getString(R.string.pref_employee_details))
         val responseObject = Gson().fromJson(jsonResponse, EmployeeDetails::class.java)
@@ -52,26 +60,28 @@ class PersonalDetailsFragment : Fragment() {
             tvPerAddress.text = responseObject.personalDetails?.data?.permanentAddressOne + "\n" +
                     responseObject.personalDetails?.data?.permanentAddressTwo + "\n" +
                     responseObject.personalDetails?.data?.pinCode
+            if ((responseObject).users?.data?.profilePic != null) {
+                Picasso.get().load((responseObject).users?.data?.profilePic).centerInside().resize(200, 200)
+                        .onlyScaleDown().error(activity!!.getDrawable(R.mipmap.ic_launcher)).placeholder(activity!!.getDrawable(R.mipmap.ic_launcher)).into(ivProfile)
+            }
+            tvTelephone.text = responseObject.users?.data?.mobileNumber
+            tvEmail.text = responseObject.users?.data?.email
             println("inside if")
         } else {
             println("inside else")
         }
 
-
-        (activity as EmpProfileActivity).fabPersonalDetails.bringToFront()
-
         if (responseObject.personalDetails?.response != "false") {
-            (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_pencil_edit_button)
+            fabPersonalDetai.setImageResource(R.drawable.ic_pencil_edit_button)
         } else {
-            (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_plus_black_symbol)
+            fabPersonalDetai.setImageResource(R.drawable.ic_plus_black_symbol)
         }
 
-
-        ((activity as EmpProfileActivity).fabPersonalDetails.setOnClickListener {
+        fabPersonalDetai.setOnClickListener {
             println("on click reference is " + (activity as EmpProfileActivity).viewPager.currentItem)
             if ((activity as EmpProfileActivity).viewPager.currentItem == 0) {
                 startActivity(Intent(activity, EditPersonalDetailsActivity::class.java).putExtra(getString(R.string.employee_id), (activity as EmpProfileActivity).employee_id))
             }
-        })
+        }
     }
 }

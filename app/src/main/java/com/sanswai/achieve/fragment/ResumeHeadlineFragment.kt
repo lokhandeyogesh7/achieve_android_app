@@ -52,13 +52,12 @@ class ResumeHeadlineFragment : Fragment() {
             }
         }
         if (responseObject.resumeHeadline?.response == "false") {
-            (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_plus_black_symbol)
+            fabResume.setImageResource(R.drawable.ic_plus_black_symbol)
         } else {
-            (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_pencil_edit_button)
+            fabResume.setImageResource(R.drawable.ic_pencil_edit_button)
         }
 
-        (activity as EmpProfileActivity).fabPersonalDetails.setOnClickListener {
-            (activity as BaseActivity).showToast("clicked toast 123")
+        fabResume.setOnClickListener {
             if ((activity as EmpProfileActivity).viewPager.currentItem == 3) {
                 startActivity(Intent(activity,EditResumeHeadlineActivity::class.java))
             }

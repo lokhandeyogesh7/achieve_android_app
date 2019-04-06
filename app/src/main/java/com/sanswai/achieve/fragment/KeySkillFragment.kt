@@ -57,33 +57,21 @@ class KeySkillFragment : Fragment(), VolleyService.SetResponse {
             responseObject = Gson().fromJson(jsonResponse, EmployeeDetails::class.java)
             keySkills = responseObject?.mstSkill?.data as ArrayList<Datum____>?
             userSkills = responseObject?.userSkill?.data as ArrayList<Datum_____>?
-            if (keySkills != null) {
-                if (userSkills == null) {
-                    userSkills = ArrayList()
-                }
-                adapter = SkillsAdapter(activity!!, "key", keySkills, userSkills!!)
-                val mLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-                rvKeySkills.layoutManager = mLayoutManager
-                rvKeySkills.itemAnimator = DefaultItemAnimator()
-                rvKeySkills.adapter = adapter
-            }
+            println("userskills is "+userSkills)
             if (userSkills != null) {
-                if (keySkills == null) {
-                    keySkills = ArrayList()
-                }
-                adapter = SkillsAdapter(activity!!, "user", keySkills, userSkills!!)
+                adapter = SkillsAdapter(activity!!, userSkills!!)
                 val mLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
                 rvUSerSkills.layoutManager = mLayoutManager
                 rvUSerSkills.itemAnimator = DefaultItemAnimator()
                 rvUSerSkills.adapter = adapter
             }
             if (userSkills == null || userSkills?.isEmpty()!!) {
-                (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_plus_black_symbol)
+                fabKeySkill.setImageResource(R.drawable.ic_plus_black_symbol)
             } else {
-                (activity as EmpProfileActivity).fabPersonalDetails.visibility = View.GONE
+                fabKeySkill.visibility = View.GONE
             }
 
-            (activity as EmpProfileActivity).fabPersonalDetails.setOnClickListener {
+            fabKeySkill.setOnClickListener {
                 println("on click key skill is " + (activity as EmpProfileActivity).viewPager.currentItem)
                 if ((activity as EmpProfileActivity).viewPager.currentItem == 1) {
                     val datum = Datum_____()
@@ -123,25 +111,4 @@ class KeySkillFragment : Fragment(), VolleyService.SetResponse {
         println("resposne is "+volleyError)
     }
 
-    fun addorEditKeySkill(education: Datum____) {
-        val dialog = Dialog(activity!!)
-        dialog.setContentView(R.layout.dialog_editbox)
-        var skillId = ""
-        if (education != null) {
-            skillId = education.id.toString()!!
-        }
-        dialog.show()
-        dialog.tvSubmitSkill.setOnClickListener {
-            val strSkill = dialog.etSkillName.text.toString()
-            if (strSkill.isEmpty()) {
-                ((activity as BaseActivity).showToast("Please Enter Skill"))
-            } else {
-                val jsonObject = JSONObject()
-                jsonObject.put("skill_id",skillId )
-                jsonObject.put("user_id",responseObject.users!!.data!!.id)
-                services!!.callJsonObjectRequest("key-skills/", jsonObject)
-                services!!.mResponseInterface = this
-            }
-        }
-    }
 }

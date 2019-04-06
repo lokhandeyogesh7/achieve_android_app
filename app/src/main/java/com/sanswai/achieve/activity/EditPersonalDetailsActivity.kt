@@ -125,10 +125,14 @@ class EditPersonalDetailsActivity : BaseActivity(), DatePickerDialog.OnDateSetLi
 
         employeeId = responseObject?.users!!.data!!.id.toString()
 
+        entryId = responseObject!!.personalDetails!!.data!!.id.toString()
+
         if (responseObject!!.personalDetails?.data?.gender.equals("male", true)) {
             radioM.isChecked = true
+            gender = "Male"
         } else {
             radioF.isChecked = true
+            gender = "Female"
         }
 
         when {

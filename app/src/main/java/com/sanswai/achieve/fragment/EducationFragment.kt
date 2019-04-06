@@ -55,9 +55,9 @@ class EducationFragment : Fragment() {
             rvEducation.adapter = adapter
         }
         if (responseObject.education?.response == "false") {
-            (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_plus_black_symbol)
+            fabEducation.setImageResource(R.drawable.ic_plus_black_symbol)
         }else{
-            (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_pencil_edit_button)
+            fabEducation.setImageResource(R.drawable.ic_pencil_edit_button)
         }
     }
 }

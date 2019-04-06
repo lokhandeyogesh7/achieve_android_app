@@ -33,31 +33,31 @@ class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
     var preferences: Preferences? = null
     var services: VolleyService? = null
     var arrFragment = ArrayList<Fragment>()
-    lateinit var collapsingToolbarLayout :CollapsingToolbarLayout
+    //lateinit var collapsingToolbarLayout :CollapsingToolbarLayout
 
     @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_emp_profile)
-        setSupportActionBar(toolbarMain)
+       // setSupportActionBar(toolbarMain)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         services = VolleyService(this)
         preferences = Preferences.getInstance(this)
+        println("employee type "+preferences?.getPreferencesString(getString(R.string.user_type)))
         if (preferences?.getPreferencesString(getString(R.string.user_type)) == "employee") {
             employee_id = preferences!!.getPreferencesInt(getString(R.string.user_id), 0).toString()
         } else {
             employee_id = intent.getIntExtra(getString(R.string.employee_id), 0).toString()
         }
         getEmployeeDetails()
-
     }
 
     private fun setUpTabsView() {
-        ViewCompat.setTransitionName(findViewById(R.id.app_bar_layout), "Extra Image")
-        collapsingToolbarLayout = findViewById(R.id.collapsingToolBar_hotel_details)
-        collapsingToolbarLayout.setContentScrimColor(ContextCompat.getColor(applicationContext, R.color.colorPrimary))
+//        ViewCompat.setTransitionName(findViewById(R.id.app_bar_layout), "Extra Image")
+       // collapsingToolbarLayout = findViewById(R.id.collapsingToolBar_hotel_details)
+        //collapsingToolbarLayout.setContentScrimColor(ContextCompat.getColor(applicationContext, R.color.colorPrimary))
         val adapter = ViewPagerAdapter(supportFragmentManager)
         adapter.addFragment(PersonalDetailsFragment())
         adapter.addFragment(KeySkillFragment())
@@ -74,8 +74,6 @@ class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
         arrFragment.add(ProjectsFragment())
         arrFragment.add(EmploymentFragment())
         arrFragment.add(EducationFragment())
-
-
 
         viewPager!!.adapter = adapter
         tabLayout = findViewById<View>(R.id.tabs) as TabLayout
@@ -107,19 +105,14 @@ class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
             e.printStackTrace()
         }
         if (responseObject != null) {
-            if (preferences?.getPreferencesString(getString(R.string.user_type)) == "employee") {
-                fabPersonalDetails.visibility = View.VISIBLE
-            } else {
-                fabPersonalDetails.visibility = View.GONE
-            }
             setUpTabsView()
-            if ((responseObject).users?.data?.profilePic != null) {
+           /* if ((responseObject).users?.data?.profilePic != null) {
                 Picasso.get().load((responseObject).users?.data?.profilePic).centerInside().resize(200, 200)
                         .onlyScaleDown().error(getDrawable(R.mipmap.ic_launcher)).placeholder(getDrawable(R.mipmap.ic_launcher)).into(ivProfile)
             }
             tvTelephone.text = responseObject.users?.data?.mobileNumber
-            tvEmail.text = responseObject.users?.data?.email
-            collapsingToolbarLayout.title = responseObject.users?.data?.name
+            tvEmail.text = responseObject.users?.data?.email*/
+            supportActionBar!!.title = responseObject.users?.data?.name
         }
     }
 

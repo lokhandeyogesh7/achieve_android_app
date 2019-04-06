@@ -20,13 +20,13 @@
             android:text="My Skill 1"
             android:textSize="@dimen/_12sdp" />
 
-        <ImageView
+        <!--<ImageView
             android:id="@+id/ivEditSkill"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_pencil_edit_button" />
+            android:src="@drawable/ic_pencil_edit_button" />-->
 
     </RelativeLayout>
 

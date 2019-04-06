@@ -1,6 +1,7 @@
 package com.sanswai.achieve.fragment
 
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -20,6 +21,7 @@ import com.sanswai.achieve.network.VolleyService
 import com.sanswai.achieve.response.employeedetails.Datum__
 import com.sanswai.achieve.response.employeedetails.EmployeeDetails
 import kotlinx.android.synthetic.main.activity_emp_profile.*
+import kotlinx.android.synthetic.main.fragment_personal_details.*
 import kotlinx.android.synthetic.main.fragment_projects.*
 
 class ProjectsFragment : Fragment() {
@@ -34,12 +36,20 @@ class ProjectsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_projects, container, false)
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         projectsList = ArrayList()
 
         services = VolleyService(activity!!)
         preferences = Preferences.getInstance(activity!!)
+
+        if (preferences?.getPreferencesString(getString(R.string.user_type)) == "employee") {
+            fabProjects.visibility = View.VISIBLE
+        } else {
+            fabProjects.visibility = View.GONE
+        }
+
 
         prepareProjectList()
     }
@@ -51,23 +61,20 @@ class ProjectsFragment : Fragment() {
         projectsList = responseObject?.project?.data as ArrayList<Datum__>?
 
         if (projectsList != null) {
-            adapter = ProjectsAdapter(activity!!,projectsList!!)
+            adapter = ProjectsAdapter(activity!!, projectsList!!)
 
             val mLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
             rvProjects.layoutManager = mLayoutManager
             rvProjects.itemAnimator = DefaultItemAnimator()
             rvProjects.adapter = adapter
         }
-        if (responseObject.project?.response == "false") {
-            (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_plus_black_symbol)
-        }else{
-            (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_pencil_edit_button)
-        }
+        fabProjects.bringToFront()
+        fabProjects.setImageResource(R.drawable.ic_plus_black_symbol)
 
-        ((activity as EmpProfileActivity).fabPersonalDetails.setOnClickListener {
+        (fabProjects.setOnClickListener {
             println("on click reference is " + (activity as EmpProfileActivity).viewPager.currentItem)
             if ((activity as EmpProfileActivity).viewPager.currentItem == 4) {
-                startActivity(Intent(activity, EditResumeHeadlineActivity::class.java).putExtra(getString(R.string.fromProjects), true).putExtra(getString(R.string.project_id),"new"))
+                startActivity(Intent(activity, EditResumeHeadlineActivity::class.java).putExtra(getString(R.string.fromProjects), true).putExtra(getString(R.string.project_id), "new"))
             }
         })
 

@@ -56,9 +56,9 @@ class EmploymentFragment : Fragment() {
             rvEmployments.adapter = adapter
         }
         if (responseObject.employement?.response == "false") {
-            (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_plus_black_symbol)
+            fabEmployment.setImageResource(R.drawable.ic_plus_black_symbol)
         }else{
-            (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_pencil_edit_button)
+            fabEmployment.setImageResource(R.drawable.ic_pencil_edit_button)
         }
     }
 }

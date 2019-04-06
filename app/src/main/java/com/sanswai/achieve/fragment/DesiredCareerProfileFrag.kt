@@ -1,5 +1,6 @@
 package com.sanswai.achieve.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.gson.Gson
 import com.sanswai.achieve.R
+import com.sanswai.achieve.activity.EditCareerPathActivity
 import com.sanswai.achieve.activity.EmpProfileActivity
 import com.sanswai.achieve.adapter.DesiredCareerAdapter
 import com.sanswai.achieve.global.BaseActivity
@@ -35,7 +37,7 @@ class DesiredCareerProfileFrag : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        services= VolleyService(activity!!)
+        services = VolleyService(activity!!)
         preferences = Preferences.getInstance(activity!!)
         prepareProjectList()
     }
@@ -53,15 +55,13 @@ class DesiredCareerProfileFrag : Fragment() {
             rvDesiredPath.adapter = adapter
         }
 
-        ((activity as EmpProfileActivity).fabPersonalDetails.setOnClickListener {
-            (activity as BaseActivity).showToast("clicked toast 123")
-            if ((activity as EmpProfileActivity).viewPager.currentItem == 2) {
-            }
+        (fabDesireProfile.setOnClickListener {
+            startActivity(Intent(activity!!, EditCareerPathActivity::class.java))
         })
         if (responseObject.desiredProfile?.response == "false") {
-            (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_plus_black_symbol)
-        }else{
-            (activity as EmpProfileActivity).fabPersonalDetails.setImageResource(R.drawable.ic_pencil_edit_button)
+            fabDesireProfile.setImageResource(R.drawable.ic_plus_black_symbol)
+        } else {
+            fabDesireProfile.setImageResource(R.drawable.ic_pencil_edit_button)
         }
     }
 }

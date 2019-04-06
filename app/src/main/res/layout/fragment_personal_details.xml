@@ -1,199 +1,227 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="#c3c3c3c3"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#c3c3c3c3">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView
         android:layout_width="match_parent"
-        android:id="@+id/rlPerInfo"
-        android:visibility="gone"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/rlPerInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:visibility="visible">
+
+            <include
+                android:id="@+id/rlProfile"
+                layout="@layout/layout_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:fitsSystemWindows="true" />
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/rlPersnInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlProfile"
+                android:layout_margin="10dp"
+                android:elevation="4dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <!--   <ImageView
+                           android:id="@+id/ivEditPersonalInfo"
+                           android:layout_width="@dimen/_15sdp"
+                           android:layout_height="@dimen/_15sdp"
+                           android:layout_alignParentTop="true"
+                           android:layout_alignParentEnd="true"
+                           android:layout_centerVertical="true"
+                           android:src="@drawable/ic_pencil_edit_button" />-->
+
+
+                    <TextView
+                        android:id="@+id/lblPersonalInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/myfont"
+                        android:textColor="@android:color/black"
+                        android:text="Personal Information:"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <TextView
+                        android:id="@+id/tvPersonalInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/lblPersonalInfo"
+                        android:fontFamily="@font/myfont"
+                        android:text="Male /n single /n Nashik"
+                        android:textSize="@dimen/_12sdp" />
+
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/rlCurrAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlPersnInfo"
+                android:layout_margin="10dp"
+                android:elevation="4dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp">
+
+                    <!--  <ImageView
+                          android:id="@+id/ivEditCurrentAddress"
+                          android:layout_width="@dimen/_15sdp"
+                          android:layout_height="@dimen/_15sdp"
+                          android:layout_alignParentTop="true"
+                          android:layout_alignParentEnd="true"
+                          android:layout_centerVertical="true"
+                          android:src="@drawable/ic_pencil_edit_button" />
+      -->
+                    <TextView
+                        android:id="@+id/lblCurrentAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/myfont"
+                        android:textColor="@android:color/black"
+                        android:text="Residential Address:"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <TextView
+                        android:id="@+id/tvCurrentAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/lblCurrentAddress"
+                        android:drawableStart="@drawable/ic_location"
+                        android:drawableLeft="@drawable/ic_location"
+                        android:drawablePadding="@dimen/_3sdp"
+                        android:fontFamily="@font/myfont"
+                        android:gravity="center_vertical|top"
+                        android:text="23 Rockwell Drive \n Atlanta, GA 30303"
+                        android:textSize="@dimen/_12sdp" />
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/rlPerAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlCurrAddress"
+                android:layout_margin="10dp"
+                android:elevation="4dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp">
+
+                    <!--  <ImageView
+                          android:id="@+id/ivEditPerAddress"
+                          android:layout_width="@dimen/_15sdp"
+                          android:layout_height="@dimen/_15sdp"
+                          android:layout_alignParentTop="true"
+                          android:layout_alignParentEnd="true"
+                          android:layout_centerVertical="true"
+                          android:src="@drawable/ic_pencil_edit_button" />-->
+
+                    <TextView
+                        android:id="@+id/lblPerAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/myfont"
+                        android:text="Permanent Address:"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <TextView
+                        android:id="@+id/tvPerAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/lblPerAddress"
+                        android:drawableStart="@drawable/ic_location"
+                        android:drawableLeft="@drawable/ic_location"
+                        android:drawablePadding="@dimen/_3sdp"
+                        android:fontFamily="@font/myfont"
+                        android:gravity="center_vertical"
+                        android:text="7361 Greystone Avenue \n Pensacola, FL 32503"
+                        android:textSize="@dimen/_12sdp" />
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <!-- <android.support.design.widget.FloatingActionButton
+                 android:id="@+id/fabPersonalDetails"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_below="@+id/rlPerAddress"
+                 android:layout_alignParentEnd="true"
+                 android:layout_margin="@dimen/_15sdp"
+                 android:src="@drawable/ic_pencil_edit_button"
+                 android:tint="@color/colorPrimaryDark" />
+
+             <RelativeLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_below="@+id/fabPersonalDetails"
+                 android:padding="15dp">
+
+                 <ImageView
+                     android:id="@+id/ivEditPerAddress1"
+                     android:layout_width="@dimen/_15sdp"
+                     android:layout_height="@dimen/_15sdp"
+                     android:layout_alignParentTop="true"
+                     android:layout_alignParentEnd="true"
+                     android:layout_centerVertical="true"
+                     android:src="@drawable/ic_pencil_edit_button" />
+
+                 <TextView
+                     android:id="@+id/lblPerAddress1"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:fontFamily="@font/myfont"
+                     android:text="Permanent Address"
+                     android:textSize="@dimen/_12sdp" />
+
+                 <TextView
+                     android:id="@+id/tvPerAddress1"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_below="@+id/lblPerAddress1"
+                     android:drawableStart="@drawable/ic_location"
+                     android:drawableLeft="@drawable/ic_location"
+                     android:drawablePadding="@dimen/_3sdp"
+                     android:fontFamily="@font/myfont"
+                     android:gravity="center_vertical"
+                     android:text="7361 Greystone Avenue \n Pensacola, FL 32503"
+                     android:textSize="@dimen/_12sdp" />
+
+             </RelativeLayout>-->
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabPersonalDetai"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        >
-
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/rlPersnInfo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:elevation="4dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp">
-
-             <!--   <ImageView
-                    android:id="@+id/ivEditPersonalInfo"
-                    android:layout_width="@dimen/_15sdp"
-                    android:layout_height="@dimen/_15sdp"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_pencil_edit_button" />-->
-
-
-                <TextView
-                    android:id="@+id/lblPersonalInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/myfont"
-                    android:text="Personal Information"
-                    android:textSize="@dimen/_12sdp" />
-
-                <TextView
-                    android:id="@+id/tvPersonalInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/lblPersonalInfo"
-                    android:fontFamily="@font/myfont"
-                    android:text="Male /n single /n Nashik"
-                    android:textSize="@dimen/_12sdp" />
-
-
-            </RelativeLayout>
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/rlCurrAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/rlPersnInfo"
-            android:layout_margin="10dp"
-            android:elevation="4dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="15dp">
-
-              <!--  <ImageView
-                    android:id="@+id/ivEditCurrentAddress"
-                    android:layout_width="@dimen/_15sdp"
-                    android:layout_height="@dimen/_15sdp"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_pencil_edit_button" />
--->
-                <TextView
-                    android:id="@+id/lblCurrentAddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/myfont"
-                    android:text="Residential Address"
-                    android:textSize="@dimen/_12sdp" />
-
-                <TextView
-                    android:id="@+id/tvCurrentAddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/lblCurrentAddress"
-                    android:drawableStart="@drawable/ic_location"
-                    android:drawableLeft="@drawable/ic_location"
-                    android:drawablePadding="@dimen/_3sdp"
-                    android:fontFamily="@font/myfont"
-                    android:gravity="center_vertical|top"
-                    android:text="23 Rockwell Drive \n Atlanta, GA 30303"
-                    android:textSize="@dimen/_12sdp" />
-
-            </RelativeLayout>
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/rlPerAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/rlCurrAddress"
-            android:layout_margin="10dp"
-            android:elevation="4dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="15dp">
-
-              <!--  <ImageView
-                    android:id="@+id/ivEditPerAddress"
-                    android:layout_width="@dimen/_15sdp"
-                    android:layout_height="@dimen/_15sdp"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_pencil_edit_button" />-->
-
-                <TextView
-                    android:id="@+id/lblPerAddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/myfont"
-                    android:text="Permanent Address"
-                    android:textSize="@dimen/_12sdp" />
-
-                <TextView
-                    android:id="@+id/tvPerAddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/lblPerAddress"
-                    android:drawableStart="@drawable/ic_location"
-                    android:drawableLeft="@drawable/ic_location"
-                    android:drawablePadding="@dimen/_3sdp"
-                    android:fontFamily="@font/myfont"
-                    android:gravity="center_vertical"
-                    android:text="7361 Greystone Avenue \n Pensacola, FL 32503"
-                    android:textSize="@dimen/_12sdp" />
-
-            </RelativeLayout>
-        </android.support.v7.widget.CardView>
-
-       <!-- <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fabPersonalDetails"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/rlPerAddress"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="@dimen/_15sdp"
-            android:src="@drawable/ic_pencil_edit_button"
-            android:tint="@color/colorPrimaryDark" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/fabPersonalDetails"
-            android:padding="15dp">
-
-            <ImageView
-                android:id="@+id/ivEditPerAddress1"
-                android:layout_width="@dimen/_15sdp"
-                android:layout_height="@dimen/_15sdp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_pencil_edit_button" />
-
-            <TextView
-                android:id="@+id/lblPerAddress1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/myfont"
-                android:text="Permanent Address"
-                android:textSize="@dimen/_12sdp" />
-
-            <TextView
-                android:id="@+id/tvPerAddress1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/lblPerAddress1"
-                android:drawableStart="@drawable/ic_location"
-                android:drawableLeft="@drawable/ic_location"
-                android:drawablePadding="@dimen/_3sdp"
-                android:fontFamily="@font/myfont"
-                android:gravity="center_vertical"
-                android:text="7361 Greystone Avenue \n Pensacola, FL 32503"
-                android:textSize="@dimen/_12sdp" />
-
-        </RelativeLayout>-->
-
-    </RelativeLayout>
-</ScrollView>
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:elevation="@dimen/_4sdp" />
+</RelativeLayout>

@@ -49,5 +49,8 @@
     <string name="project_id">project_id</string>
     <string name="api_post_project_details">project-details</string>
     <string name="api_post_resume_headline">resume-headline</string>
+    <string name="api_functional_area">functional-areas</string>
+    <string name="api_industries">industries</string>
+    <string name="api_career_roles">career-roles</string>
 
 </resources>
