@@ -52,5 +52,9 @@
     <string name="api_functional_area">functional-areas</string>
     <string name="api_industries">industries</string>
     <string name="api_career_roles">career-roles</string>
+    <string name="api_education">educations</string>
+    <string name="api_course">course</string>
+    <string name="api_specialization">specialization</string>
+    <string name="api_post_educational_details">educations-details</string>
 
 </resources>

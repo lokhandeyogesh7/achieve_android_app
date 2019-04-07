@@ -1,6 +1,7 @@
 package com.sanswai.achieve.fragment
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
@@ -10,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.gson.Gson
 import com.sanswai.achieve.R
+import com.sanswai.achieve.activity.EditEducationDetailsActivity
 import com.sanswai.achieve.activity.EmpProfileActivity
 import com.sanswai.achieve.adapter.EducationAdapter
 import com.sanswai.achieve.global.Preferences
@@ -37,7 +39,7 @@ class EducationFragment : Fragment() {
         educationList = ArrayList()
 
 
-        services= VolleyService(activity!!)
+        services = VolleyService(activity!!)
         preferences = Preferences.getInstance(activity!!)
 
         prepareProjectList()
@@ -56,8 +58,11 @@ class EducationFragment : Fragment() {
         }
         if (responseObject.education?.response == "false") {
             fabEducation.setImageResource(R.drawable.ic_plus_black_symbol)
-        }else{
+        } else {
             fabEducation.setImageResource(R.drawable.ic_pencil_edit_button)
+        }
+        fabEducation.setOnClickListener {
+            startActivity(Intent(activity!!, EditEducationDetailsActivity::class.java))
         }
     }
 }

@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.sanswai.achieve.R
 import com.sanswai.achieve.activity.EditResumeHeadlineActivity
+import com.sanswai.achieve.global.Preferences
 import com.sanswai.achieve.response.employeedetails.Datum__
 
 
@@ -33,6 +34,10 @@ class ProjectsAdapter(private val mContext: Context, private val projectsList: L
         val projects = projectsList[position]
         holder.title.text = projects.projectName
         holder.description.text = projects.projectDescription
+        val preferences = Preferences.getInstance(mContext)
+        if (preferences!!.getPreferencesString(mContext.getString(R.string.user_type)) != "employee") {
+            holder.ivEditProject.visibility = View.GONE
+        }
 
         holder.ivEditProject.setOnClickListener {
             println("adapter podsition si " + projects.id)

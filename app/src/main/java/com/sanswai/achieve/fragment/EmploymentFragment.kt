@@ -49,7 +49,7 @@ class EmploymentFragment : Fragment() {
         projectsList = responseObject?.employement?.data as ArrayList<Datum_>?
 
         if (projectsList != null) {
-            adapter = EmploymentAdapter(projectsList!!)
+            adapter = EmploymentAdapter(activity!!,projectsList!!)
             val mLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
             rvEmployments.layoutManager = mLayoutManager
             rvEmployments.itemAnimator = DefaultItemAnimator()

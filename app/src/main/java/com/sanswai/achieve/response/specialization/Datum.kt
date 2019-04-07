@@ -1,4 +1,4 @@
-package com.sanswai.achieve.response.education
+package com.sanswai.achieve.response.specialization
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
@@ -8,13 +8,12 @@ class Datum {
     @SerializedName("id")
     @Expose
     var id: Int? = null
-    @SerializedName("education_name")
+    @SerializedName("spec_name")
     @Expose
-    var educationName: String = ""
+    var specName: String = ""
 
     override fun toString(): String {
-        return this.educationName            // What to display in the Spinner list.
+        return this.specName
     }
-
 
 }
