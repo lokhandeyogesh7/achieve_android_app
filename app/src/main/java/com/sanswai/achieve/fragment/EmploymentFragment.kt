@@ -1,6 +1,7 @@
 package com.sanswai.achieve.fragment
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
@@ -10,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.gson.Gson
 import com.sanswai.achieve.R
+import com.sanswai.achieve.activity.AddEditEmploymentActivity
 import com.sanswai.achieve.activity.EmpProfileActivity
 import com.sanswai.achieve.adapter.EmploymentAdapter
 import com.sanswai.achieve.global.Preferences
@@ -55,10 +57,13 @@ class EmploymentFragment : Fragment() {
             rvEmployments.itemAnimator = DefaultItemAnimator()
             rvEmployments.adapter = adapter
         }
-        if (responseObject.employement?.response == "false") {
+        //if (responseObject.employement?.response == "false") {
             fabEmployment.setImageResource(R.drawable.ic_plus_black_symbol)
-        }else{
-            fabEmployment.setImageResource(R.drawable.ic_pencil_edit_button)
+       // }else{
+         //   fabEmployment.setImageResource(R.drawable.ic_pencil_edit_button)
+        //}
+        fabEmployment.setOnClickListener {
+            startActivity(Intent(activity,AddEditEmploymentActivity::class.java))
         }
     }
 }

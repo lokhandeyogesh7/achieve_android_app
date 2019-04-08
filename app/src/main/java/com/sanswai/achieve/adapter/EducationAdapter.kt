@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.sanswai.achieve.R
 import com.sanswai.achieve.activity.EditEducationDetailsActivity
+import com.sanswai.achieve.activity.EditResumeHeadlineActivity
 import com.sanswai.achieve.global.BaseActivity
 import com.sanswai.achieve.global.Preferences
 import com.sanswai.achieve.response.employeedetails.Datum
@@ -47,7 +48,11 @@ class EducationAdapter(val mContext: Context, private val educationList: ArrayLi
             holder.ivEditEducation.visibility = View.GONE
         }
         holder.ivEditEducation.setOnClickListener {
-           // mContext.startActivity(Intent(mContext!!, EditEducationDetailsActivity::class.java).putExtra("education_id"),education as Serializable)
+                val intent = Intent(mContext, EditEducationDetailsActivity::class.java)
+                intent.putExtra(mContext.getString(R.string.project_id), education.id.toString())
+                mContext.startActivity(intent)
+                /*   mContext.startActivity(Intent(mContext, EditResumeHeadlineActivity::class.java).putExtra(mContext.getString(R.string.fromProjects), true).putExtra(mContext
+                           .getString(R.string.project_id), projects.id))*/
         }
 
     }

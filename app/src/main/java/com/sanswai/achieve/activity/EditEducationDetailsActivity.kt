@@ -16,11 +16,10 @@ import com.sanswai.achieve.network.VolleyService
 import com.sanswai.achieve.response.coursedetails.CourseDetails
 import com.sanswai.achieve.response.coursedetails.Datum
 import com.sanswai.achieve.response.education.Education
+import com.sanswai.achieve.response.employeedetails.EmployeeDetails
 import com.sanswai.achieve.response.specialization.Specialization
-import kotlinx.android.synthetic.main.activity_edit_career_path.*
 import kotlinx.android.synthetic.main.activity_edit_education_details.*
 import org.json.JSONObject
-import java.lang.Exception
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -35,6 +34,10 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
     private lateinit var selectedSpecialization: String
     private lateinit var selectedGrade: String
     private lateinit var courseType: String
+    private lateinit var educationID: String
+    private var educationResponse: Education? = null
+    private var courseResponse: CourseDetails? = null
+    private var specializationResponse: Specialization? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +56,7 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
 
         tvSubmitEducation.setOnClickListener {
             val jsonObject = JSONObject()
-            jsonObject.put("id", "")
+            jsonObject.put("id", educationID)
             jsonObject.put("education_id", selectedEducation)
             jsonObject.put("course_id", selectedCourse)
             jsonObject.put("specialization_id", selectedSpecialization)
@@ -62,9 +65,9 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
             jsonObject.put("passing_year", passingYear)
             jsonObject.put("grading_system_id", selectedGrade)
             jsonObject.put("marks_percentage", etMarks.text.toString())
-            jsonObject.put("user_id", preferences!!.getPreferencesInt(getString(R.string.user_id),0).toString())
+            jsonObject.put("user_id", preferences!!.getPreferencesInt(getString(R.string.user_id), 0).toString())
 
-            println("jsopnobject si "+jsonObject)
+            println("jsopnobject si " + jsonObject)
             services!!.callJsonObjectRequest(getString(R.string.api_post_educational_details), jsonObject)
             services!!.mResponseInterface = this
         }
@@ -167,6 +170,33 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
                         }
                     }
                 }
+
+
+        if (intent != null) {
+            educationID = intent.getIntExtra(getString(R.string.project_id), 0).toString()
+            println("employment iuds is " + educationID)
+            val jsonResponse = preferences?.getPreferencesString(getString(com.sanswai.achieve.R.string.pref_employee_details))
+            val responseObject = Gson().fromJson(jsonResponse, EmployeeDetails::class.java)
+            for (i in 0 until responseObject?.education!!.data!!.size) {
+                if (educationID == responseObject?.education!!.data!![i].id.toString()) {
+                    val selectedProject = responseObject?.education!!.data!![i]
+                    spEducation.setSelection(educationResponse!!.data!!.indexOf(selectedProject))
+                    spCourses
+                    spSpecialization
+                    etCollege
+                    spPassingYear
+                    spGradeSystem
+                    etMarks
+                    if (selectedProject.courseType == "1") {
+                        radioFullTime.isChecked = true
+                    } else if (selectedProject.courseType == "0") {
+                        radioPartTime.isChecked = true
+                    } else if (selectedProject.courseType == "2") {
+                        radioDL.isChecked = true
+                    }
+                }
+            }
+        }
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -199,11 +229,13 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
         services!!.mResponseInterface = this
     }
 
+
+
     override fun onSuccess(methodName: String, response: Any) {
         when {
             methodName == getString(R.string.api_education) -> {
-                val functionalResponse = Gson().fromJson(response.toString(), Education::class.java)
-                val dataAdapter = ArrayAdapter<com.sanswai.achieve.response.education.Datum>(this, android.R.layout.simple_spinner_dropdown_item, functionalResponse.data!!.toList())
+                educationResponse = Gson().fromJson(response.toString(), Education::class.java)
+                val dataAdapter = ArrayAdapter<com.sanswai.achieve.response.education.Datum>(this, android.R.layout.simple_spinner_dropdown_item, educationResponse!!.data!!.toList())
                 spEducation.adapter = dataAdapter
                 spEducation.prompt = "Select Location"
             }
@@ -213,8 +245,8 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
                     if ((response as JSONObject).getString("response") == "false") {
                         spCourses.adapter = null
                     } else {
-                        val functionalResponse = Gson().fromJson(response.toString(), CourseDetails::class.java)
-                        val dataAdapter = ArrayAdapter<Datum>(this, android.R.layout.simple_spinner_dropdown_item, functionalResponse.data!!.toList())
+                        courseResponse = Gson().fromJson(response.toString(), CourseDetails::class.java)
+                        val dataAdapter = ArrayAdapter<Datum>(this, android.R.layout.simple_spinner_dropdown_item, courseResponse!!.data!!.toList())
                         spCourses.adapter = dataAdapter
                         spCourses.prompt = "Select Course"
                     }
@@ -228,8 +260,8 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
                     if ((response as JSONObject).getString("response") == "false") {
                         spSpecialization.adapter = null
                     } else {
-                        val functionalResponse = Gson().fromJson(response.toString(), Specialization::class.java)
-                        val dataAdapter = ArrayAdapter<com.sanswai.achieve.response.specialization.Datum>(this, android.R.layout.simple_spinner_dropdown_item, functionalResponse.data!!.toList())
+                        specializationResponse = Gson().fromJson(response.toString(), Specialization::class.java)
+                        val dataAdapter = ArrayAdapter<com.sanswai.achieve.response.specialization.Datum>(this, android.R.layout.simple_spinner_dropdown_item, specializationResponse!!.data!!.toList())
                         spSpecialization.adapter = dataAdapter
                         spSpecialization.prompt = "Select Specialization"
                     }
