@@ -205,7 +205,7 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
                 val functionalResponse = Gson().fromJson(response.toString(), Education::class.java)
                 val dataAdapter = ArrayAdapter<com.sanswai.achieve.response.education.Datum>(this, android.R.layout.simple_spinner_dropdown_item, functionalResponse.data!!.toList())
                 spEducation.adapter = dataAdapter
-                spEducation.prompt = "Select Education"
+                spEducation.prompt = "Select Location"
             }
             methodName.contains(getString(R.string.api_course)) -> {
                 println("reponse for course is " + response)

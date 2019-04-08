@@ -15,8 +15,8 @@
             android:id="@+id/ivEditEducation"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:src="@drawable/ic_pencil_edit_button" />
 
@@ -26,20 +26,18 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
-            android:text="My project 1"
             android:fontFamily="@font/myfont"
-            android:textSize="@dimen/_14sdp"
-             />
+            android:text="My project 1"
+            android:textSize="@dimen/_14sdp" />
 
         <TextView
             android:id="@+id/tvPercentage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingEnd="@dimen/_10sdp"
-            android:layout_toStartOf="@+id/ivEdit"
+            android:layout_below="@+id/tvCourseName"
             android:fontFamily="@font/myfont"
-            android:textSize="@dimen/_14sdp"
-            android:paddingRight="@dimen/_10sdp" />
+            android:paddingEnd="@dimen/_10sdp"
+            android:textSize="@dimen/_14sdp" />
 
         <TextView
             android:id="@+id/seperator1"
@@ -57,20 +55,18 @@
             android:layout_below="@id/seperator1"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
-            android:text="Institute:"
             android:fontFamily="@font/myfont"
-            android:textSize="@dimen/_14sdp"
-             />
+            android:text="Institute:"
+            android:textSize="@dimen/_14sdp" />
 
         <TextView
             android:id="@+id/tvInstitute"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/labelInstitute"
-            android:text="Institute:"
             android:fontFamily="@font/myfont"
-            android:textSize="@dimen/_12sdp"
-             />
+            android:text="Institute:"
+            android:textSize="@dimen/_12sdp" />
 
         <TextView
             android:id="@+id/lblYear"
@@ -79,10 +75,9 @@
             android:layout_below="@id/seperator1"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:text="Passing Year:"
             android:fontFamily="@font/myfont"
-            android:textSize="@dimen/_14sdp"
-             />
+            android:text="Passing Year:"
+            android:textSize="@dimen/_14sdp" />
 
         <TextView
             android:id="@+id/tvYear"
@@ -93,10 +88,9 @@
             android:layout_alignLeft="@+id/lblYear"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:text="2011"
             android:fontFamily="@font/myfont"
-            android:textSize="@dimen/_12sdp"
-             />
+            android:text="2011"
+            android:textSize="@dimen/_12sdp" />
 
 
         <TextView
@@ -107,20 +101,18 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_marginTop="10dp"
-            android:text="Course:"
             android:fontFamily="@font/myfont"
-            android:textSize="@dimen/_14sdp"
-             />
+            android:text="Course:"
+            android:textSize="@dimen/_14sdp" />
 
         <TextView
             android:id="@+id/tvCourse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/lblCourse"
-            android:text="2011"
             android:fontFamily="@font/myfont"
-            android:textSize="@dimen/_12sdp"
-             />
+            android:text="2011"
+            android:textSize="@dimen/_12sdp" />
 
         <TextView
             android:id="@+id/lblSpecialization"
@@ -130,10 +122,9 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_marginTop="10dp"
-            android:text="Specialization:"
             android:fontFamily="@font/myfont"
-            android:textSize="@dimen/_14sdp"
-             />
+            android:text="Specialization:"
+            android:textSize="@dimen/_14sdp" />
 
         <TextView
             android:id="@+id/tvSpecialization"
@@ -144,9 +135,9 @@
             android:layout_alignLeft="@+id/lblSpecialization"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:text="2011"
             android:fontFamily="@font/myfont"
-            android:textSize="@dimen/_12sdp"/>
+            android:text="2011"
+            android:textSize="@dimen/_12sdp" />
 
 
     </RelativeLayout>

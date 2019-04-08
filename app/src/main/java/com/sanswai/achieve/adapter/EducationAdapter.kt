@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import com.sanswai.achieve.R
 import com.sanswai.achieve.activity.EditEducationDetailsActivity
@@ -23,7 +24,7 @@ class EducationAdapter(val mContext: Context, private val educationList: ArrayLi
         var tvYear: TextView = view.findViewById(R.id.tvYear)
         var tvCourse: TextView = view.findViewById(R.id.tvCourse)
         var tvSpecialization: TextView = view.findViewById(R.id.tvSpecialization)
-        var ivEditEducation: TextView = view.findViewById(R.id.ivEditEducation)
+        var ivEditEducation: ImageView = view.findViewById(R.id.ivEditEducation)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

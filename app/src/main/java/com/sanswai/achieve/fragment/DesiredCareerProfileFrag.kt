@@ -56,7 +56,7 @@ class DesiredCareerProfileFrag : Fragment() {
         }
 
         (fabDesireProfile.setOnClickListener {
-            startActivity(Intent(activity!!, EditCareerPathActivity::class.java))
+            startActivity(Intent(activity!!, EditCareerPathActivity::class.java).putExtra(getString(R.string.career_id),educationList!!.get(0).id))
         })
         if (responseObject.desiredProfile?.response == "false") {
             fabDesireProfile.setImageResource(R.drawable.ic_plus_black_symbol)

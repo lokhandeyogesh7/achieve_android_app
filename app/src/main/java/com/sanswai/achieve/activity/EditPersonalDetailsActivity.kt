@@ -75,7 +75,7 @@ class EditPersonalDetailsActivity : BaseActivity(), DatePickerDialog.OnDateSetLi
                 etResAddPin?.text.toString().isEmpty() -> showToast("Enter Residential Address PIN")
                 etPerAddOne?.text.toString().isEmpty() -> showToast("Enter Permanent Address")
                 etPerAddTwo?.text.toString().isEmpty() -> showToast("Enter Permanent Address")
-                etPerAddPin?.text.toString().isEmpty() -> showToast("Enter Permanent Address")
+                etPerAddPin?.text.toString().isEmpty() -> showToast("Enter Permanent Address PIN")
                 else -> {
                     val jsonObject = JSONObject()
                     jsonObject.put("id", entryId)
@@ -110,7 +110,7 @@ class EditPersonalDetailsActivity : BaseActivity(), DatePickerDialog.OnDateSetLi
 
     override fun onSuccess(methodName: String, response: Any) {
         println("success $methodName   >>>>>  $response")
-        if ((response as JSONObject).get("respose")=="true"){
+        if ((response as JSONObject).get("response")=="true"){
             onBackPressed()
         }else{
             showToast("Something went wrong")
@@ -129,16 +129,19 @@ class EditPersonalDetailsActivity : BaseActivity(), DatePickerDialog.OnDateSetLi
 
         if (responseObject!!.personalDetails?.data?.gender.equals("male", true)) {
             radioM.isChecked = true
-            gender = "Male"
+            gender = "male"
         } else {
             radioF.isChecked = true
-            gender = "Female"
+            gender = "female"
         }
 
         when {
-            responseObject?.personalDetails?.data?.marriatalStatus.equals("unmarried", true) -> radioSingle.isChecked = true
+            responseObject?.personalDetails?.data?.marriatalStatus.equals("single", true) -> radioSingle.isChecked = true
             responseObject?.personalDetails?.data?.marriatalStatus.equals("married", true) -> radioMarried.isChecked = true
-            else -> radioDivorcee.isChecked = true
+            responseObject?.personalDetails?.data?.marriatalStatus.equals("widowed", true) -> radioWidowed.isChecked = true
+            responseObject?.personalDetails?.data?.marriatalStatus.equals("other", true) -> radioOther.isChecked = true
+            responseObject?.personalDetails?.data?.marriatalStatus.equals("separated", true) -> radioSeperated.isChecked = true
+           // else -> radioDivorcee.isChecked = true
         }
 
         etResAddOne.setText(responseObject?.personalDetails?.data?.residentialAddressOne)

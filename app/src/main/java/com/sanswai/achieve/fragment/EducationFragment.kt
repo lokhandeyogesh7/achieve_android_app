@@ -56,11 +56,11 @@ class EducationFragment : Fragment() {
             rvEducation.itemAnimator = DefaultItemAnimator()
             rvEducation.adapter = adapter
         }
-        if (responseObject.education?.response == "false") {
+       // if (responseObject.education?.response == "false") {
             fabEducation.setImageResource(R.drawable.ic_plus_black_symbol)
-        } else {
+       /* } else {
             fabEducation.setImageResource(R.drawable.ic_pencil_edit_button)
-        }
+        }*/
         fabEducation.setOnClickListener {
             startActivity(Intent(activity!!, EditEducationDetailsActivity::class.java))
         }

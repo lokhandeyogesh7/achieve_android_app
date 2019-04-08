@@ -68,6 +68,23 @@
                 android:padding="@dimen/_10sdp" />
 
             <TextView
+                android:id="@+id/tvLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:fontFamily="@font/myfont"
+                android:text="Location:"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/_13sdp" />
+
+            <Spinner
+                android:id="@+id/spLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_10sdp" />
+
+            <TextView
                 android:id="@+id/tvJobType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -4,26 +4,31 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/_25sdp">
 
-    <EditText
+    <!--<EditText
         android:id="@+id/etSkillName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/myfont"
         android:hint="skill"
         android:paddingStart="@dimen/_10sdp"
-        android:textSize="@dimen/_14sdp" />
+        android:textSize="@dimen/_14sdp" />-->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvSkills"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <TextView
+        android:id="@+id/tvSubmitSkill"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SUBMIT"
-        android:id="@+id/tvSubmitSkill"
-        android:layout_below="@+id/etSkillName"
+        android:layout_below="@+id/rvSkills"
         android:layout_alignParentEnd="true"
-        android:padding="@dimen/_5sdp"
         android:layout_marginTop="@dimen/_10sdp"
-        android:textColor="@android:color/white"
-        android:background="@drawable/round_button"/>
+        android:background="@drawable/round_button"
+        android:padding="@dimen/_5sdp"
+        android:text="SUBMIT"
+        android:textColor="@android:color/white" />
 
 
 </RelativeLayout>

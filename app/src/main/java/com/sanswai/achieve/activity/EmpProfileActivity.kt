@@ -51,6 +51,11 @@ class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
         } else {
             employee_id = intent.getIntExtra(getString(R.string.employee_id), 0).toString()
         }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         getEmployeeDetails()
     }
 
@@ -87,7 +92,7 @@ class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
         tabLayout!!.getTabAt(6)!!.text = "Education"
     }
 
-    private fun getEmployeeDetails() {
+    open fun getEmployeeDetails() {
         services?.callJsonGETRequest(getString(R.string.api_employee_details) + employee_id, JSONObject())
         services?.mResponseInterface = this
     }

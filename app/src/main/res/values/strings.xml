@@ -56,5 +56,9 @@
     <string name="api_course">course</string>
     <string name="api_specialization">specialization</string>
     <string name="api_post_educational_details">educations-details</string>
+    <string name="api_key_skill">key-skills/</string>
+    <string name="api_location">locations</string>
+    <string name="api_desired_profile">desired-career-profile</string>
+    <string name="career_id">career_id</string>
 
 </resources>

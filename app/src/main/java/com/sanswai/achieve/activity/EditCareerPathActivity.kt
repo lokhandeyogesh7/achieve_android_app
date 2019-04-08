@@ -1,24 +1,25 @@
 package com.sanswai.achieve.activity
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
-import com.android.volley.VolleyError
-import com.sanswai.achieve.R
-import com.sanswai.achieve.global.Preferences
-import com.sanswai.achieve.network.VolleyService
-import org.json.JSONObject
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.Spinner
+import com.android.volley.VolleyError
 import com.google.gson.Gson
-import com.sanswai.achieve.response.employerlogin.EmployerLoginResponse
+import com.sanswai.achieve.R
+import com.sanswai.achieve.global.Preferences
+import com.sanswai.achieve.network.VolleyService
+import com.sanswai.achieve.response.careerroles.CareerRoles
+import com.sanswai.achieve.response.employeedetails.EmployeeDetails
 import com.sanswai.achieve.response.functionalarea.Datum
 import com.sanswai.achieve.response.functionalarea.FunctionalArea
-import kotlinx.android.synthetic.main.activity_edit_career_path.*
-import android.widget.Spinner
-import com.sanswai.achieve.response.careerroles.CareerRoles
 import com.sanswai.achieve.response.industries.Industries
+import com.sanswai.achieve.response.locationlist.Location
+import kotlinx.android.synthetic.main.activity_edit_career_path.*
+import org.json.JSONObject
 
 
 class EditCareerPathActivity : AppCompatActivity(), VolleyService.SetResponse, RadioGroup.OnCheckedChangeListener {
@@ -33,7 +34,7 @@ class EditCareerPathActivity : AppCompatActivity(), VolleyService.SetResponse, R
     private lateinit var shiftType: String
     private lateinit var salaryType: String
     private lateinit var desiredLocation: String
-    private lateinit var careerId: String
+    private var careerId: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,9 +43,18 @@ class EditCareerPathActivity : AppCompatActivity(), VolleyService.SetResponse, R
         services = VolleyService(this)
         preferences = Preferences.getInstance(this)
 
+        val jsonResponse = preferences?.getPreferencesString(getString(R.string.pref_employee_details))
+        val responseObject = Gson().fromJson(jsonResponse, EmployeeDetails::class.java)
+
+        careerId = responseObject!!.desiredProfile!!.data!!.get(0)!!.id.toString()
+        if (careerId == null) {
+            careerId = ""
+        }
+
         getFunctionArea()
         getIndustries()
         getCareerRoles()
+        getLocaionList()
 
         supportActionBar!!.title = "Edit Career Profile"
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -55,6 +65,7 @@ class EditCareerPathActivity : AppCompatActivity(), VolleyService.SetResponse, R
             functionalArea = ((spFunctionalArea as Spinner).selectedItem as Datum).id.toString()
             role = ((spRole as Spinner).selectedItem as com.sanswai.achieve.response.careerroles.Datum).id.toString()
             industries = ((spIndustry as Spinner).selectedItem as com.sanswai.achieve.response.industries.Datum).id.toString()
+            desiredLocation = ((spLocation as Spinner).selectedItem as com.sanswai.achieve.response.locationlist.Datum).id.toString()
 
             val jsonObject = JSONObject()
             jsonObject.put("id", careerId)
@@ -67,12 +78,10 @@ class EditCareerPathActivity : AppCompatActivity(), VolleyService.SetResponse, R
             jsonObject.put("desired_shift", shiftType)
             jsonObject.put("expected_salary_type", salaryType)
             jsonObject.put("expected_salary_amount", etExpSalary.text.toString())
-            jsonObject.put("user_id", preferences!!.getPreferencesString(getString(R.string.user_id)))
+            jsonObject.put("user_id", preferences!!.getPreferencesInt(getString(R.string.user_id), 0).toString())
 
-            services!!.callJsonObjectRequest("desired-career-profile", jsonObject)
+            services!!.callJsonObjectRequest(getString(R.string.api_desired_profile), jsonObject)
             services!!.mResponseInterface = this
-
-
         }
 
         radioJobType.setOnCheckedChangeListener(this)
@@ -80,6 +89,25 @@ class EditCareerPathActivity : AppCompatActivity(), VolleyService.SetResponse, R
         radioShifts.setOnCheckedChangeListener(this)
         radioSalary.setOnCheckedChangeListener(this)
 
+        val value = radioJobType.checkedRadioButtonId
+        println("cehcked button is " + value)
+        val text = radioJobType.findViewById(value) as RadioButton
+        jobType = text.text.toString()
+        val value1 = radioEmpType.checkedRadioButtonId
+        val text1 = radioEmpType.findViewById(value1) as RadioButton
+        empType = text1.text.toString()
+        val value2 = radioShifts.checkedRadioButtonId
+        val text2 = radioShifts.findViewById(value2) as RadioButton
+        shiftType = text2.text.toString()
+        val value3 = radioSalary.checkedRadioButtonId
+        val text3 = radioSalary.findViewById(value3) as RadioButton
+        salaryType = text3.text.toString()
+
+    }
+
+    private fun getLocaionList() {
+        services!!.callJsonGETRequest(getString(R.string.api_location), JSONObject())
+        services!!.mResponseInterface = this
     }
 
     private fun getCareerRoles() {
@@ -113,6 +141,16 @@ class EditCareerPathActivity : AppCompatActivity(), VolleyService.SetResponse, R
                 val functionalResponse = Gson().fromJson(response.toString(), CareerRoles::class.java)
                 val dataAdapter = ArrayAdapter<com.sanswai.achieve.response.careerroles.Datum>(this, android.R.layout.simple_spinner_dropdown_item, functionalResponse.data!!.toList())
                 spRole.adapter = dataAdapter
+            }
+            getString(R.string.api_location) -> {
+                val functionalResponse = Gson().fromJson(response.toString(), Location::class.java)
+                val dataAdapter = ArrayAdapter<com.sanswai.achieve.response.locationlist.Datum>(this, android.R.layout.simple_spinner_dropdown_item, functionalResponse.data!!.toList())
+                spLocation.adapter = dataAdapter
+            }
+            getString(R.string.api_desired_profile) -> {
+                if ((response as JSONObject).getString("response") == "true") {
+                    onBackPressed()
+                }
             }
         }
     }

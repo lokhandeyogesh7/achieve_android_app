@@ -93,16 +93,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/lblMaritalStatus"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
+                    android:orientation="vertical"
                     android:paddingLeft="@dimen/_8sdp">
 
                     <RadioButton
                         android:id="@+id/radioSingle"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
-                        android:layout_weight="0.33"
                         android:checked="true"
                         android:textColor="@android:color/tab_indicator_text"
                         android:drawablePadding="@dimen/_10sdp"
@@ -112,10 +110,8 @@
 
                     <RadioButton
                         android:id="@+id/radioMarried"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:layout_weight="0.33"
                         android:checked="false"
                         android:textColor="@android:color/tab_indicator_text"
                         android:drawablePadding="@dimen/_10sdp"
@@ -125,16 +121,48 @@
 
                     <RadioButton
                         android:id="@+id/radioDivorcee"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:layout_weight="0.33"
                         android:checked="false"
                         android:textColor="@android:color/tab_indicator_text"
                         android:drawablePadding="@dimen/_10sdp"
                         android:fontFamily="@font/myfont"
-                        android:text="Divorcee"
+                        android:text="Divorced"
                         android:textSize="@dimen/_12sdp" />
+
+                    <RadioButton
+                        android:id="@+id/radioWidowed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:textColor="@android:color/tab_indicator_text"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:fontFamily="@font/myfont"
+                        android:text="Widowed"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <RadioButton
+                        android:id="@+id/radioOther"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:textColor="@android:color/tab_indicator_text"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:fontFamily="@font/myfont"
+                        android:text="Other"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <RadioButton
+                        android:id="@+id/radioSeperated"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:textColor="@android:color/tab_indicator_text"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:fontFamily="@font/myfont"
+                        android:text="Other"
+                        android:textSize="@dimen/_12sdp" />
+
                 </RadioGroup>
 
                 <TextView
