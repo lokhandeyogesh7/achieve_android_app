@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/_10sdp"
+    android:padding="@dimen/_10sdp"
+    android:background="#c3c3c3c3"
     tools:context=".activity.AddReviewActivity">
 
     <TextView
@@ -13,46 +14,50 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:fontFamily="@font/myfont"
-        android:padding="@dimen/_10sdp"
+        android:padding="@dimen/_8sdp"
+        android:drawableStart="@drawable/ic_start_date"
+        android:drawablePadding="@dimen/_5sdp"
+        android:gravity="center"
         android:text="Start Date"
         android:textAllCaps="false" />
 
-    <TextView
+ <!--   <TextView
         android:id="@+id/lblStartDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_35sdp"
         android:layout_toEndOf="@id/tvStartDate"
         android:layout_toRightOf="@id/tvStartDate"
-        android:background="@drawable/round_button"
         android:fontFamily="@font/myfont"
-        android:padding="@dimen/_10sdp"
-        android:text="Start Date"
+        android:padding="@dimen/_5sdp"
+        android:gravity="center"
+        android:drawableStart="@drawable/ic_start_date"
         android:textAllCaps="false"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white" />-->
 
 
-    <TextView
+   <!-- <TextView
         android:id="@+id/lblEndDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:background="@drawable/round_button"
         android:fontFamily="@font/myfont"
         android:padding="@dimen/_10sdp"
-        android:text="End Date"
+        android:drawableStart="@drawable/ic_start_date"
         android:textAllCaps="false"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white" />-->
 
     <TextView
         android:id="@+id/tvEndDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toStartOf="@+id/lblEndDate"
-        android:layout_toLeftOf="@+id/lblEndDate"
+        android:layout_alignParentEnd="true"
         android:fontFamily="@font/myfont"
-        android:padding="@dimen/_10sdp"
+        android:drawableStart="@drawable/ic_end_date"
+        android:padding="@dimen/_8sdp"
+        android:drawablePadding="@dimen/_5sdp"
         android:text="End Date"
+        android:gravity="center"
         android:textAllCaps="false" />
 
 
@@ -60,7 +65,7 @@
         android:id="@+id/lblFeedbackdetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lblStartDate"
+        android:layout_below="@+id/tvStartDate"
         android:layout_marginTop="@dimen/_5sdp"
         android:fontFamily="@font/myfont"
         android:text="Feedback Details:"

@@ -1,6 +1,4 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bgGrey">
@@ -16,13 +14,13 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/_10sdp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_margin="@dimen/_10sdp"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp">
 
                 <TextView
                     android:id="@+id/lblGender"
@@ -41,8 +39,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/lblGender"
-                    android:orientation="horizontal"
                     android:gravity="center_vertical"
+                    android:orientation="horizontal"
                     android:paddingLeft="@dimen/_8sdp">
 
                     <RadioButton
@@ -53,11 +51,11 @@
                         android:layout_weight="1"
                         android:checked="true"
 
-                        android:textColor="@android:color/tab_indicator_text"
                         android:drawableStart="@drawable/ic_masculine"
                         android:drawablePadding="@dimen/_10sdp"
                         android:fontFamily="@font/myfont"
                         android:text="Male"
+                        android:textColor="@android:color/tab_indicator_text"
                         android:textSize="@dimen/_12sdp" />
 
                     <RadioButton
@@ -67,11 +65,11 @@
                         android:layout_gravity="end"
                         android:layout_weight="1"
                         android:checked="false"
-                        android:textColor="@android:color/tab_indicator_text"
                         android:drawableStart="@drawable/ic_femenine"
                         android:drawablePadding="@dimen/_10sdp"
                         android:fontFamily="@font/myfont"
                         android:text="Female"
+                        android:textColor="@android:color/tab_indicator_text"
                         android:textSize="@dimen/_12sdp" />
                 </RadioGroup>
 
@@ -84,8 +82,8 @@
                     android:fontFamily="@font/myfont"
                     android:gravity="center_vertical"
                     android:paddingStart="@dimen/_10sdp"
-                    android:textColor="@android:color/black"
                     android:text="Marital Status:"
+                    android:textColor="@android:color/black"
                     android:textSize="@dimen/_12sdp" />
 
                 <RadioGroup
@@ -102,10 +100,10 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
                         android:checked="true"
-                        android:textColor="@android:color/tab_indicator_text"
                         android:drawablePadding="@dimen/_10sdp"
                         android:fontFamily="@font/myfont"
                         android:text="Single"
+                        android:textColor="@android:color/tab_indicator_text"
                         android:textSize="@dimen/_12sdp" />
 
                     <RadioButton
@@ -113,10 +111,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="false"
-                        android:textColor="@android:color/tab_indicator_text"
                         android:drawablePadding="@dimen/_10sdp"
                         android:fontFamily="@font/myfont"
                         android:text="Married"
+                        android:textColor="@android:color/tab_indicator_text"
                         android:textSize="@dimen/_12sdp" />
 
                     <RadioButton
@@ -124,10 +122,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="false"
-                        android:textColor="@android:color/tab_indicator_text"
                         android:drawablePadding="@dimen/_10sdp"
                         android:fontFamily="@font/myfont"
                         android:text="Divorced"
+                        android:textColor="@android:color/tab_indicator_text"
                         android:textSize="@dimen/_12sdp" />
 
                     <RadioButton
@@ -135,10 +133,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="false"
-                        android:textColor="@android:color/tab_indicator_text"
                         android:drawablePadding="@dimen/_10sdp"
                         android:fontFamily="@font/myfont"
                         android:text="Widowed"
+                        android:textColor="@android:color/tab_indicator_text"
                         android:textSize="@dimen/_12sdp" />
 
                     <RadioButton
@@ -146,10 +144,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="false"
-                        android:textColor="@android:color/tab_indicator_text"
                         android:drawablePadding="@dimen/_10sdp"
                         android:fontFamily="@font/myfont"
                         android:text="Other"
+                        android:textColor="@android:color/tab_indicator_text"
                         android:textSize="@dimen/_12sdp" />
 
                     <RadioButton
@@ -157,10 +155,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="false"
-                        android:textColor="@android:color/tab_indicator_text"
                         android:drawablePadding="@dimen/_10sdp"
                         android:fontFamily="@font/myfont"
                         android:text="Other"
+                        android:textColor="@android:color/tab_indicator_text"
                         android:textSize="@dimen/_12sdp" />
 
                 </RadioGroup>
@@ -173,9 +171,9 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:fontFamily="@font/myfont"
                     android:gravity="center_vertical"
-                    android:textColor="@android:color/black"
                     android:paddingStart="@dimen/_10sdp"
                     android:text="Hometown:"
+                    android:textColor="@android:color/black"
                     android:textSize="@dimen/_12sdp" />
 
                 <EditText
@@ -183,12 +181,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/lblHomeTown"
+                    android:fontFamily="@font/myfont"
                     android:hint="Hometown"
+                    android:paddingStart="@dimen/_10sdp"
                     android:singleLine="true"
                     android:textColor="@android:color/tab_indicator_text"
-                    android:textSize="@dimen/_12sdp"
-                    android:fontFamily="@font/myfont"
-                    android:paddingStart="@dimen/_10sdp" />
+                    android:textSize="@dimen/_12sdp" />
 
                 <TextView
                     android:id="@+id/lblDOB"
@@ -199,8 +197,8 @@
                     android:fontFamily="@font/myfont"
                     android:gravity="center_vertical"
                     android:paddingStart="@dimen/_10sdp"
-                    android:textColor="@android:color/black"
                     android:text="Date of Birth:"
+                    android:textColor="@android:color/black"
                     android:textSize="@dimen/_12sdp" />
 
                 <EditText
@@ -209,13 +207,13 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/lblDOB"
                     android:clickable="true"
-                    android:fontFamily="@font/myfont"
-                    android:textSize="@dimen/_12sdp"
                     android:editable="false"
+                    android:fontFamily="@font/myfont"
+                    android:hint="Date of birth"
+                    android:paddingStart="@dimen/_10sdp"
                     android:singleLine="true"
                     android:textColor="@android:color/tab_indicator_text"
-                    android:hint="Date of birth"
-                    android:paddingStart="@dimen/_10sdp" />
+                    android:textSize="@dimen/_12sdp" />
 
                 <TextView
                     android:id="@+id/lblResAddress"
@@ -226,33 +224,33 @@
                     android:fontFamily="@font/myfont"
                     android:gravity="center_vertical"
                     android:paddingStart="@dimen/_10sdp"
-                    android:textColor="@android:color/black"
                     android:text="Residential Address:"
+                    android:textColor="@android:color/black"
                     android:textSize="@dimen/_12sdp" />
 
                 <EditText
                     android:id="@+id/etResAddOne"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/lblResAddress"
                     android:fontFamily="@font/myfont"
-                    android:textSize="@dimen/_12sdp"
+                    android:hint="Residential address line one"
+                    android:paddingStart="@dimen/_10sdp"
                     android:singleLine="true"
                     android:textColor="@android:color/tab_indicator_text"
-                    android:layout_below="@+id/lblResAddress"
-                    android:hint="Residential address line one"
-                    android:paddingStart="@dimen/_10sdp" />
+                    android:textSize="@dimen/_12sdp" />
 
                 <EditText
                     android:id="@+id/etResAddTwo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/myfont"
                     android:layout_below="@+id/etResAddOne"
-                    android:textSize="@dimen/_12sdp"
-                    android:singleLine="true"
+                    android:fontFamily="@font/myfont"
                     android:hint="Residential address line two"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:singleLine="true"
                     android:textColor="@android:color/tab_indicator_text"
-                    android:paddingStart="@dimen/_10sdp" />
+                    android:textSize="@dimen/_12sdp" />
 
                 <EditText
                     android:id="@+id/etResAddPin"
@@ -261,11 +259,11 @@
                     android:layout_below="@+id/etResAddTwo"
                     android:fontFamily="@font/myfont"
                     android:hint="Pin"
-                    android:textSize="@dimen/_12sdp"
                     android:inputType="number"
-                    android:textColor="@android:color/tab_indicator_text"
+                    android:paddingStart="@dimen/_10sdp"
                     android:singleLine="true"
-                    android:paddingStart="@dimen/_10sdp" />
+                    android:textColor="@android:color/tab_indicator_text"
+                    android:textSize="@dimen/_12sdp" />
 
 
                 <TextView
@@ -287,44 +285,307 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/lblPerAddress"
                     android:fontFamily="@font/myfont"
-                    android:textSize="@dimen/_12sdp"
+                    android:hint="Permanent address line one"
+                    android:paddingStart="@dimen/_10sdp"
                     android:singleLine="true"
                     android:textColor="@android:color/tab_indicator_text"
-                    android:hint="Permanent address line one"
-                    android:paddingStart="@dimen/_10sdp" />
+                    android:textSize="@dimen/_12sdp" />
 
                 <EditText
                     android:id="@+id/etPerAddTwo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/myfont"
-                    android:textSize="@dimen/_12sdp"
-                    android:textColor="@android:color/tab_indicator_text"
                     android:layout_below="@+id/etPerAddOne"
+                    android:fontFamily="@font/myfont"
                     android:hint="Permanent address line two"
+                    android:paddingStart="@dimen/_10sdp"
                     android:singleLine="true"
-                    android:paddingStart="@dimen/_10sdp" />
+                    android:textColor="@android:color/tab_indicator_text"
+                    android:textSize="@dimen/_12sdp" />
 
                 <EditText
                     android:id="@+id/etPerAddPin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/etPerAddTwo"
-                    android:hint="Pin"
-                    android:textSize="@dimen/_12sdp"
                     android:fontFamily="@font/myfont"
+                    android:hint="Pin"
                     android:inputType="number"
-                    android:textColor="@android:color/tab_indicator_text"
+                    android:paddingStart="@dimen/_10sdp"
                     android:singleLine="true"
-                    android:paddingStart="@dimen/_10sdp" />
+                    android:textColor="@android:color/tab_indicator_text"
+                    android:textSize="@dimen/_12sdp" />
 
+
+                <LinearLayout
+                    android:id="@+id/llLanguages"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:layout_below="@+id/etPerAddPin"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/myfont"
+                        android:text="Languages"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/myfont"
+                        android:text="Language"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <Spinner
+                        android:id="@+id/spLanguage1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_5sdp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/myfont"
+                        android:text="Proficiency"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <Spinner
+                        android:id="@+id/spProficiency1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_5sdp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/myfont"
+                        android:text="Can be"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_weight="10"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_height="wrap_content">
+
+                        <CheckBox
+                            android:id="@+id/cbRead1"
+                            android:layout_width="0dp"
+                            android:textSize="@dimen/_12sdp"
+                            android:fontFamily="@font/myfont"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3.33"
+                            android:textColor="@android:color/tab_indicator_text"
+                            android:text="Read" />
+
+                        <CheckBox
+                            android:id="@+id/cbWrite1"
+                            android:layout_width="0dp"
+                            android:textSize="@dimen/_12sdp"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/myfont"
+                            android:layout_weight="3.33"
+                            android:textColor="@android:color/tab_indicator_text"
+                            android:text="Write" />
+
+                        <CheckBox
+                            android:id="@+id/cbSpeak1"
+                            android:layout_width="0dp"
+                            android:textSize="@dimen/_12sdp"
+                            android:fontFamily="@font/myfont"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3.33"
+                            android:textColor="@android:color/tab_indicator_text"
+                            android:text="Speak" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:textColor="@android:color/tab_indicator_text"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/myfont"
+                        android:text="Language"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <Spinner
+                        android:id="@+id/spLanguage2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_5sdp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/myfont"
+                        android:text="Proficiency"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <Spinner
+                        android:id="@+id/spProficiency2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_5sdp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/myfont"
+                        android:text="Can be"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_weight="10"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_height="wrap_content">
+
+                        <CheckBox
+                            android:id="@+id/cbRead2"
+                            android:layout_width="0dp"
+                            android:textSize="@dimen/_12sdp"
+                            android:fontFamily="@font/myfont"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3.33"
+                            android:textColor="@android:color/tab_indicator_text"
+                            android:text="Read" />
+
+                        <CheckBox
+                            android:id="@+id/cbWrite2"
+                            android:layout_width="0dp"
+                            android:textSize="@dimen/_12sdp"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/myfont"
+                            android:layout_weight="3.33"
+                            android:textColor="@android:color/tab_indicator_text"
+                            android:text="Write" />
+
+                        <CheckBox
+                            android:id="@+id/cbSpeak2"
+                            android:layout_width="0dp"
+                            android:textSize="@dimen/_12sdp"
+                            android:fontFamily="@font/myfont"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3.33"
+                            android:textColor="@android:color/tab_indicator_text"
+                            android:text="Speak" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:textColor="@android:color/tab_indicator_text"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/myfont"
+                        android:text="Language"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <Spinner
+                        android:id="@+id/spLanguage3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_5sdp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/myfont"
+                        android:text="Proficiency"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <Spinner
+                        android:id="@+id/spProficiency3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_5sdp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/myfont"
+                        android:text="Can be"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_weight="10"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_height="wrap_content">
+
+                        <CheckBox
+                            android:id="@+id/cbRead3"
+                            android:layout_width="0dp"
+                            android:textSize="@dimen/_12sdp"
+                            android:fontFamily="@font/myfont"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3.33"
+                            android:textColor="@android:color/tab_indicator_text"
+                            android:text="Read" />
+
+                        <CheckBox
+                            android:id="@+id/cbWrite3"
+                            android:layout_width="0dp"
+                            android:textSize="@dimen/_12sdp"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/myfont"
+                            android:layout_weight="3.33"
+                            android:textColor="@android:color/tab_indicator_text"
+                            android:text="Write" />
+
+                        <CheckBox
+                            android:id="@+id/cbSpeak3"
+                            android:layout_width="0dp"
+                            android:textSize="@dimen/_12sdp"
+                            android:fontFamily="@font/myfont"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3.33"
+                            android:textColor="@android:color/tab_indicator_text"
+                            android:text="Speak" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tvSubmit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/etPerAddPin"
+                    android:layout_below="@+id/llLanguages"
                     android:layout_centerHorizontal="true"
-                    android:id="@+id/tvSubmit"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_10sdp"
                     android:background="@drawable/round_button"
@@ -335,8 +596,9 @@
                     android:paddingBottom="@dimen/_5sdp"
                     android:text="submit"
                     android:textAllCaps="true"
-                    android:textSize="@dimen/_12sdp"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_12sdp" />
+
 
             </RelativeLayout>
         </ScrollView>

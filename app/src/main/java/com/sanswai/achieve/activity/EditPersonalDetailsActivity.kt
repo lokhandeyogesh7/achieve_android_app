@@ -1,12 +1,12 @@
 package com.sanswai.achieve.activity
 
+import android.R
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.DatePicker
-import android.widget.EditText
-import android.widget.RadioGroup
+import android.view.View
+import android.widget.*
 import com.android.volley.VolleyError
 import com.google.gson.Gson
 import com.sanswai.achieve.global.BaseActivity
@@ -16,9 +16,8 @@ import com.sanswai.achieve.response.employeedetails.EmployeeDetails
 import kotlinx.android.synthetic.main.activity_edit_personal_details.*
 import org.json.JSONObject
 import java.util.*
-import android.widget.RadioButton
-
-
+import kotlinx.android.synthetic.main.activity_edit_education_details.*
+import kotlin.collections.ArrayList
 
 
 class EditPersonalDetailsActivity : BaseActivity(), DatePickerDialog.OnDateSetListener, VolleyService.SetResponse {
@@ -31,6 +30,8 @@ class EditPersonalDetailsActivity : BaseActivity(), DatePickerDialog.OnDateSetLi
     private var maritalStatus: String? = null
     private var etDob1: EditText? = null
     private var employeeId: String? = null
+    private var arrLanguages: ArrayList<String>? = null
+    private var arrProficiency: ArrayList<String>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +51,30 @@ class EditPersonalDetailsActivity : BaseActivity(), DatePickerDialog.OnDateSetLi
         supportActionBar!!.title = "Edit Details"
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
+
+        arrLanguages = ArrayList()
+        arrLanguages?.add("English")
+        arrLanguages?.add("Hindi")
+        arrLanguages?.add("Marathi")
+        arrLanguages?.add("Other")
+        val adapter1 = ArrayAdapter(this, R.layout.simple_spinner_dropdown_item, arrLanguages)
+        spLanguage1.adapter = adapter1
+        val adapter2 = ArrayAdapter(this, R.layout.simple_spinner_dropdown_item, arrLanguages)
+        spLanguage2.adapter = adapter2
+        val adapter3 = ArrayAdapter(this, R.layout.simple_spinner_dropdown_item, arrLanguages)
+        spLanguage3.adapter = adapter3
+
+
+        arrProficiency = ArrayList()
+        arrProficiency?.add("Beginner")
+        arrProficiency?.add("Proficient")
+        arrProficiency?.add("Expert")
+        val adapter4 = ArrayAdapter(this, R.layout.simple_spinner_dropdown_item, arrProficiency)
+        spProficiency1.adapter = adapter4
+        val adapter5 = ArrayAdapter(this, R.layout.simple_spinner_dropdown_item, arrProficiency)
+        spProficiency2.adapter = adapter5
+        val adapter6 = ArrayAdapter(this, R.layout.simple_spinner_dropdown_item, arrProficiency)
+        spProficiency3.adapter = adapter6
 
 
         radioGrp.setOnCheckedChangeListener { group, checkedId ->

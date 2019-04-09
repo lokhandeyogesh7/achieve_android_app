@@ -180,13 +180,28 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
             for (i in 0 until responseObject?.education!!.data!!.size) {
                 if (educationID == responseObject?.education!!.data!![i].id.toString()) {
                     val selectedProject = responseObject?.education!!.data!![i]
-                    spEducation.setSelection(educationResponse!!.data!!.indexOf(selectedProject))
-                    spCourses
-                    spSpecialization
-                    etCollege
-                    spPassingYear
-                    spGradeSystem
-                    etMarks
+                    for (i in 0 until educationResponse!!.data!!.size) {
+                        if (selectedProject.id == educationResponse!!.data!![i].id) {
+                            spEducation.setSelection(educationResponse!!.data!!.indexOf(educationResponse!!.data!![i]))
+                            break
+                        }
+                    }
+                    for (j in 0 until courseResponse!!.data!!.size) {
+                        if (selectedProject.id == courseResponse!!.data!![j].id) {
+                            spCourses.setSelection(courseResponse!!.data!!.indexOf(courseResponse!!.data!![j]))
+                            break
+                        }
+                    }
+                    for (k in 0 until specializationResponse!!.data!!.size) {
+                        if (selectedProject.id == specializationResponse!!.data!![k].id) {
+                            spSpecialization.setSelection(specializationResponse!!.data!!.indexOf(specializationResponse!!.data!![k]))
+                            break
+                        }
+                    }
+                    spPassingYear.setSelection(years.indexOf(selectedProject.passingYear))
+                    spGradeSystem.setSelection((selectedProject.gradeSystem!!.toInt().minus(1)))
+                    etCollege.setText(selectedProject.instituteName)
+                    etMarks.setText(selectedProject.gradeSystem)
                     if (selectedProject.courseType == "1") {
                         radioFullTime.isChecked = true
                     } else if (selectedProject.courseType == "0") {
@@ -228,7 +243,6 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
         services!!.callJsonGETRequest(getString(R.string.api_education), JSONObject())
         services!!.mResponseInterface = this
     }
-
 
 
     override fun onSuccess(methodName: String, response: Any) {

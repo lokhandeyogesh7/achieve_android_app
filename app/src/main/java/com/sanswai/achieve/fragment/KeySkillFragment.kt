@@ -25,6 +25,7 @@ import com.sanswai.achieve.response.employeedetails.EmployeeDetails
 import kotlinx.android.synthetic.main.activity_emp_profile.*
 import kotlinx.android.synthetic.main.dialog_editbox.*
 import kotlinx.android.synthetic.main.fragment_key_kills.*
+import kotlinx.android.synthetic.main.fragment_personal_details.*
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -46,12 +47,19 @@ class KeySkillFragment : Fragment(), VolleyService.SetResponse {
         return inflater.inflate(com.sanswai.achieve.R.layout.fragment_key_kills, container, false)
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         keySkills = ArrayList()
         userSkills = ArrayList()
         services = VolleyService(activity!!)
         preferences = Preferences.getInstance(activity!!)
+
+        if (preferences?.getPreferencesString(getString(R.string.user_type)) == "employee") {
+            fabKeySkill.visibility = View.VISIBLE
+        } else {
+            fabKeySkill.visibility = View.GONE
+        }
 
         prepareProjectList()
     }

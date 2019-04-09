@@ -1,5 +1,6 @@
 package com.sanswai.achieve.fragment
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -16,6 +17,7 @@ import com.sanswai.achieve.global.Preferences
 import com.sanswai.achieve.network.VolleyService
 import com.sanswai.achieve.response.employeedetails.EmployeeDetails
 import kotlinx.android.synthetic.main.activity_emp_profile.*
+import kotlinx.android.synthetic.main.fragment_desired_career_path.*
 import kotlinx.android.synthetic.main.fragment_resume_headline.*
 
 
@@ -30,6 +32,7 @@ class ResumeHeadlineFragment : Fragment() {
         return inflater.inflate(com.sanswai.achieve.R.layout.fragment_resume_headline, container, false)
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         services = VolleyService(activity!!)
@@ -61,6 +64,12 @@ class ResumeHeadlineFragment : Fragment() {
             if ((activity as EmpProfileActivity).viewPager.currentItem == 3) {
                 startActivity(Intent(activity,EditResumeHeadlineActivity::class.java))
             }
+        }
+
+        if (preferences?.getPreferencesString(getString(R.string.user_type)) == "employee") {
+            fabResume.visibility = View.VISIBLE
+        } else {
+            fabResume.visibility = View.GONE
         }
     }
 }

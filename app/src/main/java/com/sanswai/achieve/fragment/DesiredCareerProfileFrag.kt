@@ -1,5 +1,6 @@
 package com.sanswai.achieve.fragment
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -21,6 +22,7 @@ import com.sanswai.achieve.response.employeedetails.Datum_____
 import com.sanswai.achieve.response.employeedetails.EmployeeDetails
 import kotlinx.android.synthetic.main.activity_emp_profile.*
 import kotlinx.android.synthetic.main.fragment_desired_career_path.*
+import kotlinx.android.synthetic.main.fragment_key_kills.*
 
 class DesiredCareerProfileFrag : Fragment() {
 
@@ -42,6 +44,7 @@ class DesiredCareerProfileFrag : Fragment() {
         prepareProjectList()
     }
 
+    @SuppressLint("RestrictedApi")
     private fun prepareProjectList() {
         val jsonResponse = preferences?.getPreferencesString(getString(R.string.pref_employee_details))
         val responseObject = Gson().fromJson(jsonResponse, EmployeeDetails::class.java)
@@ -62,6 +65,11 @@ class DesiredCareerProfileFrag : Fragment() {
             fabDesireProfile.setImageResource(R.drawable.ic_plus_black_symbol)
         } else {
             fabDesireProfile.setImageResource(R.drawable.ic_pencil_edit_button)
+        }
+        if (preferences?.getPreferencesString(getString(R.string.user_type)) == "employee") {
+            fabDesireProfile.visibility = View.VISIBLE
+        } else {
+            fabDesireProfile.visibility = View.GONE
         }
     }
 }

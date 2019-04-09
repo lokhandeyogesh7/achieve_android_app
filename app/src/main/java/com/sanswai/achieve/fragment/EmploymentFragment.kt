@@ -1,6 +1,7 @@
 package com.sanswai.achieve.fragment
 
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -20,6 +21,7 @@ import com.sanswai.achieve.response.employeedetails.Datum_
 import com.sanswai.achieve.response.employeedetails.EmployeeDetails
 import kotlinx.android.synthetic.main.activity_emp_profile.*
 import kotlinx.android.synthetic.main.fragment_employment.*
+import kotlinx.android.synthetic.main.fragment_resume_headline.*
 
 class EmploymentFragment : Fragment() {
 
@@ -45,6 +47,7 @@ class EmploymentFragment : Fragment() {
         prepareProjectList()
     }
 
+    @SuppressLint("RestrictedApi")
     private fun prepareProjectList() {
         val jsonResponse = preferences?.getPreferencesString(getString(R.string.pref_employee_details))
         val responseObject = Gson().fromJson(jsonResponse, EmployeeDetails::class.java)
@@ -64,6 +67,12 @@ class EmploymentFragment : Fragment() {
         //}
         fabEmployment.setOnClickListener {
             startActivity(Intent(activity,AddEditEmploymentActivity::class.java))
+        }
+
+        if (preferences?.getPreferencesString(getString(R.string.user_type)) == "employee") {
+            fabEmployment.visibility = View.VISIBLE
+        } else {
+            fabEmployment.visibility = View.GONE
         }
     }
 }

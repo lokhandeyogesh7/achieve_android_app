@@ -1,6 +1,7 @@
 package com.sanswai.achieve.fragment
 
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -20,6 +21,7 @@ import com.sanswai.achieve.response.employeedetails.Datum
 import com.sanswai.achieve.response.employeedetails.EmployeeDetails
 import kotlinx.android.synthetic.main.activity_emp_profile.*
 import kotlinx.android.synthetic.main.fragment_education.*
+import kotlinx.android.synthetic.main.fragment_employment.*
 
 class EducationFragment : Fragment() {
 
@@ -45,6 +47,7 @@ class EducationFragment : Fragment() {
         prepareProjectList()
     }
 
+    @SuppressLint("RestrictedApi")
     private fun prepareProjectList() {
         val jsonResponse = preferences?.getPreferencesString(getString(R.string.pref_employee_details))
         val responseObject = Gson().fromJson(jsonResponse, EmployeeDetails::class.java)
@@ -63,6 +66,12 @@ class EducationFragment : Fragment() {
         }*/
         fabEducation.setOnClickListener {
             startActivity(Intent(activity!!, EditEducationDetailsActivity::class.java))
+        }
+
+        if (preferences?.getPreferencesString(getString(R.string.user_type)) == "employee") {
+            fabEducation.visibility = View.VISIBLE
+        } else {
+            fabEducation.visibility = View.GONE
         }
     }
 }

@@ -40,8 +40,8 @@ class AddReviewActivity : BaseActivity(), VolleyService.SetResponse, View.OnClic
         services = VolleyService(this)
         preferences = Preferences.getInstance(this)
 
-        lblStartDate.setOnClickListener(this)
-        lblEndDate.setOnClickListener(this)
+        tvStartDate.setOnClickListener(this)
+        tvEndDate.setOnClickListener(this)
 
         supportActionBar!!.title = "Add Review"
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -154,7 +154,7 @@ class AddReviewActivity : BaseActivity(), VolleyService.SetResponse, View.OnClic
     @SuppressLint("SetTextI18n")
     override fun onClick(v: View?) {
         when (v!!.id) {
-            R.id.lblStartDate -> {
+            R.id.tvStartDate -> {
                 val c = Calendar.getInstance()
                 mYear = c.get(Calendar.YEAR)
                 mMonth = c.get(Calendar.MONTH)
@@ -165,7 +165,7 @@ class AddReviewActivity : BaseActivity(), VolleyService.SetResponse, View.OnClic
                 datePickerDialog.show()
             }
 
-            R.id.lblEndDate -> {
+            R.id.tvEndDate -> {
                 val c = Calendar.getInstance()
                 mYear = c.get(Calendar.YEAR)
                 mMonth = c.get(Calendar.MONTH)
