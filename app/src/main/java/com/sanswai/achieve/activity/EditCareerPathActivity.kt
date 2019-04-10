@@ -20,6 +20,7 @@ import com.sanswai.achieve.response.industries.Industries
 import com.sanswai.achieve.response.locationlist.Location
 import kotlinx.android.synthetic.main.activity_edit_career_path.*
 import org.json.JSONObject
+import java.lang.Exception
 
 
 class EditCareerPathActivity : AppCompatActivity(), VolleyService.SetResponse, RadioGroup.OnCheckedChangeListener {
@@ -46,9 +47,13 @@ class EditCareerPathActivity : AppCompatActivity(), VolleyService.SetResponse, R
         val jsonResponse = preferences?.getPreferencesString(getString(R.string.pref_employee_details))
         val responseObject = Gson().fromJson(jsonResponse, EmployeeDetails::class.java)
 
-        careerId = responseObject!!.desiredProfile!!.data!!.get(0)!!.id.toString()
-        if (careerId == null) {
-            careerId = ""
+        try {
+            careerId = responseObject!!.desiredProfile!!.data!!.get(0)!!.id.toString()
+            if (careerId == null) {
+                careerId = ""
+            }
+        }catch (e:Exception){
+            e.printStackTrace()
         }
 
         getFunctionArea()
