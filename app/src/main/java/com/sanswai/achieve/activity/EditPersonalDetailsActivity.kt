@@ -45,7 +45,7 @@ class EditPersonalDetailsActivity : BaseActivity(), DatePickerDialog.OnDateSetLi
         if (jsonResponse != null) {
             setPreviousData(jsonResponse)
         }
-       // employeeId = intent.getIntExtra(getString(com.sanswai.achieve.R.string.employee_id), 0).toString()
+        // employeeId = intent.getIntExtra(getString(com.sanswai.achieve.R.string.employee_id), 0).toString()
         println("employee id is $employeeId")
 
         supportActionBar!!.title = "Edit Details"
@@ -81,7 +81,7 @@ class EditPersonalDetailsActivity : BaseActivity(), DatePickerDialog.OnDateSetLi
             val checkedRadioButton = group?.findViewById(checkedId) as RadioButton
             if (checkedRadioButton.isChecked)
                 gender = checkedRadioButton.text.toString()
-                //showToast("you just checked "+checkedRadioButton.text)
+            //showToast("you just checked "+checkedRadioButton.text)
         }
 
         radioGrpMarital.setOnCheckedChangeListener { group, checkedId ->
@@ -135,9 +135,9 @@ class EditPersonalDetailsActivity : BaseActivity(), DatePickerDialog.OnDateSetLi
 
     override fun onSuccess(methodName: String, response: Any) {
         println("success $methodName   >>>>>  $response")
-        if ((response as JSONObject).get("response")=="true"){
+        if ((response as JSONObject).get("response") == "true") {
             onBackPressed()
-        }else{
+        } else {
             showToast("Something went wrong")
         }
     }
@@ -150,35 +150,37 @@ class EditPersonalDetailsActivity : BaseActivity(), DatePickerDialog.OnDateSetLi
 
         employeeId = responseObject?.users!!.data!!.id.toString()
 
-        entryId = responseObject!!.personalDetails!!.data!!.id.toString()
+        if (responseObject!!.personalDetails!!.data != null) {
+            entryId = responseObject!!.personalDetails!!.data!!.id.toString()
 
-        if (responseObject!!.personalDetails?.data?.gender.equals("male", true)) {
-            radioM.isChecked = true
-            gender = "male"
-        } else {
-            radioF.isChecked = true
-            gender = "female"
+            if (responseObject!!.personalDetails?.data?.gender.equals("male", true)) {
+                radioM.isChecked = true
+                gender = "male"
+            } else {
+                radioF.isChecked = true
+                gender = "female"
+            }
+
+            when {
+                responseObject?.personalDetails?.data?.marriatalStatus.equals("single", true) -> radioSingle.isChecked = true
+                responseObject?.personalDetails?.data?.marriatalStatus.equals("married", true) -> radioMarried.isChecked = true
+                responseObject?.personalDetails?.data?.marriatalStatus.equals("widowed", true) -> radioWidowed.isChecked = true
+                responseObject?.personalDetails?.data?.marriatalStatus.equals("other", true) -> radioOther.isChecked = true
+                responseObject?.personalDetails?.data?.marriatalStatus.equals("separated", true) -> radioSeperated.isChecked = true
+                // else -> radioDivorcee.isChecked = true
+            }
+
+            etResAddOne.setText(responseObject?.personalDetails?.data?.residentialAddressOne)
+            etResAddTwo.setText(responseObject?.personalDetails?.data?.residentialAddressTwo)
+            etResAddPin.setText(responseObject?.personalDetails?.data?.residentialPinCode)
+
+            etPerAddOne.setText(responseObject?.personalDetails?.data?.permanentAddressOne)
+            etPerAddTwo.setText(responseObject?.personalDetails?.data?.permanentAddressTwo)
+            etPerAddPin.setText(responseObject?.personalDetails?.data?.pinCode)
+
+            etDob.setText(responseObject?.personalDetails?.data?.dateOfBirth)
+            etHometown.setText(responseObject?.personalDetails?.data?.hometown)
         }
-
-        when {
-            responseObject?.personalDetails?.data?.marriatalStatus.equals("single", true) -> radioSingle.isChecked = true
-            responseObject?.personalDetails?.data?.marriatalStatus.equals("married", true) -> radioMarried.isChecked = true
-            responseObject?.personalDetails?.data?.marriatalStatus.equals("widowed", true) -> radioWidowed.isChecked = true
-            responseObject?.personalDetails?.data?.marriatalStatus.equals("other", true) -> radioOther.isChecked = true
-            responseObject?.personalDetails?.data?.marriatalStatus.equals("separated", true) -> radioSeperated.isChecked = true
-           // else -> radioDivorcee.isChecked = true
-        }
-
-        etResAddOne.setText(responseObject?.personalDetails?.data?.residentialAddressOne)
-        etResAddTwo.setText(responseObject?.personalDetails?.data?.residentialAddressTwo)
-        etResAddPin.setText(responseObject?.personalDetails?.data?.residentialPinCode)
-
-        etPerAddOne.setText(responseObject?.personalDetails?.data?.permanentAddressOne)
-        etPerAddTwo.setText(responseObject?.personalDetails?.data?.permanentAddressTwo)
-        etPerAddPin.setText(responseObject?.personalDetails?.data?.pinCode)
-
-        etDob.setText(responseObject?.personalDetails?.data?.dateOfBirth)
-        etHometown.setText(responseObject?.personalDetails?.data?.hometown)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

@@ -25,11 +25,12 @@
                 android:fitsSystemWindows="true" />
 
             <android.support.v7.widget.CardView
-                android:id="@+id/rlPersnInfo"
+                android:id="@+id/rlPersnalInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rlProfile"
                 android:layout_margin="10dp"
+                android:visibility="gone"
                 android:elevation="4dp">
 
                 <RelativeLayout
@@ -71,6 +72,7 @@
 
             <android.support.v7.widget.CardView
                 android:id="@+id/rlCurrAddress"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rlPersnInfo"
@@ -122,6 +124,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rlCurrAddress"
                 android:layout_margin="10dp"
+                android:visibility="gone"
                 android:elevation="4dp">
 
                 <RelativeLayout
@@ -163,53 +166,6 @@
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
 
-            <!-- <android.support.design.widget.FloatingActionButton
-                 android:id="@+id/fabPersonalDetails"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_below="@+id/rlPerAddress"
-                 android:layout_alignParentEnd="true"
-                 android:layout_margin="@dimen/_15sdp"
-                 android:src="@drawable/ic_pencil_edit_button"
-                 android:tint="@color/colorPrimaryDark" />
-
-             <RelativeLayout
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:layout_below="@+id/fabPersonalDetails"
-                 android:padding="15dp">
-
-                 <ImageView
-                     android:id="@+id/ivEditPerAddress1"
-                     android:layout_width="@dimen/_15sdp"
-                     android:layout_height="@dimen/_15sdp"
-                     android:layout_alignParentTop="true"
-                     android:layout_alignParentEnd="true"
-                     android:layout_centerVertical="true"
-                     android:src="@drawable/ic_pencil_edit_button" />
-
-                 <TextView
-                     android:id="@+id/lblPerAddress1"
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:fontFamily="@font/myfont"
-                     android:text="Permanent Address"
-                     android:textSize="@dimen/_12sdp" />
-
-                 <TextView
-                     android:id="@+id/tvPerAddress1"
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:layout_below="@+id/lblPerAddress1"
-                     android:drawableStart="@drawable/ic_location"
-                     android:drawableLeft="@drawable/ic_location"
-                     android:drawablePadding="@dimen/_3sdp"
-                     android:fontFamily="@font/myfont"
-                     android:gravity="center_vertical"
-                     android:text="7361 Greystone Avenue \n Pensacola, FL 32503"
-                     android:textSize="@dimen/_12sdp" />
-
-             </RelativeLayout>-->
 
         </RelativeLayout>
     </ScrollView>

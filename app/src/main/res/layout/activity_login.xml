@@ -1,77 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/_35sdp"
-    tools:context=".activity.LoginActivity">
+    android:background="@drawable/achieve_bg">
 
-
-    <EditText
-        android:id="@+id/etUsername"
-        style="@style/App_EditTextStyle"
+    <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_centerInParent="true"
-        android:hint="Username"
-        android:fontFamily="@font/myfont"
-        android:inputType="text" />
+        android:layout_height="match_parent"
+        android:background="#73000000"
+        android:padding="@dimen/_35sdp"
+        tools:context=".activity.LoginActivity">
 
-    <EditText
-        android:id="@+id/etPassword"
-        style="@style/App_EditTextStyle"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_below="@+id/etUsername"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:fontFamily="@font/myfont"
-        android:hint="Password"
-        android:inputType="textPassword" />
 
-    <TextView
-        style="@style/App_ButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_below="@+id/etPassword"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:text="Login"
-        android:fontFamily="@font/myfont"
-        android:id="@+id/btnLogin"
-        android:textSize="@dimen/_16sdp" />
+        <EditText
+            android:id="@+id/etUsername"
+            style="@style/App_EditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/myfont"
+            android:hint="Username"
+            android:inputType="text" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Change Password."
-        android:fontFamily="@font/myfont"
-        android:layout_below="@+id/btnLogin"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:visibility="gone"
-        android:layout_alignParentLeft="true" />
+        <EditText
+            android:id="@+id/etPassword"
+            style="@style/App_EditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_below="@+id/etUsername"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:fontFamily="@font/myfont"
+            android:hint="Password"
+            android:inputType="textPassword" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Forgot Password."
-        android:id="@+id/tvForgotpass"
-        android:layout_below="@+id/btnLogin"
-        android:fontFamily="@font/myfont"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_alignParentRight="true" />
+        <TextView
+            android:id="@+id/btnLogin"
+            style="@style/App_ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_below="@+id/etPassword"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:fontFamily="@font/myfont"
+            android:text="Login"
+            android:textSize="@dimen/_16sdp" />
 
-   <!-- <TextView
-        style="@style/App_ButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_below="@+id/tvForgotpass"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:text="Login Employer"
-        android:fontFamily="@font/myfont"
-        android:id="@+id/btnLoginEmployer"
-        android:textSize="@dimen/_16sdp" />-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnLogin"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/myfont"
+            android:text="Change Password."
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvForgotpass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnLogin"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/myfont"
+            android:text="Forgot Password."
+            android:visibility="gone" />
+
+        <!-- <TextView
+             style="@style/App_ButtonStyle"
+             android:layout_width="match_parent"
+             android:layout_height="@dimen/_40sdp"
+             android:layout_below="@+id/tvForgotpass"
+             android:layout_marginTop="@dimen/_15sdp"
+             android:text="Login Employer"
+             android:fontFamily="@font/myfont"
+             android:id="@+id/btnLoginEmployer"
+             android:textSize="@dimen/_16sdp" />-->
+
+    </RelativeLayout>
 
 </RelativeLayout>
