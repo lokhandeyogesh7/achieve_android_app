@@ -143,7 +143,7 @@ class AddReviewActivity : BaseActivity(), VolleyService.SetResponse, View.OnClic
             val revQuestionsResponse = Gson().fromJson(response.toString(), PerformanceQuestions::class.java)
             arrRevQuestions = revQuestionsResponse.questionsData as ArrayList<QuestionsDatum>
             for (i in 0 until arrRevQuestions.size) {
-                arrRevQuestions[i].rating = 0f
+                arrRevQuestions[i].rating = 1f
             }
             rvRevQuestionEmp.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
             rvRevQuestionEmp.adapter = ReviewQuestionEmpAdapter(this, arrRevQuestions, revQuestionsResponse.ratingsData)

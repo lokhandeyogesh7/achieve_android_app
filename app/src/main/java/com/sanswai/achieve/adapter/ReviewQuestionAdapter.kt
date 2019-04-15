@@ -1,5 +1,6 @@
 package com.sanswai.achieve.adapter
 
+import android.annotation.SuppressLint
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -25,13 +26,15 @@ class ReviewQuestionAdapter(private val revQuestionList: ArrayList<UserDatum>?) 
         return MyViewHolder(itemView)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val education = revQuestionList!![position]
         holder.rbQuestion.visibility = View.VISIBLE
         holder.tvQuestion.text = education.question
         holder.tvPerStatus.text = education.ratingReview
         holder.radioRating.visibility = View.GONE
-        holder.rbQuestion.text = "Rating: " + Math.ceil(education.ratingPoint!!.toDouble())
+        println("rating bar is "+education.ratingPoint!!)
+        holder.rbQuestion.text = "Rating: " + Math.abs(education.ratingPoint!!.toDouble())
     }
 
     override fun getItemCount(): Int {

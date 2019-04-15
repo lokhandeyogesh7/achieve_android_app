@@ -32,7 +32,7 @@ class EmpReviewListAdapter(private val mContext: Context, private val empReviewL
         holder.tvDateRevList.text = "From Date: ${education.startDate}  \nTo Date: ${education.endDate}"
         holder.tvFeedbackEmployee.text = education.feedbackDetails
         holder.tvPerStatusEmployee.text = education.performanceStatus
-        holder.rbEmployeeReview.text = "Rating: " + Math.ceil(education.avgRating!!.toDouble())
+        holder.rbEmployeeReview.text = "Rating: " + Math.abs(education.avgRating!!)
 
         holder.itemView.setOnClickListener {
             val intent = Intent(mContext, ReviewDetailsActivity::class.java)

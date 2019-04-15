@@ -49,6 +49,23 @@ class EditCareerPathActivity : AppCompatActivity(), VolleyService.SetResponse, R
 
         try {
             careerId = responseObject!!.desiredProfile!!.data!!.get(0)!!.id.toString()
+            if (jsonResponse!=null) {
+                spFunctionalArea.setSelection(functionalArea!!.indexOf(responseObject!!.desiredProfile!!.data!!.get(0).functionalAreaName!!))
+                spIndustry.setSelection(industries!!.indexOf(responseObject!!.desiredProfile!!.data!!.get(0).industryName!!))
+                spRole.setSelection(role!!.indexOf(responseObject!!.desiredProfile!!.data!!.get(0).careerRoleName!!))
+                spLocation.setSelection(loca!!.indexOf(responseObject!!.desiredProfile!!.data!!.get(0).functionalAreaName!!))
+                radioPermanent
+                radioContract
+                radioFT
+                radioPT
+                radioDay
+                radioNight
+                radioFlexi
+                etExpSalary
+                radioINR
+                radioDollar
+
+            }
             if (careerId == null) {
                 careerId = ""
             }

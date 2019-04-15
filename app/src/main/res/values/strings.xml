@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Achieve</string>
+    <string name="app_name">Achieve Instech</string>
     <string name="employee_id">employee_id</string>
     <string name="something_went_wrong">Something went wrong</string>
     <string name="unable_to_fetch_data">Unable to fetch data from server</string>

@@ -32,7 +32,7 @@ class EmployerListAdapter(private val fountainList: List<Datum>?, private val li
         val employer = fountainList!![position]
         holder.tvEmplName.text = "${employer.feedbackDetails}"
         holder.tvDate.text = "From Date: ${employer.startDate}  \nTo Date: ${employer.endDate}"
-        holder.rbRating.text = "Rating: "+Math.ceil(employer.avgRating!!.toDouble())
+        holder.rbRating.text = "Rating: "+Math.abs(employer.avgRating!!)
         holder.tvPerformance.text = employer.performanceStatus!!
 
         holder.itemView.setOnClickListener {
