@@ -34,10 +34,15 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
     private lateinit var selectedSpecialization: String
     private lateinit var selectedGrade: String
     private lateinit var courseType: String
+    private lateinit var jsonResponse: String
     private lateinit var educationID: String
     private var educationResponse: Education? = null
+    private var responseObject: EmployeeDetails? = null
     private var courseResponse: CourseDetails? = null
     private var specializationResponse: Specialization? = null
+    var arrGrades = ArrayList<String>()
+    var years = ArrayList<String>()
+    var isDataSet = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,13 +51,13 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
         services = VolleyService(this)
         preferences = Preferences.getInstance(this)
 
+        jsonResponse = preferences?.getPreferencesString(getString(R.string.pref_employee_details))!!
+        if (jsonResponse != null) {
+            responseObject = Gson().fromJson(jsonResponse, EmployeeDetails::class.java)
+        }
         supportActionBar!!.title = "Add/Edit Educational Details"
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
-
-        getEducationType()
-
-
 
         tvSubmitEducation.setOnClickListener {
             val jsonObject = JSONObject()
@@ -103,7 +108,7 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
             }
         }
 
-        val years = ArrayList<String>()
+        years = ArrayList<String>()
         val thisYear = Calendar.getInstance().get(Calendar.YEAR)
         for (i in 1985..thisYear) {
             years.add(Integer.toString(i))
@@ -123,7 +128,7 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
                     }
                 }
 
-        val arrGrades = ArrayList<String>()
+        arrGrades = ArrayList<String>()
         arrGrades.add("10 Grade")
         arrGrades.add("4 Grade")
         arrGrades.add("% marks out of 100")
@@ -170,38 +175,41 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
                         }
                     }
                 }
+    }
 
+    override fun onResume() {
+        super.onResume()
+        getEducationType()
+    }
 
+    private fun prePopulatedData() {
         if (intent != null) {
-            educationID = intent.getIntExtra(getString(R.string.project_id), 0).toString()
+            educationID = intent.getStringExtra(getString(R.string.project_id)).toString()
             println("employment iuds is " + educationID)
-            val jsonResponse = preferences?.getPreferencesString(getString(com.sanswai.achieve.R.string.pref_employee_details))
-            val responseObject = Gson().fromJson(jsonResponse, EmployeeDetails::class.java)
+
             for (i in 0 until responseObject?.education!!.data!!.size) {
                 if (educationID == responseObject?.education!!.data!![i].id.toString()) {
                     val selectedProject = responseObject?.education!!.data!![i]
                     for (i in 0 until educationResponse!!.data!!.size) {
-                        if (selectedProject.id == educationResponse!!.data!![i].id) {
+                        if (selectedProject.educationId.toString() == educationResponse!!.data!![i].id.toString()) {
                             spEducation.setSelection(educationResponse!!.data!!.indexOf(educationResponse!!.data!![i]))
-                            break
                         }
                     }
                     for (j in 0 until courseResponse!!.data!!.size) {
-                        if (selectedProject.id == courseResponse!!.data!![j].id) {
+                        if (selectedProject.courseId.toString() == courseResponse!!.data!![j].id.toString()) {
                             spCourses.setSelection(courseResponse!!.data!!.indexOf(courseResponse!!.data!![j]))
-                            break
                         }
                     }
                     for (k in 0 until specializationResponse!!.data!!.size) {
-                        if (selectedProject.id == specializationResponse!!.data!![k].id) {
+                        if (selectedProject.specializationId.toString() == specializationResponse!!.data!![k].id.toString()) {
                             spSpecialization.setSelection(specializationResponse!!.data!!.indexOf(specializationResponse!!.data!![k]))
-                            break
                         }
                     }
                     spPassingYear.setSelection(years.indexOf(selectedProject.passingYear))
-                    spGradeSystem.setSelection((selectedProject.gradeSystem!!.toInt().minus(1)))
+                    spGradeSystem.setSelection((selectedProject.gradingSystemId!!.toInt().minus(1)))
                     etCollege.setText(selectedProject.instituteName)
                     etMarks.setText(selectedProject.gradeSystem)
+                    isDataSet = true
                     if (selectedProject.courseType == "1") {
                         radioFullTime.isChecked = true
                     } else if (selectedProject.courseType == "0") {
@@ -252,17 +260,20 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
                 val dataAdapter = ArrayAdapter<com.sanswai.achieve.response.education.Datum>(this, android.R.layout.simple_spinner_dropdown_item, educationResponse!!.data!!.toList())
                 spEducation.adapter = dataAdapter
                 spEducation.prompt = "Select Location"
+                //prePopulatedData()
             }
             methodName.contains(getString(R.string.api_course)) -> {
                 println("reponse for course is " + response)
                 try {
                     if ((response as JSONObject).getString("response") == "false") {
                         spCourses.adapter = null
+                        // prePopulatedData()
                     } else {
                         courseResponse = Gson().fromJson(response.toString(), CourseDetails::class.java)
                         val dataAdapter = ArrayAdapter<Datum>(this, android.R.layout.simple_spinner_dropdown_item, courseResponse!!.data!!.toList())
                         spCourses.adapter = dataAdapter
                         spCourses.prompt = "Select Course"
+                        // prePopulatedData()
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()
@@ -282,6 +293,10 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
+                if (jsonResponse != null && !isDataSet) {
+                    prePopulatedData()
+                }
+
             }
             methodName == getString(R.string.api_post_educational_details) -> {
                 if ((response as JSONObject).getString("response") == "true") {
@@ -304,5 +319,4 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
         }
         return true
     }
-
 }

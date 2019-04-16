@@ -41,7 +41,6 @@ class AddEditEmploymentActivity : BaseActivity(), VolleyService.SetResponse {
         supportActionBar!!.setDisplayShowHomeEnabled(true)
 
 
-
         val arrNoticePeriod = ArrayList<String>()
         arrNoticePeriod.add("15 Days")
         arrNoticePeriod.add("1 Month")
@@ -160,7 +159,10 @@ class AddEditEmploymentActivity : BaseActivity(), VolleyService.SetResponse {
         }
 
         if (intent != null) {
-            employmentID = intent.getIntExtra("employment_id", 0).toString()
+            employmentID = intent.getIntExtra("employment_id", -1).toString()
+            if (employmentID == (-1).toString()) {
+                employmentID = ""
+            }
             println("employment iuds is " + employmentID)
             val jsonResponse = preferences?.getPreferencesString(getString(com.sanswai.achieve.R.string.pref_employee_details))
             val responseObject = Gson().fromJson(jsonResponse, EmployeeDetails::class.java)
@@ -181,11 +183,13 @@ class AddEditEmploymentActivity : BaseActivity(), VolleyService.SetResponse {
                     spStartYear.setSelection(years.indexOf(startYear!!))
                     startMonth = parts[1]
                     spStartMonth.setSelection(years.indexOf(startMonth!!))
-                    val parts1 = selectedProject.workedTillDate?.split("-")
-                    endYear = parts1!![0]
-                    spEndYear.setSelection(years.indexOf(endYear!!))
-                    endMonth = parts1[1]
-                    spEndMonth.setSelection(years.indexOf(endMonth!!))
+                    if (!selectedProject.workedTillDate!!.contains("present",true)) {
+                        val parts1 = selectedProject.workedTillDate?.split("-")
+                        endYear = parts1!![0]
+                        spEndYear.setSelection(years.indexOf(endYear!!))
+                        endMonth = parts1[1]
+                        spEndMonth.setSelection(years.indexOf(endMonth!!))
+                    }
                 }
             }
         }

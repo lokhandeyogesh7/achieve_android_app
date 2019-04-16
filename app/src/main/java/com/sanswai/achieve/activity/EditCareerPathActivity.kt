@@ -35,7 +35,13 @@ class EditCareerPathActivity : AppCompatActivity(), VolleyService.SetResponse, R
     private lateinit var shiftType: String
     private lateinit var salaryType: String
     private lateinit var desiredLocation: String
+    private lateinit var jsonResponse: String
     private var careerId: String = ""
+    var functionalResponse: FunctionalArea? = null
+    var insustriesRespone: Industries? = null
+    var rolesResponse: CareerRoles? = null
+    var locationResponse: Location? = null
+    var responseObject: EmployeeDetails? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,34 +50,11 @@ class EditCareerPathActivity : AppCompatActivity(), VolleyService.SetResponse, R
         services = VolleyService(this)
         preferences = Preferences.getInstance(this)
 
-        val jsonResponse = preferences?.getPreferencesString(getString(R.string.pref_employee_details))
-        val responseObject = Gson().fromJson(jsonResponse, EmployeeDetails::class.java)
-
-        try {
-            careerId = responseObject!!.desiredProfile!!.data!!.get(0)!!.id.toString()
-            if (jsonResponse!=null) {
-                spFunctionalArea.setSelection(functionalArea!!.indexOf(responseObject!!.desiredProfile!!.data!!.get(0).functionalAreaName!!))
-                spIndustry.setSelection(industries!!.indexOf(responseObject!!.desiredProfile!!.data!!.get(0).industryName!!))
-                spRole.setSelection(role!!.indexOf(responseObject!!.desiredProfile!!.data!!.get(0).careerRoleName!!))
-                spLocation.setSelection(loca!!.indexOf(responseObject!!.desiredProfile!!.data!!.get(0).functionalAreaName!!))
-                radioPermanent
-                radioContract
-                radioFT
-                radioPT
-                radioDay
-                radioNight
-                radioFlexi
-                etExpSalary
-                radioINR
-                radioDollar
-
-            }
-            if (careerId == null) {
-                careerId = ""
-            }
-        }catch (e:Exception){
-            e.printStackTrace()
+        jsonResponse = preferences?.getPreferencesString(getString(R.string.pref_employee_details))!!
+        if (jsonResponse != null) {
+            responseObject = Gson().fromJson(jsonResponse, EmployeeDetails::class.java)
         }
+
 
         getFunctionArea()
         getIndustries()
@@ -81,6 +64,8 @@ class EditCareerPathActivity : AppCompatActivity(), VolleyService.SetResponse, R
         supportActionBar!!.title = "Edit Career Profile"
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
+
+
 
 
         tvSubmitCareerPath.setOnClickListener {
@@ -127,6 +112,68 @@ class EditCareerPathActivity : AppCompatActivity(), VolleyService.SetResponse, R
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        prepopulateData()
+    }
+
+    private fun prepopulateData() {
+        try {
+            careerId = responseObject!!.desiredProfile!!.data!!.get(0)!!.id.toString()
+            val selectedProject = responseObject!!.desiredProfile!!.data!!.get(0)!!
+            if (jsonResponse != null) {
+                for (j in 0 until functionalResponse!!.data!!.size) {
+                    if (selectedProject.functionalAreaId.toString() == functionalResponse!!.data!![j].id.toString()) {
+                        spFunctionalArea.setSelection(functionalResponse!!.data!!.indexOf(functionalResponse!!.data!![j]))
+                    }
+                }
+                for (j in 0 until insustriesRespone!!.data!!.size) {
+                    if (selectedProject.desiredIndustryId.toString() == insustriesRespone!!.data!![j].id.toString()) {
+                        spIndustry.setSelection(insustriesRespone!!.data!!.indexOf(insustriesRespone!!.data!![j]))
+                    }
+                }
+                for (j in 0 until rolesResponse!!.data!!.size) {
+                    if (selectedProject.careerRoleId.toString() == rolesResponse!!.data!![j].id.toString()) {
+                        spRole.setSelection(rolesResponse!!.data!!.indexOf(rolesResponse!!.data!![j]))
+                    }
+                }
+                for (j in 0 until locationResponse!!.data!!.size) {
+                    if (selectedProject.desiredLocationId.toString() == locationResponse!!.data!![j].id.toString()) {
+                        spLocation.setSelection(locationResponse!!.data!!.indexOf(locationResponse!!.data!![j]))
+                    }
+                }
+                if (selectedProject.jobType!!.contains("perm", true)) {
+                    radioPermanent.isChecked = true
+                } else {
+                    radioContract.isChecked = true
+                }
+
+                if (selectedProject.employmentType!!.contains("full", true)) {
+                    radioFT.isChecked = true
+                } else {
+                    radioPT.isChecked = true
+                }
+
+                when {
+                    selectedProject.desiredShift!!.contains("day", true) -> radioDay.isChecked = true
+                    selectedProject.desiredShift!!.contains("night", true) -> radioNight.isChecked = true
+                    else -> radioFlexi.isChecked = true
+                }
+                etExpSalary.setText(selectedProject.expectedSalaryAmount)
+                if (selectedProject.expectedSalaryType!!.contains("indian", true)) {
+                    radioINR.isChecked = true
+                } else {
+                    radioDollar.isChecked = true
+                }
+            }
+            if (careerId == null) {
+                careerId = ""
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
     private fun getLocaionList() {
         services!!.callJsonGETRequest(getString(R.string.api_location), JSONObject())
         services!!.mResponseInterface = this
@@ -150,24 +197,28 @@ class EditCareerPathActivity : AppCompatActivity(), VolleyService.SetResponse, R
     override fun onSuccess(methodName: String, response: Any) {
         when (methodName) {
             getString(R.string.api_functional_area) -> {
-                val functionalResponse = Gson().fromJson(response.toString(), FunctionalArea::class.java)
-                val dataAdapter = ArrayAdapter<Datum>(this, android.R.layout.simple_spinner_dropdown_item, functionalResponse.data!!.toList())
+                functionalResponse = Gson().fromJson(response.toString(), FunctionalArea::class.java)
+                val dataAdapter = ArrayAdapter<Datum>(this, android.R.layout.simple_spinner_dropdown_item, functionalResponse!!.data!!.toList())
                 spFunctionalArea.adapter = dataAdapter
+                prepopulateData()
             }
             getString(R.string.api_industries) -> {
-                val functionalResponse = Gson().fromJson(response.toString(), Industries::class.java)
-                val dataAdapter = ArrayAdapter<com.sanswai.achieve.response.industries.Datum>(this, android.R.layout.simple_spinner_dropdown_item, functionalResponse.data!!.toList())
+                insustriesRespone = Gson().fromJson(response.toString(), Industries::class.java)
+                val dataAdapter = ArrayAdapter<com.sanswai.achieve.response.industries.Datum>(this, android.R.layout.simple_spinner_dropdown_item, insustriesRespone!!.data!!.toList())
                 spIndustry.adapter = dataAdapter
+                prepopulateData()
             }
             getString(R.string.api_career_roles) -> {
-                val functionalResponse = Gson().fromJson(response.toString(), CareerRoles::class.java)
-                val dataAdapter = ArrayAdapter<com.sanswai.achieve.response.careerroles.Datum>(this, android.R.layout.simple_spinner_dropdown_item, functionalResponse.data!!.toList())
+                rolesResponse = Gson().fromJson(response.toString(), CareerRoles::class.java)
+                val dataAdapter = ArrayAdapter<com.sanswai.achieve.response.careerroles.Datum>(this, android.R.layout.simple_spinner_dropdown_item, rolesResponse!!.data!!.toList())
                 spRole.adapter = dataAdapter
+                prepopulateData()
             }
             getString(R.string.api_location) -> {
-                val functionalResponse = Gson().fromJson(response.toString(), Location::class.java)
-                val dataAdapter = ArrayAdapter<com.sanswai.achieve.response.locationlist.Datum>(this, android.R.layout.simple_spinner_dropdown_item, functionalResponse.data!!.toList())
+                locationResponse = Gson().fromJson(response.toString(), Location::class.java)
+                val dataAdapter = ArrayAdapter<com.sanswai.achieve.response.locationlist.Datum>(this, android.R.layout.simple_spinner_dropdown_item, locationResponse!!.data!!.toList())
                 spLocation.adapter = dataAdapter
+                prepopulateData()
             }
             getString(R.string.api_desired_profile) -> {
                 if ((response as JSONObject).getString("response") == "true") {
