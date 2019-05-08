@@ -92,8 +92,18 @@ class EditPersonalDetailsActivity : BaseActivity(), DatePickerDialog.OnDateSetLi
         }
 
         tvSubmit.setOnClickListener {
+            val selectedId = radioGrp.checkedRadioButtonId
+            val selectedIdMarital = radioGrpMarital.checkedRadioButtonId
+            val  radioButton  = findViewById(selectedId) as RadioButton
+            val  radioButtonMarital  = findViewById(selectedIdMarital) as RadioButton
+
+            gender = radioButton.text.toString().toLowerCase()
+            maritalStatus = radioButtonMarital.text.toString().toLowerCase()
+            println("gender is "+gender)
+
             when {
-                etHometown.text.toString().isEmpty() -> showToast("Enter hometown")
+                    etHometown.text.toString().isEmpty()
+                -> showToast("Enter hometown")
                 etDob1?.text.toString().isEmpty() -> showToast("Enter Date of Birth")
                 etResAddOne?.text.toString().isEmpty() -> showToast("Enter Residential Address")
                 etResAddTwo?.text.toString().isEmpty() -> showToast("Enter Residential Address")

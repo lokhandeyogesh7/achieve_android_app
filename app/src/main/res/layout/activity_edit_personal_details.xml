@@ -157,7 +157,7 @@
                         android:checked="false"
                         android:drawablePadding="@dimen/_10sdp"
                         android:fontFamily="@font/myfont"
-                        android:text="Other"
+                        android:text="Separated"
                         android:textColor="@android:color/tab_indicator_text"
                         android:textSize="@dimen/_12sdp" />
 

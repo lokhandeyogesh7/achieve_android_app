@@ -28,14 +28,14 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
 
     private var services: VolleyService? = null
     private var preferences: Preferences? = null
-    private lateinit var selectedEducation: String
-    private lateinit var selectedCourse: String
-    private lateinit var passingYear: String
-    private lateinit var selectedSpecialization: String
+    private var selectedEducation: String = ""
+    private var selectedCourse: String = ""
+    private var passingYear: String = ""
+    private var selectedSpecialization: String = ""
     private lateinit var selectedGrade: String
     private lateinit var courseType: String
     private lateinit var jsonResponse: String
-    private lateinit var educationID: String
+    private var educationID: String = ""
     private var educationResponse: Education? = null
     private var responseObject: EmployeeDetails? = null
     private var courseResponse: CourseDetails? = null
@@ -183,7 +183,8 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
     }
 
     private fun prePopulatedData() {
-        if (intent != null) {
+        println("intent is " + intent.data)
+        if (!intent.getStringExtra(getString(R.string.project_id)).toString().isNullOrEmpty()) {
             educationID = intent.getStringExtra(getString(R.string.project_id)).toString()
             println("employment iuds is " + educationID)
 
@@ -200,9 +201,11 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
                             spCourses.setSelection(courseResponse!!.data!!.indexOf(courseResponse!!.data!![j]))
                         }
                     }
-                    for (k in 0 until specializationResponse!!.data!!.size) {
-                        if (selectedProject.specializationId.toString() == specializationResponse!!.data!![k].id.toString()) {
-                            spSpecialization.setSelection(specializationResponse!!.data!!.indexOf(specializationResponse!!.data!![k]))
+                    if (spSpecialization.adapter!=null) {
+                        for (k in 0 until specializationResponse!!.data!!.size) {
+                            if (selectedProject.specializationId.toString() == specializationResponse!!.data!![k].id.toString()) {
+                                spSpecialization.setSelection(specializationResponse!!.data!!.indexOf(specializationResponse!!.data!![k]))
+                            }
                         }
                     }
                     spPassingYear.setSelection(years.indexOf(selectedProject.passingYear))

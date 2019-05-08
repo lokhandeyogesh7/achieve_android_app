@@ -45,7 +45,7 @@ class VolleyService(val context: Context) {
                     mResponseInterface.onSuccess(methodName,it)
                 },
                 Response.ErrorListener {
-                    println("failed ${it.networkResponse}")
+                    println("failed ${it.localizedMessage}")
                     dialog.dismiss()
                     mResponseInterface.onFailure(methodName,it)
                 })

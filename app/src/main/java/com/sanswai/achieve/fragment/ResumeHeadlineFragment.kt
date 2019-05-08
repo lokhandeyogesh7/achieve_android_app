@@ -43,9 +43,11 @@ class ResumeHeadlineFragment : Fragment() {
         tvPersonalInfo.text = responseObject?.resumeHeadline?.data?.description
 
         if (responseObject.resumeHeadline!!.response == "false") {
-            rlResumeHeadline.visibility = View.GONE
+            tvDownloadResume.visibility = View.GONE
+            rlPersnInfo.visibility = View.GONE
         }else{
-            rlResumeHeadline.visibility = View.VISIBLE
+            tvDownloadResume.visibility = View.VISIBLE
+            rlPersnInfo.visibility = View.VISIBLE
         }
 
         tvDownloadResume.setOnClickListener {
@@ -54,6 +56,16 @@ class ResumeHeadlineFragment : Fragment() {
                 startActivity(browserIntent)
             }
         }
+        println("resume headline "+responseObject.resumeHeadline?.response)
+        println("resume headline employee type"+preferences?.getPreferencesString(getString(R.string.user_type)))
+
+
+        if (preferences?.getPreferencesString(getString(R.string.user_type)) == "employee") {
+            fabResume.visibility = View.VISIBLE
+        } else {
+            fabResume.visibility = View.GONE
+        }
+
         if (responseObject.resumeHeadline?.response == "false") {
             fabResume.setImageResource(R.drawable.ic_plus_black_symbol)
         } else {
@@ -66,10 +78,5 @@ class ResumeHeadlineFragment : Fragment() {
             }
         }
 
-        if (preferences?.getPreferencesString(getString(R.string.user_type)) == "employee") {
-            fabResume.visibility = View.VISIBLE
-        } else {
-            fabResume.visibility = View.GONE
-        }
     }
 }
