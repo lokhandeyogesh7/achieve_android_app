@@ -166,34 +166,35 @@ class AddEditEmploymentActivity : BaseActivity(), VolleyService.SetResponse {
             println("employment iuds is " + employmentID)
             val jsonResponse = preferences?.getPreferencesString(getString(com.sanswai.achieve.R.string.pref_employee_details))
             val responseObject = Gson().fromJson(jsonResponse, EmployeeDetails::class.java)
-            for (i in 0 until responseObject?.employement!!.data!!.size) {
-                if (employmentID == responseObject?.employement!!.data!![i].id.toString()) {
-                    val selectedProject = responseObject?.employement!!.data!![i]
-                    etOrgnizationName.setText(selectedProject.organizationName)
-                    etDesignationName.setText(selectedProject.designation)
-                    etJobDescription.setText(selectedProject.jobProfileDescription)
-                    if (selectedProject.isCurrentEmployment == "1") {
-                        radioYes.isChecked = true
-                    } else {
-                        radioNo.isChecked = true
-                    }
-                    spNoticePeriod.setSelection((selectedProject.noticePeriod?.toInt()!!.minus(1)))
-                    val parts = selectedProject.workingStartDate?.split("-")
-                    startYear = parts!![0]
-                    spStartYear.setSelection(years.indexOf(startYear!!))
-                    startMonth = parts[1]
-                    spStartMonth.setSelection(years.indexOf(startMonth!!))
-                    if (!selectedProject.workedTillDate!!.contains("present",true)) {
-                        val parts1 = selectedProject.workedTillDate?.split("-")
-                        endYear = parts1!![0]
-                        spEndYear.setSelection(years.indexOf(endYear!!))
-                        endMonth = parts1[1]
-                        spEndMonth.setSelection(years.indexOf(endMonth!!))
+            if (responseObject?.employement?.response != "false") {
+                for (i in 0 until responseObject?.employement!!.data!!.size) {
+                    if (employmentID == responseObject?.employement!!.data!![i].id.toString()) {
+                        val selectedProject = responseObject?.employement!!.data!![i]
+                        etOrgnizationName.setText(selectedProject.organizationName)
+                        etDesignationName.setText(selectedProject.designation)
+                        etJobDescription.setText(selectedProject.jobProfileDescription)
+                        if (selectedProject.isCurrentEmployment == "1") {
+                            radioYes.isChecked = true
+                        } else {
+                            radioNo.isChecked = true
+                        }
+                        spNoticePeriod.setSelection((selectedProject.noticePeriod?.toInt()!!.minus(1)))
+                        val parts = selectedProject.workingStartDate?.split("-")
+                        startYear = parts!![0]
+                        spStartYear.setSelection(years.indexOf(startYear!!))
+                        startMonth = parts[1]
+                        spStartMonth.setSelection(years.indexOf(startMonth!!))
+                        if (!selectedProject.workedTillDate!!.contains("present", true)) {
+                            val parts1 = selectedProject.workedTillDate?.split("-")
+                            endYear = parts1!![0]
+                            spEndYear.setSelection(years.indexOf(endYear!!))
+                            endMonth = parts1[1]
+                            spEndMonth.setSelection(years.indexOf(endMonth!!))
+                        }
                     }
                 }
             }
         }
-
     }
 
     override fun onSuccess(methodName: String, response: Any) {
