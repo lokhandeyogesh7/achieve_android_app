@@ -158,7 +158,7 @@ class AddEditEmploymentActivity : BaseActivity(), VolleyService.SetResponse {
             }
         }
 
-        if (intent != null) {
+        if (intent.hasExtra("employment_id")) {
             employmentID = intent.getIntExtra("employment_id", -1).toString()
             if (employmentID == (-1).toString()) {
                 employmentID = ""

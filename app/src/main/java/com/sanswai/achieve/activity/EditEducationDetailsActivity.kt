@@ -183,8 +183,12 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
     }
 
     private fun prePopulatedData() {
-        println("intent is " + intent.data)
-        if (!intent.getStringExtra(getString(R.string.project_id)).toString().isNullOrEmpty()) {
+        if (intent.data != null) {
+            println("intent is " + intent.getStringExtra(getString(R.string.project_id)).toString())
+        } else {
+            println("intent is null value is ")
+        }
+        if (intent.hasExtra(getString(R.string.project_id))) {
             educationID = intent.getStringExtra(getString(R.string.project_id)).toString()
             println("employment iuds is " + educationID)
 
@@ -201,7 +205,7 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
                             spCourses.setSelection(courseResponse!!.data!!.indexOf(courseResponse!!.data!![j]))
                         }
                     }
-                    if (spSpecialization.adapter!=null) {
+                    if (spSpecialization.adapter != null) {
                         for (k in 0 until specializationResponse!!.data!!.size) {
                             if (selectedProject.specializationId.toString() == specializationResponse!!.data!![k].id.toString()) {
                                 spSpecialization.setSelection(specializationResponse!!.data!!.indexOf(specializationResponse!!.data!![k]))
