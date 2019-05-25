@@ -42,5 +42,6 @@
     <string name="api_performance_questions">performance-questions</string>
     <string name="api_add_review">add-ratings</string>
     <string name="api_validate_date">validate-date/</string>
+    <string name="apiP_employee_details">employee-details/</string>
 
 </resources>

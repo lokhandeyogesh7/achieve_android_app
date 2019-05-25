@@ -63,12 +63,14 @@ class MainActivity : BaseActivity(), VolleyService.SetResponse {
         rvEmployerList.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
 
         //set adapter for recycler view
-        rvEmployerList.adapter = EmployerListAdapter(userData.data) { result ->
-            //call new activity to show details and pass uid to particular activity
-            println("id id "+result.id)
-            val intent = Intent(this@MainActivity, ReviewDetailsActivity::class.java)
-            intent.putExtra(getString(R.string.employee_id), result.id)
-            startActivity(intent)
+        if (!userData.data.isNullOrEmpty()) {
+            rvEmployerList.adapter = EmployerListAdapter(userData.data) { result ->
+                //call new activity to show details and pass uid to particular activity
+                println("id id " + result.id)
+                val intent = Intent(this@MainActivity, ReviewDetailsActivity::class.java)
+                intent.putExtra(getString(R.string.employee_id), result.id)
+                startActivity(intent)
+            }
         }
     }
 
