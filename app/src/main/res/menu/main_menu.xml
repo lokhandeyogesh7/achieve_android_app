@@ -1,11 +1,11 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/profile_menu"
-        android:title="profile"
+        android:title="Profile"
         app:showAsAction="never" />
 
     <item android:id="@+id/logout"
-        android:title="logout"
+        android:title="Logout"
         app:showAsAction="never" />
 
 </menu>

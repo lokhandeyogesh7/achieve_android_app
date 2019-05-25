@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Achieve</string>
+    <string name="app_name">Achieve Instech</string>
     <string name="employee_id">employee_id</string>
     <string name="something_went_wrong">Something went wrong</string>
     <string name="unable_to_fetch_data">Unable to fetch data from server</string>
@@ -42,6 +42,23 @@
     <string name="api_performance_questions">performance-questions</string>
     <string name="api_add_review">add-ratings</string>
     <string name="api_validate_date">validate-date/</string>
-    <string name="apiP_employee_details">employee-details/</string>
+    <string name="api_employee_details">employee-details/</string>
+    <string name="pref_employee_details">employee_details</string>
+    <string name="api_employee_post">personal-details</string>
+    <string name="fromProjects">from_projects</string>
+    <string name="project_id">project_id</string>
+    <string name="api_post_project_details">project-details</string>
+    <string name="api_post_resume_headline">resume-headline</string>
+    <string name="api_functional_area">functional-areas</string>
+    <string name="api_industries">industries</string>
+    <string name="api_career_roles">career-roles</string>
+    <string name="api_education">educations</string>
+    <string name="api_course">course</string>
+    <string name="api_specialization">specialization</string>
+    <string name="api_post_educational_details">educations-details</string>
+    <string name="api_key_skill">key-skills/</string>
+    <string name="api_location">locations</string>
+    <string name="api_desired_profile">desired-career-profile</string>
+    <string name="career_id">career_id</string>
 
 </resources>

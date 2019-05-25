@@ -5,23 +5,24 @@
     android:layout_height="match_parent"
     tools:context="com.sanswai.achieve.fragment.EmployerReviewListFragment">
 
-    <Button
-        android:id="@+id/btnAddReview"
-        android:layout_width="@dimen/_45sdp"
-        android:layout_height="@dimen/_45sdp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:background="@drawable/ic_add_record"
-        android:fontFamily="@font/myfont"
-        android:visibility="visible"
-        android:layout_margin="@dimen/_5sdp" />
+
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/bgGrey"
-        android:layout_below="@+id/btnAddReview"
         android:layout_margin="@dimen/_5sdp"
         android:id="@+id/rvEmployerRevList"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btnAddReview"
+        android:layout_width="@dimen/_45sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/ic_plus_black_symbol"
+        android:fontFamily="@font/myfont"
+        android:visibility="visible"
+        android:layout_margin="@dimen/_5sdp" />
 
 </RelativeLayout>

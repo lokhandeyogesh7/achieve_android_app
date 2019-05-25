@@ -44,6 +44,11 @@ class ReviewDetailsActivity : BaseActivity(), VolleyService.SetResponse {
         username = intent.getStringExtra(getString(R.string.employee_name))
         services = VolleyService(this)
 
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         if (intent != null && intent.getBooleanExtra("isEmployer", false)) {
             getPerformanceReview()
         } else {

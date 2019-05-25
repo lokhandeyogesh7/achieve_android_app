@@ -39,7 +39,7 @@ class EmployeeDashboardAdapter(private val mContext: Context, private val employ
         holder.tvEmployeeName.text = education.name
         holder.tvEmail.text = education.email
         holder.tvPhone.text = education.mobileNumber
-        holder.rbEmployee.text = "Rating: "+Math.ceil(education.userRating!!.toDouble())
+        holder.rbEmployee.text = "Rating: "+Math.abs(education.userRating!!)
         holder.tvPerStatusEmployee.text = education.performanceStatus
 
         holder.tvRecordDetails.setOnClickListener{
@@ -53,6 +53,7 @@ class EmployeeDashboardAdapter(private val mContext: Context, private val employ
 
         holder.tvEmployeeProfile.setOnClickListener{
             val intent = Intent(mContext,EmpProfileActivity::class.java)
+            intent.putExtra(mContext.getString(R.string.employee_id),education.id)
             mContext.startActivity(intent)
         }
     }

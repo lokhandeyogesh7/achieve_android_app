@@ -8,5 +8,8 @@ class PersonalDetails {
     @SerializedName("response")
     @Expose
     var response: String? = null
+    @SerializedName("data")
+    @Expose
+    var data: Data__? = null
 
 }

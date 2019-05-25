@@ -32,6 +32,7 @@ class ReviewQuestionEmpAdapter(private val mContext: Context, private val revQue
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val education = revQuestionList!![position]
         holder.tvQuestion.text = education.question
+        holder.rbQuestion.text = ratingsData!![0].name
         holder.tvPerStatus.visibility = View.GONE
         holder.rbQuestion.visibility = View.VISIBLE
         holder.rbQuestion.gravity = Gravity.CENTER

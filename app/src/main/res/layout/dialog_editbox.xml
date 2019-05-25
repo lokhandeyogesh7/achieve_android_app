@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_25sdp">
+
+    <!--<EditText
+        android:id="@+id/etSkillName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/myfont"
+        android:hint="skill"
+        android:paddingStart="@dimen/_10sdp"
+        android:textSize="@dimen/_14sdp" />-->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvSkills"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvSubmitSkill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rvSkills"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@drawable/round_button"
+        android:padding="@dimen/_5sdp"
+        android:text="SUBMIT"
+        android:textColor="@android:color/white" />
+
+
+</RelativeLayout>

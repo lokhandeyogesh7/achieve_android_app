@@ -15,7 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".activity.AddReviewActivity"></activity>
+        <activity android:name=".activity.AddEditEmploymentActivity"></activity>
+        <activity android:name=".activity.EditEducationDetailsActivity" />
+        <activity android:name=".activity.EditResumeHeadlineActivity" />
+        <activity android:name=".activity.EditCareerPathActivity" />
+        <activity android:name=".activity.EditPersonalDetailsActivity" />
+        <activity android:name=".activity.AddReviewActivity" />
         <activity android:name=".activity.EmployerDashboardActivity" />
         <activity android:name=".activity.MainActivity" />
         <activity
@@ -36,9 +41,7 @@
         <activity
             android:name=".activity.ReviewDetailsActivity"
             android:theme="@style/NoActionBar" />
-        <activity
-            android:name=".activity.EmpProfileActivity"
-            android:theme="@style/NoActionBar" />
+        <activity android:name=".activity.EmpProfileActivity" />
 
         <receiver
             android:name=".global.ConnectivityReceiver"

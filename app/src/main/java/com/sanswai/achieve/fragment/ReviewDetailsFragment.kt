@@ -38,7 +38,7 @@ class ReviewDetailsFragment : Fragment() {
                 employeePerformance = EmployeePerformace()
                 employeePerformance = bundle.getSerializable("review_data") as EmployeePerformace
                 lblEmployeename.text = bundle.getString(getString(com.sanswai.achieve.R.string.employee_name))
-                rbEmployeeReviewEmp.text = "Rating: "+Math.ceil(employeePerformance.averageRating!!.toDouble())
+                rbEmployeeReviewEmp.text = "Rating: "+Math.abs(employeePerformance.averageRating!!)
                 tvPerReviewEmp.text = employeePerformance.performanceStatus
                 tvPerReviewEmp.setMovementMethod(ScrollingMovementMethod())
 
@@ -47,7 +47,7 @@ class ReviewDetailsFragment : Fragment() {
                 cardEmployer.visibility = View.GONE
                 reviewDetails = ReviewDetails()
                 reviewDetails = bundle.getSerializable("review_data") as ReviewDetails
-                rbMainReview.text = "Rating: "+Math.ceil(reviewDetails.avgRatings!!.toDouble())
+                rbMainReview.text = "Rating: "+Math.abs(reviewDetails.avgRatings!!)
                 tvMainAvgReview.text = reviewDetails.avgReview!!
                 tvReviewFeedback.text = reviewDetails.reviewFeedback!!
                 tvReviewFeedback.setMovementMethod(ScrollingMovementMethod())
