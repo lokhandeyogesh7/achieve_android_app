@@ -2,13 +2,11 @@ package com.sanswai.achieve.activity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.support.design.widget.CollapsingToolbarLayout
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import android.support.v4.content.ContextCompat
-import android.support.v4.view.ViewCompat
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.android.volley.VolleyError
@@ -19,12 +17,9 @@ import com.sanswai.achieve.global.BaseActivity
 import com.sanswai.achieve.global.Preferences
 import com.sanswai.achieve.network.VolleyService
 import com.sanswai.achieve.response.employeedetails.EmployeeDetails
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_emp_profile.*
-import kotlinx.android.synthetic.main.layout_profile.*
 import org.json.JSONObject
-import java.util.*
-import kotlin.collections.ArrayList
+
 
 class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
 
@@ -39,13 +34,13 @@ class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_emp_profile)
-       // setSupportActionBar(toolbarMain)
+        // setSupportActionBar(toolbarMain)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         services = VolleyService(this)
         preferences = Preferences.getInstance(this)
-        println("employee type "+preferences?.getPreferencesString(getString(R.string.user_type)))
+        println("employee type " + preferences?.getPreferencesString(getString(R.string.user_type)))
         if (preferences?.getPreferencesString(getString(R.string.user_type)) == "employee") {
             employee_id = preferences!!.getPreferencesInt(getString(R.string.user_id), 0).toString()
         } else {
@@ -61,7 +56,7 @@ class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
 
     private fun setUpTabsView() {
 //        ViewCompat.setTransitionName(findViewById(R.id.app_bar_layout), "Extra Image")
-       // collapsingToolbarLayout = findViewById(R.id.collapsingToolBar_hotel_details)
+        // collapsingToolbarLayout = findViewById(R.id.collapsingToolBar_hotel_details)
         //collapsingToolbarLayout.setContentScrimColor(ContextCompat.getColor(applicationContext, R.color.colorPrimary))
         val adapter = ViewPagerAdapter(supportFragmentManager)
         adapter.addFragment(PersonalDetailsFragment())
@@ -111,12 +106,12 @@ class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
         }
         if (responseObject != null) {
             setUpTabsView()
-           /* if ((responseObject).users?.data?.profilePic != null) {
-                Picasso.get().load((responseObject).users?.data?.profilePic).centerInside().resize(200, 200)
-                        .onlyScaleDown().error(getDrawable(R.mipmap.ic_launcher)).placeholder(getDrawable(R.mipmap.ic_launcher)).into(ivProfile)
-            }
-            tvTelephone.text = responseObject.users?.data?.mobileNumber
-            tvEmail.text = responseObject.users?.data?.email*/
+            /* if ((responseObject).users?.data?.profilePic != null) {
+                 Picasso.get().load((responseObject).users?.data?.profilePic).centerInside().resize(200, 200)
+                         .onlyScaleDown().error(getDrawable(R.mipmap.ic_launcher)).placeholder(getDrawable(R.mipmap.ic_launcher)).into(ivProfile)
+             }
+             tvTelephone.text = responseObject.users?.data?.mobileNumber
+             tvEmail.text = responseObject.users?.data?.email*/
             supportActionBar!!.title = responseObject.users?.data?.name
         }
     }
@@ -125,7 +120,7 @@ class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
         println("error  is " + volleyError.networkResponse)
     }
 
-    fun onFabCkick(){
+    fun onFabCkick() {
         if (arrFragment.get(viewPager.currentItem) is PersonalDetailsFragment) {
             showToast("clciked personal fragmentsjkfdjkdfjkldfjfdskjadsfbkaldsbfkjasdfbadskfbdsjlf jasf jfbdfbadfh jadfbasdkfgl")
         }
@@ -147,7 +142,15 @@ class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        onBackPressed()
+        if (item!!.itemId == R.id.home) {
+            onBackPressed()
+        }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(com.sanswai.achieve.R.menu.menu_logo, menu)
+        return true
     }
 }
