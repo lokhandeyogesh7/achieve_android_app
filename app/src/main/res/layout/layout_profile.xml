@@ -20,7 +20,8 @@
             android:layout_margin="@dimen/_5sdp"
             app:civ_border_color="@android:color/tab_indicator_text"
             android:layout_height="@dimen/_100sdp"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/ic_launcher"
+            android:paddingLeft="@dimen/_5sdp" />
 
         <TextView
             android:id="@+id/tvTelephone"
