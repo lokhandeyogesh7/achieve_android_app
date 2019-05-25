@@ -2,8 +2,8 @@ package com.sanswai.achieve.activity
 
 import android.os.Bundle
 import android.os.Handler
-import com.sanswai.achieve.R
 import android.content.Intent
+import com.sanswai.achieve.R
 import com.sanswai.achieve.global.BaseActivity
 import com.sanswai.achieve.global.Preferences
 

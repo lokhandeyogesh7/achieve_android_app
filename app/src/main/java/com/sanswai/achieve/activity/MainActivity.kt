@@ -7,10 +7,10 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.LinearLayout
+import com.sanswai.achieve.R
 import android.widget.Toast
 import com.android.volley.VolleyError
 import com.google.gson.Gson
-import com.sanswai.achieve.R
 import com.sanswai.achieve.adapter.EmployerListAdapter
 import com.sanswai.achieve.global.BaseActivity
 import com.sanswai.achieve.global.Preferences
@@ -42,7 +42,7 @@ class MainActivity : BaseActivity(), VolleyService.SetResponse {
     }
 
     private fun getEmployeeDashboard() {
-        services!!.callJsonObjectRequest(getString(R.string.employee_dashboard) + userId, JSONObject())
+        services!!.callJsonObjectRequest(getString(R.string.employee_dashboard)+userId, JSONObject())
         services!!.mResponseInterface = this
     }
 
@@ -57,13 +57,13 @@ class MainActivity : BaseActivity(), VolleyService.SetResponse {
         val userData = Gson().fromJson(response.toString(), UserData::class.java)
 
         tvMainEmpName.text = preferences!!.getPreferencesString(getString(R.string.username))
-        rbMainEmp.text = "Rating: " + Math.ceil(userData.averageRating!!.toDouble())
+        rbMainEmp.text = "Rating: "+Math.ceil(userData.averageRating!!.toDouble())
         tvMainAvgReview.text = userData.performanceStatus
 
         rvEmployerList.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
 
         //set adapter for recycler view
-        if (userData.data != null) {
+        if (!userData.data.isNullOrEmpty()) {
             rvEmployerList.adapter = EmployerListAdapter(userData.data) { result ->
                 //call new activity to show details and pass uid to particular activity
                 println("id id " + result.id)
