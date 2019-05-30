@@ -16,6 +16,7 @@ import com.sanswai.achieve.response.employeedetails.EmployeeDetails
 class CheckboxAdapter(val mContext: Context, private val educationList: ArrayList<Datum____>?, private val onItemCheckListener: OnItemCheckListener) : RecyclerView.Adapter<CheckboxAdapter.MyViewHolder>() {
 
     interface OnItemCheckListener {
+        fun previousData(item: Datum____)
         fun onItemCheck(item: Datum____)
         fun onItemUncheck(item: Datum____)
     }
@@ -44,9 +45,10 @@ class CheckboxAdapter(val mContext: Context, private val educationList: ArrayLis
             val userSkills = responseObject?.userSkill?.data as ArrayList<Datum_____>?
             if (userSkills!=null && userSkills!!.isNotEmpty()) {
                 for (i in 0 until userSkills?.size!!){
-                    if (education.id==userSkills[i].skillId!!.toInt()){
+                    if (education.id==userSkills[i].skillId!!){
                         holder.tvCheck.isChecked = true
                         onItemCheckListener.onItemCheck(education)
+                        onItemCheckListener.previousData(education)
                     }
                 }
             }

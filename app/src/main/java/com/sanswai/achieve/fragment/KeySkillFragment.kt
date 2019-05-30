@@ -38,8 +38,8 @@ class KeySkillFragment : Fragment(), VolleyService.SetResponse {
     var services: VolleyService? = null
     var preferences: Preferences? = null
     var responseObject = EmployeeDetails()
-    lateinit var  dialog : Dialog
-    private val currentSelectedItems = ArrayList<Datum____>()
+    lateinit var dialog: Dialog
+    private val currentSelectedItems = HashSet<Datum____>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -93,6 +93,7 @@ class KeySkillFragment : Fragment(), VolleyService.SetResponse {
             fabKeySkill.setOnClickListener {
                 println("on click key skill is " + (activity as EmpProfileActivity).viewPager.currentItem)
                 if ((activity as EmpProfileActivity).viewPager.currentItem == 1) {
+                    currentSelectedItems.clear()
                     addorEditSkill()
                 }
             }
@@ -103,12 +104,24 @@ class KeySkillFragment : Fragment(), VolleyService.SetResponse {
         dialog = Dialog(activity!!)
         dialog.setContentView(com.sanswai.achieve.R.layout.dialog_editbox)
         val adapter1 = CheckboxAdapter(activity!!, (responseObject.mstSkill!!.data as ArrayList<Datum____>?)!!, object : CheckboxAdapter.OnItemCheckListener {
-            override fun onItemCheck(item: Datum____) {
+            override fun previousData(item: Datum____) {
                 currentSelectedItems.add(item)
+            }
+
+            override fun onItemCheck(item: Datum____) {
+                if (!currentSelectedItems.contains(item)) {
+                    for (i in 0 until userSkills!!.size) {
+                        if (userSkills!![i].skillId != item.id) {
+                            currentSelectedItems.add(item)
+                        }
+                    }
+                }
+                println("sout selected ites are" + currentSelectedItems.size)
             }
 
             override fun onItemUncheck(item: Datum____) {
                 currentSelectedItems.remove(item)
+                println("sout selected ites are removed" + currentSelectedItems.size)
             }
         })
         val mLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
@@ -123,15 +136,15 @@ class KeySkillFragment : Fragment(), VolleyService.SetResponse {
             } else {
                 val jsonArray = JSONArray()
 
-                for (i in 0 until currentSelectedItems.size) {
+                for (currentSelected in currentSelectedItems) {
                     val jsonObject = JSONObject()
-                    jsonObject.put("skill_id", currentSelectedItems[i].id)
-                    jsonObject.put("user_id", preferences!!.getPreferencesInt(getString(R.string.user_id),0).toString())
+                    jsonObject.put("skill_id", currentSelected.id)
+                    jsonObject.put("user_id", preferences!!.getPreferencesInt(getString(R.string.user_id), 0).toString())
                     jsonArray.put(jsonObject)
                 }
                 val jsonObject1 = JSONObject()
                 jsonObject1.put("arr", jsonArray)
-                services!!.callJsonObjectRequest(getString(R.string.api_key_skill) + preferences!!.getPreferencesInt(getString(R.string.user_id),0), jsonObject1)
+                services!!.callJsonObjectRequest(getString(R.string.api_key_skill) + preferences!!.getPreferencesInt(getString(R.string.user_id), 0), jsonObject1)
                 services!!.mResponseInterface = this
             }
         }
@@ -139,10 +152,10 @@ class KeySkillFragment : Fragment(), VolleyService.SetResponse {
 
     override fun onSuccess(methodName: String, response: Any) {
         println("resposne is " + response)
-        if (methodName.contains(getString(R.string.api_key_skill))){
-            if (dialog.isShowing){
+        if (methodName.contains(getString(R.string.api_key_skill))) {
+            if (dialog.isShowing) {
                 dialog.dismiss()
-                ((activity as EmpProfileActivity).getEmployeeDetails())
+                ((activity as EmpProfileActivity).getTheDetails())
             }
         }
     }

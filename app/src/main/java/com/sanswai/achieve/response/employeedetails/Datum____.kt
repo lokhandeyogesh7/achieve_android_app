@@ -7,7 +7,7 @@ class Datum____ {
 
     @SerializedName("id")
     @Expose
-    var id: Int? = null
+    var id: String? = null
     @SerializedName("skill_name")
     @Expose
     var skillName: String? = null

@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment.getExternalStorageDirectory
 import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.view.MenuItem
@@ -21,8 +22,7 @@ import com.sanswai.achieve.response.employeedetails.Datum__
 import com.sanswai.achieve.response.employeedetails.EmployeeDetails
 import kotlinx.android.synthetic.main.activity_edit_resume_headline.*
 import org.json.JSONObject
-import java.io.File
-import java.io.IOException
+import java.io.*
 
 
 class EditResumeHeadlineActivity : BaseActivity(), VolleyService.SetResponse {
@@ -58,12 +58,13 @@ class EditResumeHeadlineActivity : BaseActivity(), VolleyService.SetResponse {
         }
 
         tvUploadResume.setOnClickListener {
-            Permissions.check(this@EditResumeHeadlineActivity, Manifest.permission.READ_EXTERNAL_STORAGE, null, object : PermissionHandler() {
+            val permissions = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
+            Permissions.check(this@EditResumeHeadlineActivity, permissions, null, null, object : PermissionHandler() {
                 @SuppressLint("InlinedApi")
                 override fun onGranted() {
                     // do your task.
-                    val intent = Intent(Intent.ACTION_GET_CONTENT)
-                    intent.addCategory(Intent.CATEGORY_OPENABLE)
+                    val intent = Intent()
+                    intent.action = Intent.ACTION_GET_CONTENT
                     intent.type = "*/*"
                     val mimetypes = arrayOf("application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/msword", "application/pdf")
                     intent.putExtra(Intent.EXTRA_MIME_TYPES, mimetypes)
@@ -169,13 +170,19 @@ class EditResumeHeadlineActivity : BaseActivity(), VolleyService.SetResponse {
         showToast("Something went wrong" + volleyError.networkResponse)
     }
 
+    @SuppressLint("NewApi")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == GALLERY) {
             if (data != null) {
                 val contentURI = data.data
                 try {
-                    println("content uri is "+contentURI)
+                    println("content uri is " + contentURI)
+                   /* val id = DocumentsContract.getDocumentId(contentURI)
+                    val inputStream = contentResolver.openInputStream(contentURI)
+                    val file = File(cacheDir.absolutePath + "/" + id)
+                    writeFile(inputStream, file)
+                    val filePath = file.absolutePath*/
                     val file = File(getPath(contentURI))
                     /*val file_uri = Uri.parse(contentURI)
                     val real_path = file_uri.getPath()*/
@@ -195,22 +202,14 @@ class EditResumeHeadlineActivity : BaseActivity(), VolleyService.SetResponse {
 
     @SuppressLint("NewApi")
     private fun getPath(uri: Uri): String {
-        var realPath = ""
-        val wholeID = DocumentsContract.getDocumentId(uri);
-        // Split at colon, use second item in the array
-        val id = wholeID.split(":")[0]
-        val column = arrayOf(MediaStore.Images.Media.DATA)
-        // where id is equal to
-        val sel = MediaStore.Images.Media._ID + "=?"
-        val cursor = contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, column, sel, arrayOf(id), null)
-        var columnIndex = 0
-        if (cursor != null) {
-            columnIndex = cursor.getColumnIndex(column[0]);
-            if (cursor.moveToFirst()) {
-                realPath = cursor.getString(columnIndex)
-            }
-            cursor.close();
+        var res: String = ""
+        val proj = arrayOf(MediaStore.Images.Media.DATA)
+        val cursor = contentResolver.query(uri, proj, null, null, null)
+        if (cursor.moveToFirst()) {
+            val column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+            res = cursor.getString(column_index)
         }
-    return realPath;
+        cursor.close()
+        return res
     }
 }
