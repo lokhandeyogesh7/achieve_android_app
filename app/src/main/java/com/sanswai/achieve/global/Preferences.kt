@@ -36,6 +36,10 @@ class Preferences : Serializable {
         prefsEditor!!.putLong(key, value)
         prefsEditor!!.commit()
     }
+    fun removeKey(key: String) {
+        prefsEditor!!.remove(key)
+        prefsEditor!!.commit()
+    }
 
     fun setPreferencesBody(key: String, value: Double) {
         prefsEditor!!.putLong(key, java.lang.Double.doubleToRawLongBits(value))

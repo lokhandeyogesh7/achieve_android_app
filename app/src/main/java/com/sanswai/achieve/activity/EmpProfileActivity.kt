@@ -1,6 +1,7 @@
 package com.sanswai.achieve.activity
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
@@ -9,7 +10,7 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import com.android.volley.VolleyError
+import com.android.volley.error.VolleyError
 import com.google.gson.Gson
 import com.sanswai.achieve.R
 import com.sanswai.achieve.fragment.*
@@ -19,6 +20,7 @@ import com.sanswai.achieve.network.VolleyService
 import com.sanswai.achieve.response.employeedetails.EmployeeDetails
 import kotlinx.android.synthetic.main.activity_emp_profile.*
 import org.json.JSONObject
+import java.io.File
 
 
 class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
@@ -51,7 +53,39 @@ class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
 
     override fun onResume() {
         super.onResume()
+        getTheDetails()
+    }
+
+    fun getTheDetails() {
+        deleteCache(this@EmpProfileActivity)
         getEmployeeDetails()
+    }
+
+    fun deleteCache(context: Context) {
+        try {
+            val dir = context.getCacheDir()
+            deleteDir(dir)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+    }
+
+    fun deleteDir(dir: File?): Boolean {
+        if (dir != null && dir!!.isDirectory()) {
+            val children = dir!!.list()
+            for (i in children.indices) {
+                val success = deleteDir(File(dir, children[i]))
+                if (!success) {
+                    return false
+                }
+            }
+            return dir!!.delete()
+        } else return if (dir != null && dir!!.isFile()) {
+            dir!!.delete()
+        } else {
+            false
+        }
     }
 
     private fun setUpTabsView() {
@@ -87,14 +121,15 @@ class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
         tabLayout!!.getTabAt(6)!!.text = "Education"
     }
 
-    open fun getEmployeeDetails() {
+    fun getEmployeeDetails() {
+        preferences?.removeKey(getString(R.string.pref_employee_details))
         services?.callJsonGETRequest(getString(R.string.api_employee_details) + employee_id, JSONObject())
         services?.mResponseInterface = this
     }
 
     @SuppressLint("RestrictedApi")
     override fun onSuccess(methodName: String, response: Any) {
-        println("response is $response")
+        println("response is test $response")
         preferences?.setPreferencesBody(getString(R.string.pref_employee_details), response.toString())
         val jsonResponse = preferences?.getPreferencesString(getString(R.string.pref_employee_details))
         println("project $jsonResponse")
@@ -142,7 +177,7 @@ class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (item!!.itemId == R.id.home) {
+        if (item!!.itemId == android.R.id.home) {
             onBackPressed()
         }
         return super.onOptionsItemSelected(item)

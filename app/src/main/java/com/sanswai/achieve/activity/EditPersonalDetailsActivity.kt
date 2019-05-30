@@ -5,9 +5,11 @@ import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
-import android.widget.*
-import com.android.volley.VolleyError
+import android.widget.ArrayAdapter
+import android.widget.DatePicker
+import android.widget.EditText
+import android.widget.RadioButton
+import com.android.volley.error.VolleyError
 import com.google.gson.Gson
 import com.sanswai.achieve.global.BaseActivity
 import com.sanswai.achieve.global.Preferences
@@ -16,7 +18,6 @@ import com.sanswai.achieve.response.employeedetails.EmployeeDetails
 import kotlinx.android.synthetic.main.activity_edit_personal_details.*
 import org.json.JSONObject
 import java.util.*
-import kotlinx.android.synthetic.main.activity_edit_education_details.*
 import kotlin.collections.ArrayList
 
 

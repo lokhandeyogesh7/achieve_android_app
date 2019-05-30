@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
-        android:padding="10dp"
-        android:src="@drawable/spash_screen"/>
+        android:padding="@dimen/_15sdp"
+        android:src="@drawable/logo"/>
 
 
 </RelativeLayout>

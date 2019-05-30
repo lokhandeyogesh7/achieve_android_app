@@ -60,5 +60,7 @@
     <string name="api_location">locations</string>
     <string name="api_desired_profile">desired-career-profile</string>
     <string name="career_id">career_id</string>
+    <string name="api_resume_upload">resume-upload/</string>
+    <string name="api_profile_pic_upload">profile-pic-upload/</string>
 
 </resources>

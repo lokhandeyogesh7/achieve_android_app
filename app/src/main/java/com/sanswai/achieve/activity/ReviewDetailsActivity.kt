@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.view.MenuItem
 import android.view.View
-import com.android.volley.VolleyError
+import com.android.volley.error.VolleyError
 import com.google.gson.Gson
 import com.sanswai.achieve.R
 import com.sanswai.achieve.fragment.EmployerReviewListFragment

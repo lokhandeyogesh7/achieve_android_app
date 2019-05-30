@@ -7,7 +7,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
 import android.widget.Spinner
-import com.android.volley.VolleyError
+import com.android.volley.error.VolleyError
 import com.google.gson.Gson
 import com.sanswai.achieve.R
 import com.sanswai.achieve.global.BaseActivity

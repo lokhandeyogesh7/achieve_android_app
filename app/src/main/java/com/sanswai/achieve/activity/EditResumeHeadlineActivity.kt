@@ -1,21 +1,29 @@
 package com.sanswai.achieve.activity
 
-import android.support.v7.app.AppCompatActivity
+import android.Manifest
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.DocumentsContract
+import android.provider.MediaStore
 import android.view.MenuItem
-import android.view.View
-import android.widget.EditText
-import com.android.volley.VolleyError
+import android.widget.Toast
+import com.android.volley.error.VolleyError
 import com.google.gson.Gson
+import com.nabinbhandari.android.permissions.PermissionHandler
+import com.nabinbhandari.android.permissions.Permissions
 import com.sanswai.achieve.R
 import com.sanswai.achieve.global.BaseActivity
 import com.sanswai.achieve.global.Preferences
 import com.sanswai.achieve.network.VolleyService
 import com.sanswai.achieve.response.employeedetails.Datum__
 import com.sanswai.achieve.response.employeedetails.EmployeeDetails
-import com.sanswai.achieve.response.employeedetails.Project
 import kotlinx.android.synthetic.main.activity_edit_resume_headline.*
 import org.json.JSONObject
+import java.io.File
+import java.io.IOException
+
 
 class EditResumeHeadlineActivity : BaseActivity(), VolleyService.SetResponse {
 
@@ -25,7 +33,9 @@ class EditResumeHeadlineActivity : BaseActivity(), VolleyService.SetResponse {
     private var employeeId: String? = null
     private var resumeId: String = ""
     private var projectPosition: String = ""
+    val GALLERY = 987
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_resume_headline)
@@ -37,7 +47,6 @@ class EditResumeHeadlineActivity : BaseActivity(), VolleyService.SetResponse {
             supportActionBar!!.title = "Edit Project Details"
             lblResumeTitle.text = "Project Title:"
             lblResumeDescription.text = "Project Description:"
-            tvUploadResume.visibility = View.GONE
         } else {
             supportActionBar!!.title = "Edit Resume Headline"
         }
@@ -48,18 +57,32 @@ class EditResumeHeadlineActivity : BaseActivity(), VolleyService.SetResponse {
             setPreviousData(jsonResponse)
         }
 
+        tvUploadResume.setOnClickListener {
+            Permissions.check(this@EditResumeHeadlineActivity, Manifest.permission.READ_EXTERNAL_STORAGE, null, object : PermissionHandler() {
+                @SuppressLint("InlinedApi")
+                override fun onGranted() {
+                    // do your task.
+                    val intent = Intent(Intent.ACTION_GET_CONTENT)
+                    intent.addCategory(Intent.CATEGORY_OPENABLE)
+                    intent.type = "*/*"
+                    val mimetypes = arrayOf("application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/msword", "application/pdf")
+                    intent.putExtra(Intent.EXTRA_MIME_TYPES, mimetypes)
+                    startActivityForResult(intent, GALLERY)
+                }
+            })
+        }
+
         tvSubmitResume.setOnClickListener {
             saveResumeHeadline()
         }
-
     }
 
     private fun saveResumeHeadline() {
         when {
-            etResumetitle.text.toString().isNullOrEmpty() -> {
+            etResumetitle.text.toString().isEmpty() -> {
                 showToast("Please Enter Title")
             }
-            etResumeDescription.text.toString().isNullOrEmpty() -> {
+            etResumeDescription.text.toString().isEmpty() -> {
                 showToast("Please Enter Description")
             }
             else -> {
@@ -82,21 +105,19 @@ class EditResumeHeadlineActivity : BaseActivity(), VolleyService.SetResponse {
                 }
             }
         }
-
     }
 
     private fun setPreviousData(jsonResponse: String) {
         responseObject = Gson().fromJson(jsonResponse, EmployeeDetails::class.java)
-
         employeeId = responseObject?.users!!.data!!.id.toString()
         if (intent.getBooleanExtra(getString(R.string.fromProjects), false)) {
             if (responseObject!!.project!!.response == "true") {
-                projectPosition = intent.extras.getString(getString(R.string.project_id),"")
-                println("project position is "+projectPosition)
+                projectPosition = intent.extras.getString(getString(R.string.project_id), "")
+                println("project position is " + projectPosition)
                 if (projectPosition != "new") {
                     var selectedProject = Datum__()
-                    for(i in 0 until responseObject?.project!!.data!!.size){
-                        if (projectPosition==responseObject?.project!!.data!![i].id.toString()){
+                    for (i in 0 until responseObject?.project!!.data!!.size) {
+                        if (projectPosition == responseObject?.project!!.data!![i].id.toString()) {
                             selectedProject = responseObject?.project!!.data!![i]
                             resumeId = selectedProject.id.toString()
                             println("esume id for project is " + resumeId)
@@ -105,7 +126,7 @@ class EditResumeHeadlineActivity : BaseActivity(), VolleyService.SetResponse {
                             etResumeDescription.setText(selectedProject.projectDescription)
                         }
                     }
-                }else{
+                } else {
                     etResumetitle.hint = "Title"
                     etResumeDescription.hint = "Description"
                 }
@@ -136,7 +157,7 @@ class EditResumeHeadlineActivity : BaseActivity(), VolleyService.SetResponse {
     }
 
     override fun onSuccess(methodName: String, response: Any) {
-        println("response is " + response)
+        println("response is $response")
         if ((response as JSONObject).get("response") == "true") {
             onBackPressed()
         } else {
@@ -146,5 +167,50 @@ class EditResumeHeadlineActivity : BaseActivity(), VolleyService.SetResponse {
 
     override fun onFailure(methodName: String, volleyError: VolleyError) {
         showToast("Something went wrong" + volleyError.networkResponse)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == GALLERY) {
+            if (data != null) {
+                val contentURI = data.data
+                try {
+                    println("content uri is "+contentURI)
+                    val file = File(getPath(contentURI))
+                    /*val file_uri = Uri.parse(contentURI)
+                    val real_path = file_uri.getPath()*/
+                    println("image is real paths " + file.absolutePath)
+                    if (file.length() > 2000000) {
+                        showToast("Try File less than 2 MB")
+                    } else {
+                        services!!.postMultipartRequest(getString(com.sanswai.achieve.R.string.api_resume_upload) + (employeeId), file.absolutePath)
+                    }
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                    Toast.makeText(this, "Failed!", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    @SuppressLint("NewApi")
+    private fun getPath(uri: Uri): String {
+        var realPath = ""
+        val wholeID = DocumentsContract.getDocumentId(uri);
+        // Split at colon, use second item in the array
+        val id = wholeID.split(":")[0]
+        val column = arrayOf(MediaStore.Images.Media.DATA)
+        // where id is equal to
+        val sel = MediaStore.Images.Media._ID + "=?"
+        val cursor = contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, column, sel, arrayOf(id), null)
+        var columnIndex = 0
+        if (cursor != null) {
+            columnIndex = cursor.getColumnIndex(column[0]);
+            if (cursor.moveToFirst()) {
+                realPath = cursor.getString(columnIndex)
+            }
+            cursor.close();
+        }
+    return realPath;
     }
 }

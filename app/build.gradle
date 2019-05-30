@@ -9,8 +9,8 @@ android {
         applicationId "com.sanswai.achieve"
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        versionCode 6
+        versionName "1.5"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -37,7 +37,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     //adding volley library
-    implementation 'com.android.volley:volley:1.1.0'
+    //implementation 'com.android.volley:volley:1.1.0'
     //gson to convert json response
     implementation 'com.google.code.gson:gson:2.8.2'
     //recyclerview
@@ -49,5 +49,10 @@ dependencies {
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
 
     implementation 'de.hdodenhof:circleimageview:3.0.0'
+
+    implementation 'dev.dworks.libs:volleyplus:+'
+
+    implementation 'com.nabinbhandari.android:permissions:3.8'
+
 
 }

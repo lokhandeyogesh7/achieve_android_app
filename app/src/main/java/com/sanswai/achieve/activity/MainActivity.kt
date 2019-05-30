@@ -9,7 +9,7 @@ import android.view.MenuItem
 import android.widget.LinearLayout
 import com.sanswai.achieve.R
 import android.widget.Toast
-import com.android.volley.VolleyError
+import com.android.volley.error.VolleyError
 import com.google.gson.Gson
 import com.sanswai.achieve.adapter.EmployerListAdapter
 import com.sanswai.achieve.global.BaseActivity
@@ -32,13 +32,13 @@ class MainActivity : BaseActivity(), VolleyService.SetResponse {
 
         //loginResponse = intent.getSerializableExtra(getString(R.string.employee_data)) as LoginResponse?
         preferences = Preferences.getInstance(this)
-        services = VolleyService(this)
+        services = VolleyService(this@MainActivity)
         userId = preferences!!.getPreferencesInt(getString(R.string.user_id), 0)
 
 
+        setUpActionBar()
         getEmployeeDashboard()
 
-        setUpActionBar()
     }
 
     private fun getEmployeeDashboard() {

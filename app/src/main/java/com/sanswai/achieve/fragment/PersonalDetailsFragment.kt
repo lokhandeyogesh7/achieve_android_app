@@ -1,17 +1,24 @@
 package com.sanswai.achieve.fragment
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.support.v4.app.Fragment
-import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import com.android.volley.error.VolleyError
 import com.google.gson.Gson
+import com.nabinbhandari.android.permissions.PermissionHandler
+import com.nabinbhandari.android.permissions.Permissions
 import com.sanswai.achieve.R
 import com.sanswai.achieve.activity.EditPersonalDetailsActivity
 import com.sanswai.achieve.activity.EmpProfileActivity
+import com.sanswai.achieve.global.BaseActivity
 import com.sanswai.achieve.global.Preferences
 import com.sanswai.achieve.network.VolleyService
 import com.sanswai.achieve.response.employeedetails.EmployeeDetails
@@ -19,11 +26,15 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_emp_profile.*
 import kotlinx.android.synthetic.main.fragment_personal_details.*
 import kotlinx.android.synthetic.main.layout_profile.*
+import java.io.File
+import java.io.IOException
 
-class PersonalDetailsFragment : Fragment() {
+
+class PersonalDetailsFragment : Fragment(), VolleyService.SetResponse {
 
     var services: VolleyService? = null
     var preferences: Preferences? = null
+    val GALLERY = 789
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -41,6 +52,17 @@ class PersonalDetailsFragment : Fragment() {
             fabPersonalDetai.visibility = View.VISIBLE
         } else {
             fabPersonalDetai.visibility = View.GONE
+        }
+
+        ivUploadPic.setOnClickListener {
+            Permissions.check(activity/*context*/, Manifest.permission.READ_EXTERNAL_STORAGE, null, object : PermissionHandler() {
+                override fun onGranted() {
+                    // do your task.
+                    val galleryIntent = Intent(Intent.ACTION_PICK,
+                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                    startActivityForResult(galleryIntent, GALLERY)
+                }
+            })
         }
 
         val jsonResponse = preferences?.getPreferencesString(getString(R.string.pref_employee_details))
@@ -86,4 +108,51 @@ class PersonalDetailsFragment : Fragment() {
             }
         }
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == GALLERY) {
+            if (data != null) {
+                val contentURI = data.data
+                try {
+                    val file = File(getPath(contentURI))
+
+                    //val bitmap = MediaStore.Images.Media.getBitmap(activity!!.contentResolver, contentURI)
+                    // imageView.setImageBitmap(bitmap);
+                    println("image is " + file.length())
+                    if (file.length() > 2000000) {
+                        (activity as BaseActivity).showToast("Try File less than 2 MB")
+                    } else {
+                        services!!.postMultipartRequest(getString(R.string.api_profile_pic_upload) + ((activity as EmpProfileActivity).employee_id), file.absolutePath)
+                        services!!.mResponseInterface = this
+                    }
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                    Toast.makeText(activity, "Failed!", Toast.LENGTH_SHORT).show()
+                }
+
+            }
+        }
+    }
+
+    fun getPath(uri: Uri): String {
+        var res: String = ""
+        val proj = arrayOf(MediaStore.Images.Media.DATA)
+        val cursor = activity!!.contentResolver.query(uri, proj, null, null, null)
+        if (cursor.moveToFirst()) {
+            val column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+            res = cursor.getString(column_index)
+        }
+        cursor.close()
+        return res
+    }
+
+    override fun onSuccess(methodName: String, response: Any) {
+        ((activity as EmpProfileActivity).getTheDetails())
+    }
+
+    override fun onFailure(methodName: String, volleyError: VolleyError) {
+    }
+
 }

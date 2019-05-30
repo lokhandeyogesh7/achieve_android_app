@@ -23,6 +23,14 @@
             android:src="@mipmap/ic_launcher"
             android:paddingLeft="@dimen/_5sdp" />
 
+        <ImageView
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:id="@+id/ivUploadPic"
+            android:src="@drawable/ic_photo_camera"
+            android:layout_alignRight="@+id/ivProfile"
+            android:layout_alignBottom="@+id/ivProfile"/>
+
         <TextView
             android:id="@+id/tvTelephone"
             android:layout_width="wrap_content"
