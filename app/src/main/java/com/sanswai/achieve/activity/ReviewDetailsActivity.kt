@@ -5,6 +5,7 @@ import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.android.volley.error.VolleyError
@@ -128,8 +129,19 @@ class ReviewDetailsActivity : BaseActivity(), VolleyService.SetResponse {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        onBackPressed()
-        return super.onOptionsItemSelected(item)
+        when (item!!.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+        }
+        return true
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu_logo, menu)
+        return true
     }
 
 }

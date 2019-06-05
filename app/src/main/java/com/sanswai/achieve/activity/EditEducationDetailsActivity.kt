@@ -1,6 +1,7 @@
 package com.sanswai.achieve.activity
 
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
@@ -324,6 +325,12 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
                 return true
             }
         }
+        return true
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu_logo, menu)
         return true
     }
 }

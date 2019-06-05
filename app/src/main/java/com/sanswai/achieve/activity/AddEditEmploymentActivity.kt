@@ -1,12 +1,14 @@
 package com.sanswai.achieve.activity
 
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.android.volley.error.VolleyError
 import com.google.gson.Gson
+import com.sanswai.achieve.R
 import com.sanswai.achieve.global.BaseActivity
 import com.sanswai.achieve.global.Preferences
 import com.sanswai.achieve.network.VolleyService
@@ -213,6 +215,12 @@ class AddEditEmploymentActivity : BaseActivity(), VolleyService.SetResponse {
                 return true
             }
         }
+        return true
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu_logo, menu)
         return true
     }
 

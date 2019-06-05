@@ -2,6 +2,7 @@ package com.sanswai.achieve.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
@@ -263,6 +264,12 @@ class EditCareerPathActivity : AppCompatActivity(), VolleyService.SetResponse, R
                 return true
             }
         }
+        return true
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu_logo, menu)
         return true
     }
 

@@ -109,6 +109,8 @@ class VolleyService(val context: Context) {
         dialog.setContentView(com.sanswai.achieve.R.layout.layout_loading)
         dialog.show()
 
+        println("resume path "+imagePath)
+
         val requestUrl = context.getString(com.sanswai.achieve.R.string.base_url) + url
         val smr = SimpleMultiPartRequest(Request.Method.POST, requestUrl,
                 Response.Listener { response ->

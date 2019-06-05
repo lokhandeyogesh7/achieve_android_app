@@ -4,6 +4,7 @@ import android.R
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
@@ -201,6 +202,12 @@ class EditPersonalDetailsActivity : BaseActivity(), DatePickerDialog.OnDateSetLi
                 return true
             }
         }
+        return true
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(com.sanswai.achieve.R.menu.menu_logo, menu)
         return true
     }
 

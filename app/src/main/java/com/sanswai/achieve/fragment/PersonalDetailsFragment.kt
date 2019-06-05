@@ -120,7 +120,7 @@ class PersonalDetailsFragment : Fragment(), VolleyService.SetResponse {
 
                     //val bitmap = MediaStore.Images.Media.getBitmap(activity!!.contentResolver, contentURI)
                     // imageView.setImageBitmap(bitmap);
-                    println("image is " + file.length())
+                    println("image is " + file.absolutePath)
                     if (file.length() > 2000000) {
                         (activity as BaseActivity).showToast("Try File less than 2 MB")
                     } else {

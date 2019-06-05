@@ -3,11 +3,12 @@ package com.sanswai.achieve.activity
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
-import android.os.Environment.getExternalStorageDirectory
 import android.provider.DocumentsContract
 import android.provider.MediaStore
+import android.provider.OpenableColumns
 import android.view.MenuItem
 import android.widget.Toast
 import com.android.volley.error.VolleyError
@@ -15,6 +16,7 @@ import com.google.gson.Gson
 import com.nabinbhandari.android.permissions.PermissionHandler
 import com.nabinbhandari.android.permissions.Permissions
 import com.sanswai.achieve.R
+import com.sanswai.achieve.RealFilePath
 import com.sanswai.achieve.global.BaseActivity
 import com.sanswai.achieve.global.Preferences
 import com.sanswai.achieve.network.VolleyService
@@ -22,7 +24,12 @@ import com.sanswai.achieve.response.employeedetails.Datum__
 import com.sanswai.achieve.response.employeedetails.EmployeeDetails
 import kotlinx.android.synthetic.main.activity_edit_resume_headline.*
 import org.json.JSONObject
-import java.io.*
+import java.io.File
+import java.io.IOException
+import android.os.Environment.getDownloadCacheDirectory
+import android.os.Environment
+import android.provider.MediaStore.MediaColumns
+import android.view.Menu
 
 
 class EditResumeHeadlineActivity : BaseActivity(), VolleyService.SetResponse {
@@ -57,21 +64,7 @@ class EditResumeHeadlineActivity : BaseActivity(), VolleyService.SetResponse {
             setPreviousData(jsonResponse)
         }
 
-        tvUploadResume.setOnClickListener {
-            val permissions = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
-            Permissions.check(this@EditResumeHeadlineActivity, permissions, null, null, object : PermissionHandler() {
-                @SuppressLint("InlinedApi")
-                override fun onGranted() {
-                    // do your task.
-                    val intent = Intent()
-                    intent.action = Intent.ACTION_GET_CONTENT
-                    intent.type = "*/*"
-                    val mimetypes = arrayOf("application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/msword", "application/pdf")
-                    intent.putExtra(Intent.EXTRA_MIME_TYPES, mimetypes)
-                    startActivityForResult(intent, GALLERY)
-                }
-            })
-        }
+
 
         tvSubmitResume.setOnClickListener {
             saveResumeHeadline()
@@ -178,15 +171,26 @@ class EditResumeHeadlineActivity : BaseActivity(), VolleyService.SetResponse {
                 val contentURI = data.data
                 try {
                     println("content uri is " + contentURI)
-                   /* val id = DocumentsContract.getDocumentId(contentURI)
-                    val inputStream = contentResolver.openInputStream(contentURI)
-                    val file = File(cacheDir.absolutePath + "/" + id)
-                    writeFile(inputStream, file)
-                    val filePath = file.absolutePath*/
-                    val file = File(getPath(contentURI))
-                    /*val file_uri = Uri.parse(contentURI)
-                    val real_path = file_uri.getPath()*/
-                    println("image is real paths " + file.absolutePath)
+                    val fileNew = File(getPath(contentURI))
+                    val file = File(contentURI.toString())
+                    val path = file.getAbsolutePath()
+                    var displayName: String? = null
+
+                    if (contentURI.toString().startsWith("content://")) {
+                        var cursor: Cursor? = null
+                        try {
+                            cursor = contentResolver.query(contentURI, null, null, null, null)
+                            if (cursor != null && cursor!!.moveToFirst()) {
+                                displayName = cursor!!.getString(cursor!!.getColumnIndex(OpenableColumns.DISPLAY_NAME))
+                            }
+                        } finally {
+                            cursor!!.close()
+                        }
+                    } else if (contentURI.toString().startsWith("file://")) {
+                        displayName = file.getName()
+                    }
+                    println("column name " + displayName)
+                    println("image is real paths " + fileNew.absolutePath)
                     if (file.length() > 2000000) {
                         showToast("Try File less than 2 MB")
                     } else {
@@ -202,14 +206,19 @@ class EditResumeHeadlineActivity : BaseActivity(), VolleyService.SetResponse {
 
     @SuppressLint("NewApi")
     private fun getPath(uri: Uri): String {
-        var res: String = ""
-        val proj = arrayOf(MediaStore.Images.Media.DATA)
-        val cursor = contentResolver.query(uri, proj, null, null, null)
-        if (cursor.moveToFirst()) {
-            val column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-            res = cursor.getString(column_index)
-        }
-        cursor.close()
-        return res
+        val projection = arrayOf(MediaColumns.DATA)
+        val cursor = managedQuery(uri, projection, null, null, null)
+        if (cursor != null) {
+            val column_index = cursor.getColumnIndexOrThrow(MediaColumns.DATA)
+            cursor.moveToFirst()
+            return cursor.getString(column_index)
+        } else
+            return ""
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu_logo, menu)
+        return true
     }
 }
