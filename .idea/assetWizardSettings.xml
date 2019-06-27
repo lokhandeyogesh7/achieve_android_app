@@ -168,8 +168,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_photo_camera" />
-                            <entry key="sourceFile" value="C:\Users\Yogarsha\Downloads\photo-camera.svg" />
+                            <entry key="outputName" value="ic_eye" />
+                            <entry key="sourceFile" value="C:\Users\Yogarsha\Downloads\eye.svg" />
                           </map>
                         </option>
                       </PersistentState>

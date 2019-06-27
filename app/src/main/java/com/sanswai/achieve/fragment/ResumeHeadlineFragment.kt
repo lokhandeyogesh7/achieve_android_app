@@ -76,8 +76,10 @@ class ResumeHeadlineFragment : Fragment() {
 
         if (preferences?.getPreferencesString(getString(R.string.user_type)) == "employee") {
             fabResume.visibility = View.VISIBLE
+            tvUploadResume.visibility = View.VISIBLE
         } else {
             fabResume.visibility = View.GONE
+            tvUploadResume.visibility = View.GONE
         }
 
         if (responseObject.resumeHeadline?.response == "false") {

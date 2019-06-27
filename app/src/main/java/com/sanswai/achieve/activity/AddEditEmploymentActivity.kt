@@ -120,6 +120,14 @@ class AddEditEmploymentActivity : BaseActivity(), VolleyService.SetResponse {
                     }
                 }
 
+        radiocOptions.setOnCheckedChangeListener { group, checkedId ->
+            if(checkedId==R.id.radioYes){
+                llWorkedtill.visibility = View.INVISIBLE
+            }else{
+                llWorkedtill.visibility = View.VISIBLE
+            }
+        }
+
         tvSubmitEmployment.setOnClickListener {
             println("selected ")
             if (radioYes.isChecked) {
@@ -176,6 +184,7 @@ class AddEditEmploymentActivity : BaseActivity(), VolleyService.SetResponse {
                         etJobDescription.setText(selectedProject.jobProfileDescription)
                         if (selectedProject.isCurrentEmployment == "1") {
                             radioYes.isChecked = true
+                            llWorkedtill.visibility = View.INVISIBLE
                         } else {
                             radioNo.isChecked = true
                         }

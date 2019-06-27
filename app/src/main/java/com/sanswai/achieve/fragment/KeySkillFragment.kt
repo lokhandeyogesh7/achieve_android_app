@@ -109,12 +109,14 @@ class KeySkillFragment : Fragment(), VolleyService.SetResponse {
             }
 
             override fun onItemCheck(item: Datum____) {
-                if (!currentSelectedItems.contains(item)) {
+                if (userSkills != null && !currentSelectedItems.contains(item)) {
                     for (i in 0 until userSkills!!.size) {
                         if (userSkills!![i].skillId != item.id) {
                             currentSelectedItems.add(item)
                         }
                     }
+                }else if (userSkills == null){
+                    currentSelectedItems.add(item)
                 }
                 println("sout selected ites are" + currentSelectedItems.size)
             }

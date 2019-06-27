@@ -41,5 +41,8 @@ class Datum {
     @SerializedName("grade_system")
     @Expose
     var gradeSystem: String? = null
+    @SerializedName("marks_percentage")
+    @Expose
+    var marks: String? = null
 
 }

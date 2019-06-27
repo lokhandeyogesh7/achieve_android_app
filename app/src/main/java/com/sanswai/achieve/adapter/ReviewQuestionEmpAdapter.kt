@@ -68,6 +68,10 @@ class ReviewQuestionEmpAdapter(private val mContext: Context, private val revQue
         }
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
     override fun getItemCount(): Int {
         return revQuestionList!!.size
     }

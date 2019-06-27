@@ -50,6 +50,7 @@ class EducationAdapter(val mContext: Context, private val educationList: ArrayLi
         holder.ivEditEducation.setOnClickListener {
                 val intent = Intent(mContext, EditEducationDetailsActivity::class.java)
                 intent.putExtra(mContext.getString(R.string.project_id), education.id.toString())
+            println("educatioon id is "+education.id)
                 mContext.startActivity(intent)
                 /*   mContext.startActivity(Intent(mContext, EditResumeHeadlineActivity::class.java).putExtra(mContext.getString(R.string.fromProjects), true).putExtra(mContext
                            .getString(R.string.project_id), projects.id))*/

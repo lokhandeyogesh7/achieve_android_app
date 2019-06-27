@@ -71,6 +71,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
             android:fontFamily="@font/myfont"
+            android:text="Male /n single /n Nashik"
+            android:textSize="@dimen/_13sdp" />
+
+ <TextView
+            android:id="@+id/tvExpLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/myfont"
             android:layout_marginBottom="@dimen/_10sdp"
             android:text="Male /n single /n Nashik"
             android:textSize="@dimen/_13sdp" />

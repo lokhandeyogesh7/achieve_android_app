@@ -217,8 +217,11 @@ class EditCareerPathActivity : AppCompatActivity(), VolleyService.SetResponse, R
             }
             getString(R.string.api_location) -> {
                 locationResponse = Gson().fromJson(response.toString(), Location::class.java)
-                val dataAdapter = ArrayAdapter<com.sanswai.achieve.response.locationlist.Datum>(this, android.R.layout.simple_spinner_dropdown_item, locationResponse!!.data!!.toList())
-                spLocation.adapter = dataAdapter
+                println("location response "+response.toString())
+                if (locationResponse!!.response!="false") {
+                    val dataAdapter = ArrayAdapter<com.sanswai.achieve.response.locationlist.Datum>(this, android.R.layout.simple_spinner_dropdown_item, locationResponse!!.data!!.toList())
+                    spLocation.adapter = dataAdapter
+                }
                 prepopulateData()
             }
             getString(R.string.api_desired_profile) -> {

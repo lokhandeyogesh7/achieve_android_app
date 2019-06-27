@@ -216,7 +216,7 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
                     spPassingYear.setSelection(years.indexOf(selectedProject.passingYear))
                     spGradeSystem.setSelection((selectedProject.gradingSystemId!!.toInt().minus(1)))
                     etCollege.setText(selectedProject.instituteName)
-                    etMarks.setText(selectedProject.gradeSystem)
+                    etMarks.setText(selectedProject.marks)
                     isDataSet = true
                     if (selectedProject.courseType == "1") {
                         radioFullTime.isChecked = true

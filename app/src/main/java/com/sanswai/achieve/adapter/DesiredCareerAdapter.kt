@@ -20,6 +20,7 @@ class DesiredCareerAdapter (val mContext: Context, private val educationList: Ar
         var tvEmpType: TextView = view.findViewById(R.id.tvEmpType)
         var tvExpSalary: TextView = view.findViewById(R.id.tvExpSalary)
         var tvDesShift: TextView = view.findViewById(R.id.tvDesShift)
+        var tvExpLocation: TextView = view.findViewById(R.id.tvExpLocation)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -38,6 +39,7 @@ class DesiredCareerAdapter (val mContext: Context, private val educationList: Ar
         val empType = "<b>Employment Type: </b>"+education.employmentType
         val salary = "<b>Expected Salary: </b>"+education.expectedSalaryAmount+"  "+education.expectedSalaryType
         val shift = "<b>Desired Shift: </b>"+education.desiredShift
+        val locattion = "<b>Desired Location: </b>"+education.locationName
 
 
         holder.tvFunctionAreaName.text = Html.fromHtml(funArea)
@@ -47,6 +49,7 @@ class DesiredCareerAdapter (val mContext: Context, private val educationList: Ar
         holder.tvEmpType.text = Html.fromHtml(empType)
         holder.tvExpSalary.text =Html.fromHtml(salary)
         holder.tvDesShift.text = Html.fromHtml(shift)
+        holder.tvExpLocation.text = Html.fromHtml(locattion)
     }
 
     override fun getItemCount(): Int {
