@@ -10,9 +10,11 @@ import android.widget.Toast
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.Response
+import com.android.volley.VolleyLog
 import com.android.volley.error.VolleyError
 import com.android.volley.request.JsonObjectRequest
 import com.android.volley.request.SimpleMultiPartRequest
+import com.android.volley.toolbox.Volley
 import com.sanswai.achieve.R
 import com.sanswai.achieve.global.AchieveApplication
 import com.sanswai.achieve.global.Preferences
@@ -34,9 +36,9 @@ class VolleyService(val context: Context) {
 
         val dialog = Dialog(context)
         dialog.window.requestFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(com.sanswai.achieve.R.layout.layout_loading)
-        if(dialog !=null) {
-            if(dialog.isShowing) {
+        dialog.setContentView(R.layout.layout_loading)
+        if (dialog != null) {
+            if (dialog.isShowing) {
                 dialog.dismiss()
             }
             dialog.show()
@@ -73,7 +75,7 @@ class VolleyService(val context: Context) {
 
         val dialog = Dialog(context)
         dialog.window.requestFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(com.sanswai.achieve.R.layout.layout_loading)
+        dialog.setContentView(R.layout.layout_loading)
         dialog.show()
 
         val requestUrl = context.getString(com.sanswai.achieve.R.string.base_url) + methodName
@@ -85,7 +87,7 @@ class VolleyService(val context: Context) {
                 Response.Listener<JSONObject> {
                     val preferences = Preferences.getInstance(context)
                     val jsonResponse = preferences?.getPreferencesString(context.getString(R.string.pref_employee_details))
-                    println(" success pref "+jsonResponse)
+                    println(" success pref " + jsonResponse)
                     println("success $it")
                     dialog.dismiss()
                     mResponseInterface.onSuccess(methodName, it)
@@ -106,16 +108,16 @@ class VolleyService(val context: Context) {
 
         val dialog = Dialog(context)
         dialog.window.requestFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(com.sanswai.achieve.R.layout.layout_loading)
+        dialog.setContentView(R.layout.layout_loading)
         dialog.show()
 
-        println("resume path "+imagePath)
+        println("resume path " + imagePath)
 
         val requestUrl = context.getString(com.sanswai.achieve.R.string.base_url) + url
         val smr = SimpleMultiPartRequest(Request.Method.POST, requestUrl,
                 Response.Listener { response ->
                     try {
-                        println("response is image upload"+response)
+                        println("response is image upload" + response)
                         dialog.dismiss()
                         mResponseInterface.onSuccess(url, response)
 
@@ -127,13 +129,15 @@ class VolleyService(val context: Context) {
                     }
                 }, Response.ErrorListener { error ->
             dialog.dismiss()
-            Toast.makeText(context, error.message, Toast.LENGTH_LONG).show() })
+            Toast.makeText(context, error.message, Toast.LENGTH_LONG).show()
+        })
 
-        if (url.contains("resume")){
+        if (url.contains("resume")) {
             smr.addFile("resume_name", imagePath)
-        }else {
+        } else {
             smr.addFile("image_name", imagePath)
         }
+        VolleyLog.DEBUG = true
         AchieveApplication.instance?.addToRequestQueue(smr)
 
     }

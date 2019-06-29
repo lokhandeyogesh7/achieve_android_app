@@ -1,5 +1,6 @@
 package com.sanswai.achieve.activity
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -23,6 +24,8 @@ import kotlinx.android.synthetic.main.activity_edit_education_details.*
 import org.json.JSONObject
 import java.util.*
 import kotlin.collections.ArrayList
+
+
 
 
 class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, AdapterView.OnItemSelectedListener {
@@ -230,6 +233,7 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
         }
     }
 
+
     override fun onNothingSelected(parent: AdapterView<*>?) {
     }
 
@@ -259,7 +263,6 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
         services!!.callJsonGETRequest(getString(R.string.api_education), JSONObject())
         services!!.mResponseInterface = this
     }
-
 
     override fun onSuccess(methodName: String, response: Any) {
         when {
