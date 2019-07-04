@@ -36,7 +36,7 @@ class AddReviewActivity : BaseActivity(), VolleyService.SetResponse, View.OnClic
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.sanswai.achieve.R.layout.activity_add_review)
+        setContentView(R.layout.activity_add_review)
         services = VolleyService(this)
         preferences = Preferences.getInstance(this)
 
@@ -50,6 +50,12 @@ class AddReviewActivity : BaseActivity(), VolleyService.SetResponse, View.OnClic
         employee_id = intent.getStringExtra(getString(R.string.employee_id))
         employer_id = preferences!!.getPreferencesInt(getString(R.string.user_id),0).toString()
 
+        btnSave.setOnClickListener {
+            var strStartDate = tvStartDate.text.toString()
+            var strEndDate = tvEndDate.text.toString()
+            checkForDate(strStartDate, strEndDate)
+        }
+
         getQuestionList()
     }
 
@@ -62,10 +68,10 @@ class AddReviewActivity : BaseActivity(), VolleyService.SetResponse, View.OnClic
         println("request failed $methodName and rerror is ${volleyError.localizedMessage}")
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+  /*  override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_review, menu)
         return true
-    }
+    }*/
 
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

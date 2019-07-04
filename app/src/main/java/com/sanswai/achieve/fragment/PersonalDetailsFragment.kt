@@ -149,7 +149,7 @@ class PersonalDetailsFragment : Fragment(), VolleyService.SetResponse {
     }
 
     override fun onSuccess(methodName: String, response: Any) {
-        ((activity as EmpProfileActivity).getTheDetails())
+        ((activity as EmpProfileActivity).getTheDetails(0))
     }
 
     override fun onFailure(methodName: String, volleyError: VolleyError) {

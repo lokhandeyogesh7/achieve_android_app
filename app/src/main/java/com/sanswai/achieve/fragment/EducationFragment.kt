@@ -65,7 +65,7 @@ class EducationFragment : Fragment() {
             fabEducation.setImageResource(R.drawable.ic_pencil_edit_button)
         }*/
         fabEducation.setOnClickListener {
-            startActivity(Intent(activity!!, EditEducationDetailsActivity::class.java))
+            startActivityForResult(Intent(activity!!, EditEducationDetailsActivity::class.java),105)
         }
 
         if (preferences?.getPreferencesString(getString(R.string.user_type)) == "employee") {
@@ -73,5 +73,11 @@ class EducationFragment : Fragment() {
         } else {
             fabEducation.visibility = View.GONE
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        println("inside fargments   sddkjhdjsdjhdgsh hshsjdjd")
+        ((activity as EmpProfileActivity).getTheDetails(6))
     }
 }

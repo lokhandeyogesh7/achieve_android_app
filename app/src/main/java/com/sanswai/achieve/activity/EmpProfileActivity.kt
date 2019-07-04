@@ -1,6 +1,7 @@
 package com.sanswai.achieve.activity
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.TabLayout
@@ -21,6 +22,8 @@ import com.sanswai.achieve.response.employeedetails.EmployeeDetails
 import kotlinx.android.synthetic.main.activity_emp_profile.*
 import org.json.JSONObject
 import java.io.File
+import android.content.Intent
+import android.util.Log.println
 
 
 class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
@@ -30,6 +33,8 @@ class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
     var preferences: Preferences? = null
     var services: VolleyService? = null
     var arrFragment = ArrayList<Fragment>()
+    var currentPosition = 0
+    var activityHasResult = false
     //lateinit var collapsingToolbarLayout :CollapsingToolbarLayout
 
     @SuppressLint("RestrictedApi")
@@ -53,11 +58,14 @@ class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
 
     override fun onResume() {
         super.onResume()
-        getTheDetails()
+        if (!activityHasResult) {
+            getTheDetails(currentPosition)
+        }
     }
 
-    fun getTheDetails() {
+   open fun getTheDetails(i: Int) {
         deleteCache(this@EmpProfileActivity)
+        currentPosition = i
         getEmployeeDetails()
     }
 
@@ -119,6 +127,8 @@ class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
         tabLayout!!.getTabAt(4)!!.text = "Projects"
         tabLayout!!.getTabAt(5)!!.text = "Employment"
         tabLayout!!.getTabAt(6)!!.text = "Education"
+
+        viewPager.setCurrentItem(currentPosition)
     }
 
     fun getEmployeeDetails() {
@@ -187,5 +197,28 @@ class EmpProfileActivity : BaseActivity(), VolleyService.SetResponse {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_logo, menu)
         return true
+    }
+
+   /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                val myStr = data.getIntExtra("MyData",0)
+                getTheDetails(myStr)
+            }
+        }
+    }*/
+
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        //println("activity result is called")
+        activityHasResult=true
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                val myStr = data!!.getIntExtra("MyData",0)
+                currentPosition = myStr
+                getTheDetails(myStr)
+                println("activity wala loop")
+            }
+        }
     }
 }

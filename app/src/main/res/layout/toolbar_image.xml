@@ -15,7 +15,7 @@
         android:layout_marginEnd="@dimen/_10sdp"
         android:layout_gravity="end|center"
         android:background="@android:color/white"
-        android:src="@drawable/toolbar_icon"
+        app:srcCompat="@drawable/toolbar_icon"
         android:layout_marginRight="@dimen/_10sdp" />
 
 </android.support.v7.widget.Toolbar>

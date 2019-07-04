@@ -20,8 +20,12 @@ import com.sanswai.achieve.response.functionalarea.FunctionalArea
 import com.sanswai.achieve.response.industries.Industries
 import com.sanswai.achieve.response.locationlist.Location
 import kotlinx.android.synthetic.main.activity_edit_career_path.*
+import kotlinx.android.synthetic.main.activity_emp_profile.*
 import org.json.JSONObject
 import java.lang.Exception
+import android.R.attr.data
+import android.content.Intent
+
 
 
 class EditCareerPathActivity : AppCompatActivity(), VolleyService.SetResponse, RadioGroup.OnCheckedChangeListener {
@@ -263,6 +267,7 @@ class EditCareerPathActivity : AppCompatActivity(), VolleyService.SetResponse, R
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
             android.R.id.home -> {
+                //EmpProfileActivity().getTheDetails(2)
                 onBackPressed()
                 return true
             }
@@ -274,6 +279,13 @@ class EditCareerPathActivity : AppCompatActivity(), VolleyService.SetResponse, R
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_logo, menu)
         return true
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent()
+        intent.putExtra("MyData", 2)
+        setResult(101, intent)
     }
 
 }

@@ -17,6 +17,7 @@
             style="@style/App_EditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
+            android:background="@android:drawable/editbox_background_normal"
             android:layout_centerInParent="true"
             android:fontFamily="@font/myfont"
             android:hint="Username"
@@ -25,6 +26,7 @@
         <EditText
             android:id="@+id/etPassword"
             style="@style/App_EditTextStyle"
+            android:background="@android:drawable/editbox_background_normal"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
             android:layout_below="@+id/etUsername"
@@ -36,9 +38,11 @@
 
         <TextView
             android:id="@+id/btnLogin"
-            style="@style/App_ButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/round_button"
+            android:gravity="center"
+            android:textColor="@color/colorAccent"
             android:layout_below="@+id/etPassword"
             android:layout_marginTop="@dimen/_15sdp"
             android:fontFamily="@font/myfont"

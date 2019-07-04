@@ -17,7 +17,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_edit" />
+            app:srcCompat="@drawable/ic_edit" />
 
         <TextView
             android:id="@+id/tvCompanyName"

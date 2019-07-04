@@ -74,9 +74,14 @@ class ProjectsFragment : Fragment() {
         (fabProjects.setOnClickListener {
             println("on click reference is " + (activity as EmpProfileActivity).viewPager.currentItem)
             if ((activity as EmpProfileActivity).viewPager.currentItem == 4) {
-                startActivity(Intent(activity, EditResumeHeadlineActivity::class.java).putExtra(getString(R.string.fromProjects), true).putExtra(getString(R.string.project_id), "new"))
+                startActivityForResult(Intent(activity, EditResumeHeadlineActivity::class.java).putExtra(getString(R.string.fromProjects), true).putExtra(getString(R.string.project_id), "new"),104)
             }
         })
+    }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        println("inside fargments   sddkjhdjsdjhdgsh hshsjdjd")
+        ((activity as EmpProfileActivity).getTheDetails(4))
     }
 }

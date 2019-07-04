@@ -66,7 +66,7 @@ class EmploymentFragment : Fragment() {
          //   fabEmployment.setImageResource(R.drawable.ic_pencil_edit_button)
         //}
         fabEmployment.setOnClickListener {
-            startActivity(Intent(activity,AddEditEmploymentActivity::class.java))
+            startActivityForResult(Intent(activity,AddEditEmploymentActivity::class.java),103)
         }
 
         if (preferences?.getPreferencesString(getString(R.string.user_type)) == "employee") {
@@ -74,5 +74,11 @@ class EmploymentFragment : Fragment() {
         } else {
             fabEmployment.visibility = View.GONE
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        println("inside fargments   sddkjhdjsdjhdgsh hshsjdjd")
+        ((activity as EmpProfileActivity).getTheDetails(5))
     }
 }

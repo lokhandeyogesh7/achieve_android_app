@@ -28,8 +28,7 @@
                 android:gravity="center"
                 android:fontFamily="@font/myfont"
                 android:textSize="@dimen/_16sdp"
-                android:padding="@dimen/_5sdp"
-                android:text="Kiran Shetti" />
+                android:padding="@dimen/_5sdp"/>
 
             <TextView
                 android:id="@+id/seperator1"
@@ -64,8 +63,7 @@
                 android:layout_below="@+id/lblAvg"
                 android:fontFamily="@font/myfont"
                 android:textSize="@dimen/_12sdp"
-                android:layout_centerInParent="true"
-                android:text="Rating: 5"/>
+                android:layout_centerInParent="true"/>
 
             <!--<RatingBar
                 android:id="@+id/rbMainEmp"
@@ -99,8 +97,7 @@
                 android:gravity="center"
                 android:fontFamily="@font/myfont"
                 android:textSize="@dimen/_14sdp"
-                android:padding="@dimen/_5sdp"
-                android:text="Excellent" />
+                android:padding="@dimen/_5sdp"/>
 
 
         </RelativeLayout>

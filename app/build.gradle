@@ -7,10 +7,10 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.sanswai.achieve"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 28
-        versionCode 8
-        versionName "1.7"
+        versionCode 9
+        versionName "1.8"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -53,6 +53,4 @@ dependencies {
     implementation 'dev.dworks.libs:volleyplus:+'
 
     implementation 'com.nabinbhandari.android:permissions:3.8'
-
-
 }

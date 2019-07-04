@@ -25,7 +25,6 @@ import com.sanswai.achieve.response.employeedetails.EmployeeDetails
 import kotlinx.android.synthetic.main.activity_emp_profile.*
 import kotlinx.android.synthetic.main.dialog_editbox.*
 import kotlinx.android.synthetic.main.fragment_key_kills.*
-import kotlinx.android.synthetic.main.fragment_personal_details.*
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -157,7 +156,7 @@ class KeySkillFragment : Fragment(), VolleyService.SetResponse {
         if (methodName.contains(getString(R.string.api_key_skill))) {
             if (dialog.isShowing) {
                 dialog.dismiss()
-                ((activity as EmpProfileActivity).getTheDetails())
+                ((activity as EmpProfileActivity).getTheDetails(1))
             }
         }
     }

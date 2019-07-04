@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +24,9 @@ import com.sanswai.achieve.response.employeedetails.EmployeeDetails
 import kotlinx.android.synthetic.main.activity_emp_profile.*
 import kotlinx.android.synthetic.main.fragment_desired_career_path.*
 import kotlinx.android.synthetic.main.fragment_key_kills.*
+import android.R.attr.data
+
+
 
 class DesiredCareerProfileFrag : Fragment() {
 
@@ -54,15 +58,15 @@ class DesiredCareerProfileFrag : Fragment() {
             adapter = DesiredCareerAdapter(activity!!, educationList)
             val mLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
             rvDesiredPath.layoutManager = mLayoutManager
-            rvDesiredPath.itemAnimator = DefaultItemAnimator()
+            rvDesiredPath.itemAnimator = DefaultItemAnimator() as RecyclerView.ItemAnimator?
             rvDesiredPath.adapter = adapter
         }
 
         (fabDesireProfile.setOnClickListener {
             if (!educationList.isNullOrEmpty()) {
-                startActivity(Intent(activity!!, EditCareerPathActivity::class.java).putExtra(getString(R.string.career_id), educationList!!.get(0).id))
+                startActivityForResult(Intent(activity!!, EditCareerPathActivity::class.java).putExtra(getString(R.string.career_id), educationList!!.get(0).id),101)
             }else{
-                startActivity(Intent(activity!!, EditCareerPathActivity::class.java))
+                startActivityForResult(Intent(activity!!, EditCareerPathActivity::class.java),101)
             }
         })
         if (responseObject.desiredProfile?.response == "false") {
@@ -75,5 +79,11 @@ class DesiredCareerProfileFrag : Fragment() {
         } else {
             fabDesireProfile.visibility = View.GONE
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        println("inside fargments   sddkjhdjsdjhdgsh hshsjdjd")
+        ((activity as EmpProfileActivity).getTheDetails(2))
     }
 }

@@ -42,7 +42,7 @@ class MainActivity : BaseActivity(), VolleyService.SetResponse {
     }
 
     private fun getEmployeeDashboard() {
-        services!!.callJsonObjectRequest(getString(R.string.employee_dashboard)+userId, JSONObject())
+        services!!.callJsonObjectRequest(getString(R.string.employee_dashboard) + userId, JSONObject())
         services!!.mResponseInterface = this
     }
 
@@ -54,22 +54,27 @@ class MainActivity : BaseActivity(), VolleyService.SetResponse {
     @SuppressLint("SetTextI18n")
     override fun onSuccess(methodName: String, response: Any) {
 
-        val userData = Gson().fromJson(response.toString(), UserData::class.java)
+        val objectData = response as JSONObject
+        if (objectData.get("response") == "false") {
+            logoutUser()
+        } else {
+            val userData = Gson().fromJson(response.toString(), UserData::class.java)
 
-        tvMainEmpName.text = preferences!!.getPreferencesString(getString(R.string.username))
-        rbMainEmp.text = "Rating: "+Math.ceil(userData.averageRating!!.toDouble())
-        tvMainAvgReview.text = userData.performanceStatus
+            tvMainEmpName.text = preferences!!.getPreferencesString(getString(R.string.username))
+            rbMainEmp.text = "Rating: " + Math.ceil(userData.averageRating!!.toDouble())
+            tvMainAvgReview.text = userData.performanceStatus
 
-        rvEmployerList.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
+            rvEmployerList.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
 
-        //set adapter for recycler view
-        if (!userData.data.isNullOrEmpty()) {
-            rvEmployerList.adapter = EmployerListAdapter(userData.data) { result ->
-                //call new activity to show details and pass uid to particular activity
-                println("id id " + result.id)
-                val intent = Intent(this@MainActivity, ReviewDetailsActivity::class.java)
-                intent.putExtra(getString(R.string.employee_id), result.id)
-                startActivity(intent)
+            //set adapter for recycler view
+            if (!userData.data.isNullOrEmpty()) {
+                rvEmployerList.adapter = EmployerListAdapter(userData.data) { result ->
+                    //call new activity to show details and pass uid to particular activity
+                    println("id id " + result.id)
+                    val intent = Intent(this@MainActivity, ReviewDetailsActivity::class.java)
+                    intent.putExtra(getString(R.string.employee_id), result.id)
+                    startActivity(intent)
+                }
             }
         }
     }
@@ -92,13 +97,17 @@ class MainActivity : BaseActivity(), VolleyService.SetResponse {
             }
 
             R.id.logout -> {
-                Toast.makeText(this, "You are successfully logged out", Toast.LENGTH_SHORT).show()
-                preferences!!.clearPreferences()
-                startActivity(Intent(this@MainActivity, LoginActivity::class.java))
-                finish()
+                logoutUser()
                 return true
             }
         }
         return true
+    }
+
+    private fun logoutUser() {
+        Toast.makeText(this, "You are successfully logged out", Toast.LENGTH_SHORT).show()
+        preferences!!.clearPreferences()
+        startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+        finish()
     }
 }

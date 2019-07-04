@@ -100,7 +100,7 @@
                 android:layout_marginTop="@dimen/_5sdp"
                 android:gravity="center"
                 android:tint="@color/colorPrimaryDark"
-                android:src="@drawable/ic_view" />
+                app:srcCompat="@drawable/ic_view" />
 
             <ImageView
                 android:id="@+id/tvEmployeeProfile"
@@ -111,7 +111,7 @@
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_alignParentRight="true"
                 android:tint="@color/colorPrimaryDark"
-                android:src="@drawable/ic_profile_view"
+                app:srcCompat="@drawable/ic_profile_view"
                 android:textColor="@android:color/white" />
 
 
