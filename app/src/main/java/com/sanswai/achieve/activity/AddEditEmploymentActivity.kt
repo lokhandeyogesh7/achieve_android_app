@@ -27,6 +27,7 @@ class AddEditEmploymentActivity : BaseActivity(), VolleyService.SetResponse {
     var startMonth: String? = null
     var endYear: String? = null
     var endMonth: String? = null
+    var endWork: String? = null
     var currentOrganization: String? = null
     var employmentID: String? = ""
 
@@ -136,7 +137,7 @@ class AddEditEmploymentActivity : BaseActivity(), VolleyService.SetResponse {
                 currentOrganization = "0"
             }
             var workStart = startYear + "-" + startMonth
-            var endWork = endYear + "-" + endMonth
+            endWork = endYear + "-" + endMonth
 
             when {
                 etOrgnizationName.text.toString().isNullOrEmpty() -> {
@@ -184,6 +185,9 @@ class AddEditEmploymentActivity : BaseActivity(), VolleyService.SetResponse {
                         etJobDescription.setText(selectedProject.jobProfileDescription)
                         if (selectedProject.isCurrentEmployment == "1") {
                             radioYes.isChecked = true
+                            endMonth=""
+                            endYear=""
+                            endWork = "Till Date"
                             llWorkedtill.visibility = View.INVISIBLE
                         } else {
                             radioNo.isChecked = true

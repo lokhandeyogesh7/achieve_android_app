@@ -65,6 +65,13 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
         supportActionBar!!.setDisplayShowHomeEnabled(true)
 
         tvSubmitEducation.setOnClickListener {
+            if (selectedEducation=="0"){
+                showToast("Please select education")
+            }else if(selectedCourse=="0"){
+                showToast("Please select course")
+            }else if(selectedSpecialization=="0"){
+                showToast("Please select specialization")
+            }
             val jsonObject = JSONObject()
             jsonObject.put("id", educationID)
             jsonObject.put("education_id", selectedEducation)
