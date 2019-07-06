@@ -77,7 +77,7 @@ class EducationFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        println("inside fargments   sddkjhdjsdjhdgsh hshsjdjd")
+        println("inside fargments   education")
         ((activity as EmpProfileActivity).getTheDetails(6))
     }
 }

@@ -6,9 +6,8 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
+import android.os.Environment
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,14 +19,16 @@ import com.nabinbhandari.android.permissions.Permissions
 import com.sanswai.achieve.R
 import com.sanswai.achieve.activity.EditResumeHeadlineActivity
 import com.sanswai.achieve.activity.EmpProfileActivity
-import com.sanswai.achieve.global.BaseActivity
 import com.sanswai.achieve.global.Preferences
 import com.sanswai.achieve.network.VolleyService
 import com.sanswai.achieve.response.employeedetails.EmployeeDetails
+import java.io.IOException
+import com.jaiselrahman.filepicker.config.Configurations
+import com.jaiselrahman.filepicker.activity.FilePickerActivity
+import com.jaiselrahman.filepicker.model.MediaFile
+import com.sanswai.achieve.global.BaseActivity
 import kotlinx.android.synthetic.main.activity_emp_profile.*
 import kotlinx.android.synthetic.main.fragment_resume_headline.*
-import java.io.IOException
-import java.util.regex.Pattern
 
 
 class ResumeHeadlineFragment : Fragment(), VolleyService.SetResponse {
@@ -37,6 +38,7 @@ class ResumeHeadlineFragment : Fragment(), VolleyService.SetResponse {
     val GALLERY = 987
     private var employeeId: String? = null
     var docPaths = ArrayList<String>()
+    var mediaFiles = arrayListOf<MediaFile>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -89,7 +91,7 @@ class ResumeHeadlineFragment : Fragment(), VolleyService.SetResponse {
 
         fabResume.setOnClickListener {
             if ((activity as EmpProfileActivity).viewPager.currentItem == 3) {
-                startActivityForResult(Intent(activity, EditResumeHeadlineActivity::class.java),102)
+                startActivityForResult(Intent(activity, EditResumeHeadlineActivity::class.java), 102)
             }
         }
 
@@ -99,14 +101,24 @@ class ResumeHeadlineFragment : Fragment(), VolleyService.SetResponse {
                 @SuppressLint("InlinedApi")
                 override fun onGranted() {
                     // do your task.
-                    val intent = Intent()
-                    intent.action = Intent.ACTION_GET_CONTENT
-                    //val uri = Uri.parse(Environment.getDownloadCacheDirectory().getPath().toString())
-                    intent.setType("application/pdf")
-                    // val mimetypes = arrayOf("application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/msword", "application/pdf")
-                    //intent.putExtra(Intent.EXTRA_MIME_TYPES, mimetypes)
+                    /* val intent = Intent()
+                     intent.action = Intent.ACTION_GET_CONTENT
+                     //val uri = Uri.parse(Environment.getDownloadCacheDirectory().getPath().toString())
+                     intent.setType("application/pdf")
+                     // val mimetypes = arrayOf("application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/msword", "application/pdf")
+                     //intent.putExtra(Intent.EXTRA_MIME_TYPES, mimetypes)
+                     startActivityForResult(intent, GALLERY)
+                     //onPickDoc()*/
+                    val intent = Intent(activity, FilePickerActivity::class.java)
+                    intent.putExtra(FilePickerActivity.CONFIGS, Configurations.Builder()
+                            .setCheckPermission(true)
+                            .setSelectedMediaFiles(mediaFiles)
+                            .setShowFiles(true)
+                            .setShowImages(false)
+                            .setShowVideos(false)
+                            .setMaxSelection(1)
+                            .build())
                     startActivityForResult(intent, GALLERY)
-                    //onPickDoc()
                 }
             })
         }
@@ -118,11 +130,11 @@ class ResumeHeadlineFragment : Fragment(), VolleyService.SetResponse {
         super.onActivityResult(requestCode, resultCode, data)
         println("result code is " + requestCode)
         if (resultCode != Activity.RESULT_OK) {
-           // ((activity as BaseActivity)).showToast("Try Using Different Folder")
+            // ((activity as BaseActivity)).showToast("Try Using Different Folder")
         } else if (requestCode == GALLERY) {
             if (data != null) {
                 val contentURI = data.data
-                try {
+                try {/*
                     println("content uri is " + contentURI.path)
 
                     val selectedImage = data.data
@@ -135,20 +147,34 @@ class ResumeHeadlineFragment : Fragment(), VolleyService.SetResponse {
                     val picturePath = cursor.getString(columnIndex)
 
                     cursor.close()
-                    System.out.println("picturePath +" + picturePath);
+                    System.out.println("picturePath +" + picturePath);*/
+                    mediaFiles.clear()
+                    mediaFiles = data.getParcelableArrayListExtra(FilePickerActivity.MEDIA_FILES)
+                    if (!mediaFiles.isEmpty()) {
+                        println("media files list is " + mediaFiles[0].path)
+                        if (mediaFiles[0].size > 2000000) {
+                            ((activity as BaseActivity)).showToast("Try File less than 2 MB")
+                        } else {
+                            services!!.postMultipartRequest(getString(R.string.api_resume_upload) + (employeeId), mediaFiles[0].path)
+                            services!!.mResponseInterface = this
+                        }
+                    }else{
+
+                    }
 
                 } catch (e: IOException) {
                     e.printStackTrace()
                     Toast.makeText(activity, "Failed!", Toast.LENGTH_SHORT).show()
                 }
             }
-        }else if(requestCode==102){
+        } else if (requestCode == 102) {
             ((activity as EmpProfileActivity).getTheDetails(3))
         }
     }
 
     override fun onSuccess(methodName: String, response: Any) {
         println("reposnse is " + methodName + ">>> " + response)
+        ((activity as EmpProfileActivity).getTheDetails(3))
     }
 
     override fun onFailure(methodName: String, volleyError: VolleyError) {

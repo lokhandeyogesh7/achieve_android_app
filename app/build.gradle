@@ -53,4 +53,6 @@ dependencies {
     implementation 'dev.dworks.libs:volleyplus:+'
 
     implementation 'com.nabinbhandari.android:permissions:3.8'
+    implementation 'com.github.jaiselrahman:FilePicker:1.0.0'
+
 }
