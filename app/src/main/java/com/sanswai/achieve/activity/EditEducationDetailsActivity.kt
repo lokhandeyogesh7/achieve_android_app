@@ -47,7 +47,7 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
     var arrGrades = ArrayList<String>()
     var years = ArrayList<String>()
     var isDataSet = false
-    var noSpecialization = false
+   // var noSpecialization = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,24 +69,25 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
                 showToast("Please select education")
             }else if(selectedCourse=="0"){
                 showToast("Please select course")
-            }else if(selectedSpecialization=="0"){
+            }/*else if(selectedSpecialization=="0"){
                 showToast("Please select specialization")
-            }
-            val jsonObject = JSONObject()
-            jsonObject.put("id", educationID)
-            jsonObject.put("education_id", selectedEducation)
-            jsonObject.put("course_id", selectedCourse)
-            jsonObject.put("specialization_id", selectedSpecialization)
-            jsonObject.put("institute_name", etCollege.text.toString())
-            jsonObject.put("course_type", courseType)
-            jsonObject.put("passing_year", passingYear)
-            jsonObject.put("grading_system_id", selectedGrade)
-            jsonObject.put("marks_percentage", etMarks.text.toString())
-            jsonObject.put("user_id", preferences!!.getPreferencesInt(getString(R.string.user_id), 0).toString())
+            }*/else {
+                val jsonObject = JSONObject()
+                jsonObject.put("id", educationID)
+                jsonObject.put("education_id", selectedEducation)
+                jsonObject.put("course_id", selectedCourse)
+                jsonObject.put("specialization_id", selectedSpecialization)
+                jsonObject.put("institute_name", etCollege.text.toString())
+                jsonObject.put("course_type", courseType)
+                jsonObject.put("passing_year", passingYear)
+                jsonObject.put("grading_system_id", selectedGrade)
+                jsonObject.put("marks_percentage", etMarks.text.toString())
+                jsonObject.put("user_id", preferences!!.getPreferencesInt(getString(R.string.user_id), 0).toString())
 
-            println("jsopnobject si " + jsonObject)
-            services!!.callJsonObjectRequest(getString(R.string.api_post_educational_details), jsonObject)
-            services!!.mResponseInterface = this
+                println("jsopnobject si " + jsonObject)
+                services!!.callJsonObjectRequest(getString(R.string.api_post_educational_details), jsonObject)
+                services!!.mResponseInterface = this
+            }
         }
 
         radiocType.setOnCheckedChangeListener { group, checkedId ->
@@ -125,7 +126,7 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
             years.add(Integer.toString(i))
         }
 
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, years)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, years.reversed())
         spPassingYear.adapter = adapter
 
         spPassingYear.onItemSelectedListener =
@@ -139,7 +140,7 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
                     }
                 }
 
-        arrGrades = ArrayList<String>()
+        arrGrades = ArrayList()
         arrGrades.add("10 Grade")
         arrGrades.add("4 Grade")
         arrGrades.add("% marks out of 100")
@@ -218,7 +219,7 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
                             spCourses.setSelection(courseResponse!!.data!!.indexOf(courseResponse!!.data!![j]))
                         }
                     }
-                    if (spSpecialization.adapter != null && !noSpecialization) {
+                    if (spSpecialization.adapter != null) {
                         for (k in 0 until specializationResponse!!.data!!.size) {
                             if (selectedProject.specializationId.toString() == specializationResponse!!.data!![k].id.toString()) {
                                 spSpecialization.setSelection(specializationResponse!!.data!!.indexOf(specializationResponse!!.data!![k]))
@@ -307,10 +308,11 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
                 try {
                     if ((response as JSONObject).getString("response") == "false") {
                         spSpecialization.adapter = null
-                        noSpecialization =true
+                      //  noSpecialization =true
                         selectedSpecialization = ""
                     } else {
                         specializationResponse = Gson().fromJson(response.toString(), Specialization::class.java)
+                        println("specialization response "+specializationResponse!!.data)
                         val dataAdapter = ArrayAdapter<com.sanswai.achieve.response.specialization.Datum>(this, android.R.layout.simple_spinner_dropdown_item, specializationResponse!!.data!!.toList())
                         spSpecialization.adapter = dataAdapter
                         spSpecialization.prompt = "Select Specialization"

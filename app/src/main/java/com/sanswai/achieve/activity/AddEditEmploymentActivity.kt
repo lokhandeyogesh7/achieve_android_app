@@ -70,7 +70,7 @@ class AddEditEmploymentActivity : BaseActivity(), VolleyService.SetResponse {
         }
         val monthName = arrayOf("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
 
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, years)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, years.reversed())
         spStartYear.adapter = adapter
         spStartYear.onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
@@ -95,7 +95,7 @@ class AddEditEmploymentActivity : BaseActivity(), VolleyService.SetResponse {
                         println("selectedyear " + startMonth)
                     }
                 }
-        val adapterYear = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, years)
+        val adapterYear = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, years.reversed())
         spEndYear.adapter = adapterYear
         spEndYear.onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
@@ -133,11 +133,14 @@ class AddEditEmploymentActivity : BaseActivity(), VolleyService.SetResponse {
             println("selected ")
             if (radioYes.isChecked) {
                 currentOrganization = "1"
+                endWork = "Present"
             } else {
                 currentOrganization = "0"
+                endWork = endYear + "-" + endMonth
             }
             var workStart = startYear + "-" + startMonth
-            endWork = endYear + "-" + endMonth
+
+            println("end work is "+endWork+">>>"+currentOrganization)
 
             when {
                 etOrgnizationName.text.toString().isNullOrEmpty() -> {
@@ -148,6 +151,9 @@ class AddEditEmploymentActivity : BaseActivity(), VolleyService.SetResponse {
                 }
                 etJobDescription.text.toString().isNullOrEmpty() -> {
                     showToast("Enter Description")
+                }
+                startYear!!.toInt()>endYear!!.toInt()->{
+                    showToast("Please check start and end year")
                 }
                 else -> {
                     val jsonObject = JSONObject()
@@ -185,7 +191,7 @@ class AddEditEmploymentActivity : BaseActivity(), VolleyService.SetResponse {
                         etJobDescription.setText(selectedProject.jobProfileDescription)
                         if (selectedProject.isCurrentEmployment == "1") {
                             radioYes.isChecked = true
-                            endMonth=""
+                            endMonth="Present"
                             endYear=""
                             endWork = "Till Date"
                             llWorkedtill.visibility = View.INVISIBLE
@@ -208,6 +214,11 @@ class AddEditEmploymentActivity : BaseActivity(), VolleyService.SetResponse {
                     }
                 }
             }
+        }else{
+            endMonth="Present"
+            endYear=""
+            endWork = "Till Date"
+            llWorkedtill.visibility = View.INVISIBLE
         }
     }
 
