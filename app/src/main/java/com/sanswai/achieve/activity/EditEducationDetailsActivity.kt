@@ -320,7 +320,7 @@ class EditEducationDetailsActivity : BaseActivity(), VolleyService.SetResponse, 
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
-                if (jsonResponse != null && !isDataSet) {
+                if (jsonResponse != null/* && !isDataSet*/) {
                     prePopulatedData()
                 }
 

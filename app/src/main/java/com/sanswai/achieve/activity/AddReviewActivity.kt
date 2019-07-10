@@ -20,7 +20,9 @@ import com.sanswai.achieve.response.performancequestions.QuestionsDatum
 import kotlinx.android.synthetic.main.activity_add_review.*
 import org.json.JSONArray
 import org.json.JSONObject
+import java.text.SimpleDateFormat
 import java.util.*
+
 
 
 class AddReviewActivity : BaseActivity(), VolleyService.SetResponse, View.OnClickListener {
@@ -34,6 +36,7 @@ class AddReviewActivity : BaseActivity(), VolleyService.SetResponse, View.OnClic
     var employee_id: String? = null
     var employer_id: String? = null
 
+    @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_review)
@@ -53,7 +56,16 @@ class AddReviewActivity : BaseActivity(), VolleyService.SetResponse, View.OnClic
         btnSave.setOnClickListener {
             var strStartDate = tvStartDate.text.toString()
             var strEndDate = tvEndDate.text.toString()
-            checkForDate(strStartDate, strEndDate)
+            val sdf = SimpleDateFormat("yyyy-MM-dd")
+            val strSDate = sdf.parse(strStartDate)
+            val strEDate = sdf.parse(strEndDate)
+            println("datetetetete "+strSDate)
+            println("datetetetete "+strEDate)
+            if (strEDate.after(strSDate)) {
+                checkForDate(strStartDate, strEndDate)
+            }else {
+                showToast("Check start date and End date")
+            }
         }
 
         getQuestionList()
@@ -76,14 +88,14 @@ class AddReviewActivity : BaseActivity(), VolleyService.SetResponse, View.OnClic
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
-            R.id.action_save -> {
+         /*   R.id.action_save -> {
 
                 var strStartDate = tvStartDate.text.toString()
                 var strEndDate = tvEndDate.text.toString()
 
                 checkForDate(strStartDate, strEndDate)
                 return true
-            }
+            }*/
 
             android.R.id.home -> {
                 onBackPressed()
